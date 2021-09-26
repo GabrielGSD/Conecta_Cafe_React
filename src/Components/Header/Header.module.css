@@ -3,35 +3,52 @@
   position: fixed;
   width: 100%;
   z-index: 100;
-  background: #fff;
+  background: #000;
   top: 0;
 }
 
 .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 4rem;
+  max-width: 85%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
   padding: .5rem 0;
 }
 
-.login {
-  color: #333;
+.container {
   display: flex;
+  min-width: 410px;
+  justify-content: space-between;
   align-items: center;
 }
 
-.login::after {
-  content: '';
-  display: inline-block;
-  width: 14px;
-  height: 17px;
-  background: url('../../Assets/usuario.svg');
-  background-repeat: no-repeat;
-  margin-left: .5rem;
-  position: relative;
-  top: -1px;
+.container a {
+  color: #F9F9F9;
+  font-size: .9rem;
+  font-weight: 500;
+  margin: 0 15px;
+}
+
+.container .auth {
+  display: flex;
+}
+
+.container .auth > a {
+  width: 95px;
+  padding: 0.3rem;
+  border: solid 1px #F9F9F9;
+  text-align: center;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.container .auth > a:nth-child(2) {
+  color: #000;
+  background: #F9F9F9;
+  margin-left: 10px;
 }
