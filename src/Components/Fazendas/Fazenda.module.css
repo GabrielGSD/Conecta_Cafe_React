@@ -1,0 +1,40 @@
+.title {
+  color: var(--color-green-main);
+  display: inline-block;
+  font-size: 2.3rem;
+  font-weight: bold;
+  line-height: 1;
+  margin: 32px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.title::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 7px;
+  border-radius: 1rem;
+  background: var(--color-orange);
+  position: absolute;
+  bottom: -8px;
+  right: -25px;
+  z-index: -1;
+}
+
+.formControl {
+  width: 200px !important;
+  border: none !important;
+  border-radius: 3rem !important;
+  background-color: #FAF9F9 !important;
+  box-shadow: 1px 1px 4px rgb(0 0 0 / 50%) !important;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E") !important;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background-repeat: no-repeat !important;
+  background-position: right .75rem center !important;
+  background-size: 16px 12px !important;
+  color: #6C6B6B !important;
+  font-family: var(--type-second) !important;
+}
