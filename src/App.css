@@ -59,3 +59,14 @@ a {
   border: 0.25px solid #dbdbdb;
   box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 }
+
+input[type=range]::-webkit-slider-thumb {
+  border: 0px solid #E41838 !important;
+  background: #E41838 !important;
+  margin-top: -6px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  background: #FFB905;
+  height: 4px;
+}

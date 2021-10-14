@@ -22,19 +22,48 @@
   z-index: -1;
 }
 
-.formControl {
-  width: 200px !important;
-  border: none !important;
-  border-radius: 3rem !important;
-  background-color: #FAF9F9 !important;
-  box-shadow: 1px 1px 4px rgb(0 0 0 / 50%) !important;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E") !important;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
-  -webkit-appearance: none !important;
-  appearance: none !important;
-  background-repeat: no-repeat !important;
-  background-position: right .75rem center !important;
-  background-size: 16px 12px !important;
-  color: #6C6B6B !important;
-  font-family: var(--type-second) !important;
+.filterBar {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+.card {
+  height: 270px;
+  width: 230px;
+  border-radius: 1rem;
+  box-shadow: 3px 4px 5px rgb(0 0 0 / 40%);
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 1rem;
+  filter: brightness(0.5) blur(.7px);
+}
+
+.card .info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: #fff;
+}
+
+.card .nome {
+  font-size: 1.2rem;
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.card .regiao {
+  font-size: .9rem;
+  font-weight: 200;
+  word-break: break-word;
 }
