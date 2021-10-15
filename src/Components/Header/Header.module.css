@@ -32,6 +32,11 @@
   font-size: .9rem;
   font-weight: 500;
   margin: 0 15px;
+  text-decoration: none;
+}
+
+.container a:hover {
+  color: #F9F9F9;
 }
 
 .container .auth {
