@@ -67,3 +67,27 @@
   font-weight: 200;
   word-break: break-word;
 }
+
+.card:hover .animeTop{
+  display: block;
+  font-weight: 400;
+  animation: animeTop .4s forwards;
+}
+
+.animeTop {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  cursor: pointer;
+}
+
+.animeTop svg{
+  margin-left: 10px;
+}
+
+@keyframes animeTop {
+  to {
+    opacity: 1;
+    transform: initial;
+  }
+}

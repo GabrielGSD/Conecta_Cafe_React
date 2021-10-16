@@ -52,7 +52,7 @@ a {
 }
 
 .boxContainer {
-  width: 77%;
+  width: 80%;
   height: 80vh;
   background: #fff;
   border-radius: 2rem;
@@ -69,4 +69,31 @@ input[type=range]::-webkit-slider-thumb {
 input[type=range]::-webkit-slider-runnable-track {
   background: #FFB905;
   height: 4px;
+}
+
+.container-scroll {
+  width: 95%;
+  margin: 40px auto;
+  min-height: 270px;
+  max-height: 60vh;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 230px);
+  gap: 20px;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+*::-webkit-scrollbar {
+  width: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background: lightgrey;
+  border-radius: 10rem;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #a1a1a1;
+  border-radius: 10rem;
 }
