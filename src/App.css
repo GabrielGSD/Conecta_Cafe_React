@@ -40,6 +40,12 @@ a {
   text-decoration: none;
 }
 
+.bgBlack {
+  background: linear-gradient(119.6deg, #000000 0%, #212121 152.34%);
+  min-height: calc(100vh - 64px);
+  position: relative;
+}
+
 .bgGray {
   background-color: #F2F2F2;
   min-height: calc(100vh - 64px);
@@ -47,8 +53,33 @@ a {
 
 .center {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.title {
+  color: var(--color-green-main);
+  display: inline-block;
+  font-size: 2.3rem;
+  font-weight: bold;
+  line-height: 1;
+  margin: 32px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.title::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 7px;
+  border-radius: 1rem;
+  background: var(--color-orange);
+  position: absolute;
+  bottom: -8px;
+  right: -25px;
+  z-index: -1;
 }
 
 .boxContainer {

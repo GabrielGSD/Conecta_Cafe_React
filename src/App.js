@@ -4,8 +4,8 @@ import './App.css';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import Fazendas from './Components/Fazendas/Fazendas';
-import Login from './Components/Login/Login';
-import Cadastro from './Components/Cadastro/Cadastro';
+import Login from './Components/Accounts/Login/Login';
+import Cadastro from './Components/Accounts/Cadastro/Cadastro';
 
 function App() {
   return (

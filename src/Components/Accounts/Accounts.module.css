@@ -1,0 +1,43 @@
+.teste {
+  background-image: url("../../Assets/graosCafe.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 90%;
+  margin: 0 auto;
+  height: calc(100vh - 64px);
+  display: grid;
+  grid-template-columns: 1fr 35vw;
+  align-content: center;
+  grid-column-gap: 8vw;
+}
+
+.box{
+  background: #F9F9F9;
+  border-radius: 1.5rem;
+  width: 27vw;
+  min-width: 350px;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  width: 80%;
+}
+
+a {
+  text-decoration: none;
+  color: #525252;
+}
+
+a:hover {
+  color: var(--color-green-main)
+}
+
+.logo {
+  width: 100%;
+  max-width: 550px;
+  height: auto;
+}
