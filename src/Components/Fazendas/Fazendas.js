@@ -20,7 +20,7 @@ function Fazendas() {
     <div className={`bgGray center ${styles.header}`}>
       <div className="boxContainer">
         <div className="center">
-          <h1 className={styles.title}>Fazendas</h1>
+          <h1 className="title">Fazendas</h1>
         </div>
         <div className={styles.filterBar}>
           <Select type={torra} setType={setTorra} options={torras} def="Torra" />
