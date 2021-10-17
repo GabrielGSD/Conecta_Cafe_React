@@ -1,0 +1,53 @@
+.container {
+    color: #964423;
+    position: relative;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0 15px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logoTemp {
+    margin-left: 20px;
+    width: 100px;
+    height: 30px;
+}
+
+.background {
+    position: absolute;
+    margin-left: auto;
+}
+
+.table {
+    color: #964423;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    border: 1px solid black;
+}
+
+.tableBorder {
+    font-size: 0.7rem;
+}
+
+.regionCoffee {
+    margin-left: 20px;
+    font-size: 0.8rem;
+}
+
+.typeCoffee {}
+
+.specialCoffee {}
+
+.saveButton {
+    text-align: center;
+    color: white;
+    background-color: saddlebrown;
+    border-radius: 5px;
+    border: solid 1px #F9F9F9;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
