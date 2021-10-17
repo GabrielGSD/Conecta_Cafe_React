@@ -3,7 +3,6 @@ import { useReactToPrint } from "react-to-print";
 import styles from './Etiqueta.module.css';
 // import logo from '../../Assets/logo_white.svg'
 import logoTemp from '../../Assets/logo_temp.png'
-import cafe from '../../Assets/cafe.jpg'
 import API from '../../Services/Api.js';
 
 
@@ -33,12 +32,11 @@ class ComponentToPrint extends React.Component {
         dataFarm()
         return (
             <div className={styles.container}>
-                {/* <img className={styles.logo} src={photo.src} alt={""} /> */}
-
                 <table className={styles.table}>
                     <tr className={styles.tableBorder}>
                         <th>
-                            <img className={styles.logoTemp} src={logoTemp} alt={""} />
+                            <img className={styles.a} />
+                            {/* <img className={styles.logoTemp} src={logoTemp} alt={""} /> */}
                             <br />
                             <div className={styles.regionCoffee}>
                                 {localStorage.getItem('farm_name')}
@@ -94,7 +92,7 @@ class ComponentToPrint extends React.Component {
     }
 }
 
-const Example = () => {
+const Etiqueta = () => {
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -108,4 +106,4 @@ const Example = () => {
     );
 };
 
-export default Example
+export default Etiqueta

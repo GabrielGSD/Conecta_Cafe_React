@@ -9,6 +9,16 @@
     margin-right: auto;
 }
 
+.a {
+    background-image: url("../../Assets/LogoBlack.svg");
+    background-repeat: no-repeat;
+    width: 100%;
+    margin: 0 auto;
+    height: calc(10vh - 64px);
+    border-color: transparent;
+
+}
+
 .logoTemp {
     margin-left: 20px;
     width: 100px;
@@ -21,20 +31,21 @@
 }
 
 .table {
-    color: #964423;
+    background: linear-gradient(#837156, #ffdcb5);
+    color: #5f3214;
     margin-left: auto;
     margin-right: auto;
-    width: 60%;
+    width: 65%;
     border: 1px solid black;
 }
 
 .tableBorder {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 .regionCoffee {
     margin-left: 20px;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .typeCoffee {}
