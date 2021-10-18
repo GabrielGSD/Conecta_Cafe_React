@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import styles from './Etiqueta.module.css';
 // import logo from '../../Assets/logo_white.svg'
-import logoTemp from '../../Assets/logo_temp.png'
 import API from '../../Services/Api.js';
+import RequestQrCode from "../../Services/RequestQrCode";
 
 
 // const photo = { src: logo, title: "Teste" }
@@ -28,6 +28,7 @@ const dataFarm = props => {
 
 
 class ComponentToPrint extends React.Component {
+    
     render() {
         dataFarm()
         return (
@@ -35,8 +36,9 @@ class ComponentToPrint extends React.Component {
                 <table className={styles.table}>
                     <tr className={styles.tableBorder}>
                         <th>
+                            <div>
                             <img className={styles.a} />
-                            {/* <img className={styles.logoTemp} src={logoTemp} alt={""} /> */}
+                            </div>
                             <br />
                             <div className={styles.regionCoffee}>
                                 {localStorage.getItem('farm_name')}
@@ -59,7 +61,7 @@ class ComponentToPrint extends React.Component {
                             <div>
                                 {
                                     localStorage.getItem('farm_special') ?
-                                        <div className={styles.specialCoffee}>
+                                    <div className={styles.specialCoffee}>
                                             Corpo:
                                             <br />
                                             Doçura:
@@ -69,7 +71,7 @@ class ComponentToPrint extends React.Component {
                                         </div>
                                         :
                                         null
-                                }
+                                    }
                             </div>
                         </th>
                         <th className={styles.tableBorder}>
@@ -80,7 +82,8 @@ class ComponentToPrint extends React.Component {
                             </div> */}
 
                             {/* Inserir o endpoint da tela da fazenda na URL do QR code*/}
-                            <img className={styles.qrCodeCoffee} src='https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://github.com/GabrielGSD/Conecta_Cafe_React' alt={""} />
+                            <RequestQrCode />
+                            {/* <img className={styles.qrCodeCoffee} src={localStorage.getItem('qr_code')} alt={""} /> */}
                         </th>
                     </tr>
                 </table>
