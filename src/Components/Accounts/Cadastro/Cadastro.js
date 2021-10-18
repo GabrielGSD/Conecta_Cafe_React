@@ -4,9 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {Form} from "react-bootstrap";
 import Input from '../../Form/Input/Input';
 import Button from '../../Form/Button/Button';
-// import Error from '../../Helper/Error';
+import Error from '../../Helper/Error';
 import useForm from '../../../Hooks/useForm';
-// import { UserContext } from '../../../Context/UserContext';
+import { UserContext } from '../../../Context/UserContext';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../Assets/logo_white.svg';
 
@@ -15,18 +15,16 @@ function Cadastro() {
   const name = useForm();
   const email = useForm("email");
   const senha = useForm("password");
-  
-  const loading = false;
 
-  // const { userLogin, error, loading } = React.useContext(UserContext);
+  const { userCreate, error, loading } = React.useContext(UserContext);
 
   async function handleSubmit(event) {
     event.preventDefault();
     if (email.validate() && senha.validate()) {
-      console.log(email.value, senha.value)
-      // userLogin(email.value, senha.value);
+      userCreate(name.value, email.value, senha.value);
     }
   }
+
 
   return (
     <div className="bgBlack">
