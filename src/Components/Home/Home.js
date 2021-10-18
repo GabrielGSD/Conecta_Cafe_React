@@ -1,5 +1,4 @@
 import React from 'react';
-import Etiqueta from '../Etiqueta/Etiqueta';
 
 function Home() {
   return (
