@@ -1,5 +1,5 @@
 import React from 'react';
-import { TOKEN_POST, TOKEN_VALIDATE_POST, USER_GET } from '../Api/api';
+import { USER_LOGIN, USER_GET } from '../Api/api';
 import { useNavigate } from 'react-router';
 
 export const UserContext = React.createContext();
@@ -16,20 +16,22 @@ export function UserStorage({ children }) {
     const response = await fetch(url, options);
     const json = await response.json();
     setData(json);
+    console.log(data);
     setLogin(true);
   }
 
-  async function userLogin(username, password) {
+  async function userLogin(email, password) {
     try {
       setError(null);
       setLoading(true);
-      const { url, options } = TOKEN_POST({ username, password });
-      const tokenRes = await fetch(url, options);
-      if (!tokenRes.ok) throw new Error(`Error: ${tokenRes.statusText}`);
-      const { token } = await tokenRes.json();
-      window.localStorage.setItem('token', token);
-      await getUser(token);
-      navigate('/conta');
+      const {url, options} = USER_LOGIN({ email, password });
+      const response = await fetch(url, options);
+      if (!response.ok) throw new Error('Erro ao entrar');
+      const { data } = await response.json();
+      console.log(data);
+      window.localStorage.setItem('token', data.access_token);
+      await getUser(data.access_token);
+      navigate('/fazendas');
     } catch (err) {
       setError(err.message);
       setLogin(false);
@@ -57,10 +59,10 @@ export function UserStorage({ children }) {
         try {
           setError(null);
           setLoading(true);
-          const { url, options } = TOKEN_VALIDATE_POST(token);
-          const response = await fetch(url, options);
-          if (!response.ok) throw new Error('Token inválido');
-          await getUser(token);
+          // const { url, options } = TOKEN_VALIDATE_POST(token);
+          // const response = await fetch(url, options);
+          // if (!response.ok) throw new Error('Token inválido');
+          // await getUser(token);
         } catch (err) {
           userLogout();
         } finally {

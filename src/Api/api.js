@@ -1,8 +1,9 @@
 export const API_URL = 'http://localhost:3333';
 
-export function TOKEN_POST(body) {
+// Funcao Login
+export function USER_LOGIN(body) {
   return {
-    url: API_URL + '/jwt-auth/v1/token',
+    url: API_URL + '/auth/login',
     options: {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -11,19 +12,22 @@ export function TOKEN_POST(body) {
   };
 }
 
-export function TOKEN_VALIDATE_POST(token) {
+// Funcao Cadastrar usuario
+export function USER_CREATE(body) {
   return {
-    url: API_URL + '/jwt-auth/v1/token/validate',
+    url: API_URL + '/coffee-grower',
     options: {
       method: 'POST',
-      headers: { Authorization: 'Bearer ' + token },
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
     },
   };
 }
 
+// Funcao listar os dados do usuario
 export function USER_GET(token) {
   return {
-    url: API_URL + '/api/user',
+    url: API_URL + '/coffee-grower',
     options: {
       method: 'GET',
       headers: { Authorization: 'Bearer ' + token },

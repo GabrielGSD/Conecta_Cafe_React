@@ -6,18 +6,21 @@ import Home from './Components/Home/Home';
 import Fazendas from './Components/Fazendas/Fazendas';
 import Login from './Components/Accounts/Login/Login';
 import Cadastro from './Components/Accounts/Cadastro/Cadastro';
+import { UserStorage } from './Context/UserContext';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <Header />
+        <UserStorage>
+          <Header />
           <Routes>
             <Route path="/" element={<Home />} />    
             <Route path="fazendas/" element={<Fazendas />} />
             <Route path="login/" element={<Login />} />
             <Route path="cadastro/" element={<Cadastro />} />
           </Routes>
+        </UserStorage>
       </BrowserRouter>
     </div>
   );
