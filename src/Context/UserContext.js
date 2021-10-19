@@ -16,7 +16,6 @@ export function UserStorage({ children }) {
     const response = await fetch(url, options);
     const json = await response.json();
     setData(json);
-    console.log(data);
     setLogin(true);
   }
 
@@ -28,10 +27,9 @@ export function UserStorage({ children }) {
       const response = await fetch(url, options);
       if (!response.ok) throw new Error('Erro ao entrar');
       const { data } = await response.json();
-      console.log(data);
       window.localStorage.setItem('token', data.access_token);
       await getUser(data.access_token);
-      navigate('/fazendas');
+      navigate('/conta/fazenda');
     } catch (err) {
       setError(err.message);
       setLogin(false);
@@ -47,8 +45,6 @@ export function UserStorage({ children }) {
       const {url, options} = USER_CREATE({ name, email, password });
       const response = await fetch(url, options);
       if (!response.ok) throw new Error('Erro ao cadastrar usuário');
-      const { data } = await response.json();
-      console.log(data);
       navigate('/login');
     } catch (err) {
       setError(err.message);
@@ -77,10 +73,10 @@ export function UserStorage({ children }) {
         try {
           setError(null);
           setLoading(true);
-          // const { url, options } = TOKEN_VALIDATE_POST(token);
-          // const response = await fetch(url, options);
-          // if (!response.ok) throw new Error('Token inválido');
-          // await getUser(token);
+          const { url, options } = USER_GET(token);
+          const response = await fetch(url, options);
+          if (!response.ok) throw new Error('Token inválido');
+          await getUser(token);
         } catch (err) {
           userLogout();
         } finally {

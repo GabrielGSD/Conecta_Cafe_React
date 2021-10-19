@@ -54,7 +54,7 @@ function Cadastro() {
             ) : (
               <Button>Entrar</Button>
             )}
-            {/* <Error error={error} /> */}
+            <Error error={error} />
           </Form>
           <p className="mt-4 mb-5" >Já possui uma conta? 
             <Link to="/login" style={{marginLeft: '5px'}}>
