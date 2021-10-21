@@ -58,3 +58,17 @@ export function USER_DELELTE() {
   };
 }
 
+// Funcao Cadastrar Fazenda
+export function FARM_CREATE(body) {
+  return {
+    url: API_URL + '/farm',
+    options: {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + window.localStorage.getItem("token")
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}

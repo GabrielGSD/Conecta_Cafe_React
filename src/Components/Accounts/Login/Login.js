@@ -3,7 +3,7 @@ import styles from '../Accounts.module.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Form} from "react-bootstrap";
 import Input from '../../Form/Input/Input';
-import Button from '../../Form/Button/Button';
+import { ButtonAcc } from '../../Button/Button';
 import Error from '../../Helper/Error';
 import useForm from '../../../Hooks/useForm';
 import { UserContext } from '../../../Context/UserContext';
@@ -45,9 +45,9 @@ function Login() {
               <Input label="Senha" type="password" name="senha" {...senha} />
             </Form.Group>
             {loading ? (
-              <Button disabled>Carregando...</Button>
+              <ButtonAcc disabled>Carregando...</ButtonAcc>
             ) : (
-              <Button>Entrar</Button>
+              <ButtonAcc>Entrar</ButtonAcc>
             )}
             <Error error={error} />
           </Form>

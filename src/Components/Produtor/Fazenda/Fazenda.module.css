@@ -1,0 +1,12 @@
+label {
+  color: #828282 !important;
+  font-weight: bold !important; 
+  font-size: 1.1rem !important;
+}
+
+.subTitle {
+  color: #394B68;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 25px 0 0 25px;
+}

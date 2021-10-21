@@ -106,7 +106,7 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 95%;
   margin: 40px auto;
   min-height: 270px;
-  max-height: 60vh;
+  max-height: 54vh;
   overflow-y: auto;
   padding-bottom: 10px;
 }
