@@ -108,11 +108,21 @@ input[type=range]::-webkit-slider-runnable-track {
   min-height: 270px;
   max-height: 60vh;
   overflow-y: auto;
+  padding-bottom: 10px;
+}
+
+.navBarCont {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.list-grid{
   display: grid;
   grid-template-columns: repeat(auto-fit, 230px);
   gap: 20px;
   justify-content: center;
-  padding-bottom: 10px;
 }
 
 *::-webkit-scrollbar {

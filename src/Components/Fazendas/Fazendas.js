@@ -16,17 +16,17 @@ function Fazendas() {
   const photo = {src: imgFazenda, title:"Teste"}
 
   return (
-    <div className={`bgGray center ${styles.header}`}>
+    <div className={`bgGray center`}>
       <div className="boxContainer">
         <div className="center">
           <h1 className="title">Fazendas</h1>
         </div>
-        <div className={styles.filterBar}>
+        <div className="navBarCont">
           <Select type={torra} setType={setTorra} options={torras} def="Torra" />
           <Select type={processo} setType={setProcesso} options={processos} def="Processamento" />
           {/* <input type="range" class="form-range"  max='5000' value={altitude} onChange={altitude => setAltitude(altitude)}/> */}
         </div>
-        <div className="container-scroll">
+        <div className="container-scroll list-grid">
           {teste.map((card) => (
             <div className={styles.card} key={card}>
               <img src={photo.src} alt={photo.title} />
