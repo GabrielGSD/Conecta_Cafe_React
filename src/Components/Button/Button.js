@@ -8,5 +8,17 @@ function Button({ children, ...props }) {
     </button>
   );
 }
-
 export default Button;
+
+function ButtonNavFazenda({ children, ...props }) {
+  return (
+    <button {...props} className={styles.buttonFaz}>
+      {children}
+    </button>
+  );
+}
+
+export {
+  Button,
+  ButtonNavFazenda
+}

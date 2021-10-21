@@ -13,17 +13,15 @@ import { ReactComponent as Logo } from '../../../Assets/logo_white.svg';
 function Login() {
 
   const email = useForm("email");
-  const senha = useForm("password");
+  const senha = useForm();
   
-  const loading = false;
 
-  // const { userLogin, error, loading } = React.useContext(UserContext);
+  const { userLogin, error, loading } = React.useContext(UserContext);
 
   async function handleSubmit(event) {
     event.preventDefault();
     if (email.validate() && senha.validate()) {
-      console.log(email.value, senha.value)
-      // userLogin(email.value, senha.value);
+      userLogin(email.value, senha.value);
     }
   }
 
@@ -51,7 +49,7 @@ function Login() {
             ) : (
               <Button>Entrar</Button>
             )}
-            {/* <Error error={error} /> */}
+            <Error error={error} />
           </Form>
           <Link className="mt-4" to="/perdeu">
             Perdeu a senha?

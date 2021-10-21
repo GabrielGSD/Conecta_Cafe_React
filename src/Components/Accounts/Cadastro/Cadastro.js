@@ -15,18 +15,16 @@ function Cadastro() {
   const name = useForm();
   const email = useForm("email");
   const senha = useForm("password");
-  
-  const loading = false;
 
-  // const { userLogin, error, loading } = React.useContext(UserContext);
+  const { userCreate, error, loading } = React.useContext(UserContext);
 
   async function handleSubmit(event) {
     event.preventDefault();
     if (email.validate() && senha.validate()) {
-      console.log(email.value, senha.value)
-      // userLogin(email.value, senha.value);
+      userCreate(name.value, email.value, senha.value);
     }
   }
+
 
   return (
     <div className="bgBlack">
@@ -56,7 +54,7 @@ function Cadastro() {
             ) : (
               <Button>Entrar</Button>
             )}
-            {/* <Error error={error} /> */}
+            <Error error={error} />
           </Form>
           <p className="mt-4 mb-5" >Já possui uma conta? 
             <Link to="/login" style={{marginLeft: '5px'}}>
