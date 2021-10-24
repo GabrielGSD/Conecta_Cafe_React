@@ -2,14 +2,14 @@ import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React, { useEffect } from "react";
 
 const API_GEOLOCATION_GOOGLE = 'https://maps.googleapis.com/maps/api/geocode/json?'
-const REACT_APP_API_KEY_MAPS = `${process.env.REACT_APP_API_KEY_MAPS || "API-KEY NOT FOUND!"}`
+const REACT_APP_API_KEY = `${process.env.REACT_APP_API_KEY || "API-KEY NOT FOUND!"}`
 
 
 // Criar uma função para coletar os dados de endereço do backend e manter no padrão abaixo
 const ADDRESS = 'address=%20rua%20maria%20joaquina,%20185,%20crisolia,%20mg'
 
 const Maps = props => {
-    const URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + ADDRESS + '&key=' + REACT_APP_API_KEY_MAPS
+    const URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + ADDRESS + '&key=' + REACT_APP_API_KEY
 
     useEffect(() => {
         fetch(URL_DA_REQUISICAO).then(response => {
