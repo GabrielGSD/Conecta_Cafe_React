@@ -72,3 +72,18 @@ export function FARM_CREATE(body) {
     },
   };
 }
+
+// Funcao Editar Fazenda
+export function FARM_EDIT(id, body) {
+  return {
+    url: API_URL + `/farm/${id}`,
+    options: {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + window.localStorage.getItem("token")
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}

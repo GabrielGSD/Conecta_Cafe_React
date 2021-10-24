@@ -6,6 +6,8 @@ import useForm from '../../../Hooks/useForm';
 import { UserContext } from '../../../Context/UserContext';
 import {Input, TextArea} from '../../Form/Input/Input';
 import { ButtonNavFazenda, ButtonSalvar } from '../../Button/Button';
+import { Col, Container, Row } from 'react-bootstrap';
+import Sobre from './Sobre/Sobre';
 
 function Fazenda() {
 
@@ -15,21 +17,49 @@ function Fazenda() {
   const fertilizantes = useForm();
 
   const { data, loading, error, request } = useFetch();
-  const { farmCreate } = React.useContext(UserContext);
+  const [teste, setTeste] = React.useState("sobre");
+  const { farmCreate, farmEdit } = React.useContext(UserContext);
+
 
   async function handleSubmit(event) {
     event.preventDefault();
-    farmCreate(historia.value);
+    var body = {
+      farm_name: nome.value,
+      history: historia.value,
+      insecticides: inseticidas.value,
+      fertilizers: fertilizantes.value
+    };
+    if(data.data.farm[0]) {
+      farmEdit(data.data.farm[0].id, body);
+    }
+    else {
+      farmCreate(body);
+    }
+  }
+
+  async function setInputs(r) {
+    nome.setValue(r.farm_name);
+    historia.setValue(r.history);
+    inseticidas.setValue(r.insecticides);
+    fertilizantes.setValue(r.fertilizers);
   }
   
   React.useEffect(() => {
     async function fetchGrower() {
       const { url, options } = USER_GET(localStorage.getItem("token"));
       const { response, json } = await request(url, options);
-      console.log(json.data.farm[0])
+      console.log(json)
+
+      if(json.data.farm[0]) {
+        await setInputs(json.data.farm[0]);
+      }
     }
     fetchGrower();
   }, [request]);
+
+  function sayHello() {
+    console.log("TESTE")
+  }
 
   return (
     <div className={`bgGray center`}>
@@ -38,20 +68,15 @@ function Fazenda() {
           <h1 className="title">Fazenda</h1>
         </div>
         <div className="navBarCont">
-          <ButtonNavFazenda>Sobre</ButtonNavFazenda>
-          <ButtonNavFazenda>Fotos/Vídeos</ButtonNavFazenda>
-          <ButtonNavFazenda>Localização</ButtonNavFazenda>
-          <ButtonNavFazenda>Contato</ButtonNavFazenda>
-          <ButtonNavFazenda>QRCode</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setTeste("sobre")}}>Sobre</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setTeste("midia")}}>Fotos/Vídeos</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setTeste("local")}}>Localização</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setTeste("contato")}}>Contato</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setTeste("qrcode")}}>QRCode</ButtonNavFazenda>
         </div>
         
-        <h1 className={styles.subTitle}>Sobre</h1>
-        <div className="container-scroll" style={{ margin: ' 15px 0 0 35px' }}>
-          <Input label="Nome" type="text" name="nome" placeholder="Entre com o nome da sua fazenda" show={false} {...nome} />
-          <TextArea label="História" type="text" name="historia" placeholder="Conte-nos sobre a história de sua fazenda" show={false} {...historia} />
-          <Input label="Inseticidas" type="text" name="inseticidas" placeholder="Entre com os inseticidas utilizados em sua fazenda" show={false} {...inseticidas} />
-          <Input label="Fertilizantes" type="text" name="fertilizantes" placeholder="Entre com os fertilizantes utilizados em sua fazenda" show={false} {...fertilizantes} />
-        </div>
+        {teste === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
+
         <ButtonSalvar onClick={handleSubmit}>Salvar</ButtonSalvar>
       </div>
     </div>
