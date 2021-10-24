@@ -19,14 +19,6 @@ const firebaseConfig = {
     measurementId:MEASUREMENTID,
 }
 
-console.log(API_KEY)
-console.log(AUTHDOMAIN)
-console.log(PROJECTID)
-console.log(STORAGEBUCKET)
-console.log(MESSAGINGSENDERID)
-console.log(APPID)
-console.log(MEASUREMENTID)
-
 firebase.default.initializeApp(firebaseConfig);
 
 const storage = firebase.storage()

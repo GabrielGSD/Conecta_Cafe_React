@@ -1,5 +1,4 @@
 import React from 'react';
-import LoadPhotoVideo from '../LoadPhotoVideo/LoadPhotoVideo'
 
 function Home() {
   return (
@@ -7,7 +6,6 @@ function Home() {
     <div>
       <h1>HOME PAGE</h1>
     </div>
-    <LoadPhotoVideo />
     </>
   );
 }
