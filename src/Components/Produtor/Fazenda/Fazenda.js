@@ -4,9 +4,7 @@ import useFetch from '../../../Hooks/useFetch';
 import { USER_GET } from '../../../Api/api';
 import useForm from '../../../Hooks/useForm';
 import { UserContext } from '../../../Context/UserContext';
-import {Input, TextArea} from '../../Form/Input/Input';
 import { ButtonNavFazenda, ButtonSalvar } from '../../Button/Button';
-import { Col, Container, Row } from 'react-bootstrap';
 import Sobre from './Sobre/Sobre';
 
 function Fazenda() {
@@ -48,7 +46,6 @@ function Fazenda() {
     async function fetchGrower() {
       const { url, options } = USER_GET(localStorage.getItem("token"));
       const { response, json } = await request(url, options);
-      console.log(json)
 
       if(json.data.farm[0]) {
         await setInputs(json.data.farm[0]);
@@ -56,10 +53,6 @@ function Fazenda() {
     }
     fetchGrower();
   }, [request]);
-
-  function sayHello() {
-    console.log("TESTE")
-  }
 
   return (
     <div className={`bgGray center`}>

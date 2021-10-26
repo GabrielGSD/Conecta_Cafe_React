@@ -1,7 +1,6 @@
 import {React, useState} from 'react'
 import styles from './Fazenda.module.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-// import {Form} from "react-bootstrap";
 import Select from '../Select/Select';
 import imgFazenda from '../../Assets/fazendaT.jpg'
 import {ReactComponent as ArrowIcon} from '../../Assets/Arrow.svg'
