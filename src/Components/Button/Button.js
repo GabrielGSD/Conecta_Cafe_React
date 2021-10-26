@@ -10,6 +10,14 @@ function Button({ children, ...props }) {
 }
 export default Button;
 
+function ButtonAcc({ children, ...props }) {
+  return (
+    <button {...props} className={styles.buttonAcc}>
+      {children}
+    </button>
+  );
+}
+
 function ButtonNavFazenda({ children, ...props }) {
   return (
     <button {...props} className={styles.buttonFaz}>
@@ -18,7 +26,17 @@ function ButtonNavFazenda({ children, ...props }) {
   );
 }
 
+function ButtonSalvar({ children, ...props }) {
+  return (
+    <button {...props} className={styles.buttonSave}>
+      {children}
+    </button>
+  );
+}
+
 export {
   Button,
-  ButtonNavFazenda
+  ButtonAcc,
+  ButtonNavFazenda,
+  ButtonSalvar
 }

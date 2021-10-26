@@ -1,21 +1,65 @@
 import React from 'react'
+import styles from './Fazenda.module.css';
 import useFetch from '../../../Hooks/useFetch';
 import { USER_GET } from '../../../Api/api';
-import { ButtonNavFazenda } from '../../Button/Button';
+import useForm from '../../../Hooks/useForm';
+import { UserContext } from '../../../Context/UserContext';
+import {Input, TextArea} from '../../Form/Input/Input';
+import { ButtonNavFazenda, ButtonSalvar } from '../../Button/Button';
+import { Col, Container, Row } from 'react-bootstrap';
+import Sobre from './Sobre/Sobre';
 
 function Fazenda() {
 
-  const { data, loading, error, request } = useFetch();
-  
+  const nome = useForm();
+  const historia = useForm();
+  const inseticidas = useForm();
+  const fertilizantes = useForm();
 
+  const { data, loading, error, request } = useFetch();
+  const [teste, setTeste] = React.useState("sobre");
+  const { farmCreate, farmEdit } = React.useContext(UserContext);
+
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    var body = {
+      farm_name: nome.value,
+      history: historia.value,
+      insecticides: inseticidas.value,
+      fertilizers: fertilizantes.value
+    };
+    if(data.data.farm[0]) {
+      farmEdit(data.data.farm[0].id, body);
+    }
+    else {
+      farmCreate(body);
+    }
+  }
+
+  async function setInputs(r) {
+    nome.setValue(r.farm_name);
+    historia.setValue(r.history);
+    inseticidas.setValue(r.insecticides);
+    fertilizantes.setValue(r.fertilizers);
+  }
+  
   React.useEffect(() => {
     async function fetchGrower() {
       const { url, options } = USER_GET(localStorage.getItem("token"));
       const { response, json } = await request(url, options);
-      console.log(json.data.farm[0])
+      console.log(json)
+
+      if(json.data.farm[0]) {
+        await setInputs(json.data.farm[0]);
+      }
     }
     fetchGrower();
   }, [request]);
+
+  function sayHello() {
+    console.log("TESTE")
+  }
 
   return (
     <div className={`bgGray center`}>
@@ -24,15 +68,16 @@ function Fazenda() {
           <h1 className="title">Fazenda</h1>
         </div>
         <div className="navBarCont">
-          <ButtonNavFazenda>Sobre</ButtonNavFazenda>
-          <ButtonNavFazenda>Fotos/Vídeos</ButtonNavFazenda>
-          <ButtonNavFazenda>Localização</ButtonNavFazenda>
-          <ButtonNavFazenda>Contato</ButtonNavFazenda>
-          <ButtonNavFazenda>QRCode</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setTeste("sobre")}}>Sobre</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setTeste("midia")}}>Fotos/Vídeos</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setTeste("local")}}>Localização</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setTeste("contato")}}>Contato</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setTeste("qrcode")}}>QRCode</ButtonNavFazenda>
         </div>
-        <div className="container-scroll">
+        
+        {teste === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
 
-        </div>
+        <ButtonSalvar onClick={handleSubmit}>Salvar</ButtonSalvar>
       </div>
     </div>
   )

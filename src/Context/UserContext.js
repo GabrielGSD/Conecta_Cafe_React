@@ -1,5 +1,5 @@
 import React from 'react';
-import { USER_LOGIN, USER_GET, USER_CREATE } from '../Api/api';
+import { USER_LOGIN, USER_GET, USER_CREATE, FARM_CREATE, FARM_EDIT } from '../Api/api';
 import { useNavigate } from 'react-router';
 
 export const UserContext = React.createContext();
@@ -54,6 +54,36 @@ export function UserStorage({ children }) {
     }
   }
 
+  async function farmCreate(body) {
+    try {
+      setError(null);
+      setLoading(true);
+      const {url, options} = FARM_CREATE(body);
+      const response = await fetch(url, options);
+      if (!response.ok) throw new Error('Erro ao salvar fazenda');
+    } catch (err) {
+      setError(err.message);
+      setLogin(false);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function farmEdit(id, body) {
+    try {
+      setError(null);
+      setLoading(true);
+      const {url, options} = FARM_EDIT(id, body);
+      const response = await fetch(url, options);
+      if (!response.ok) throw new Error('Erro ao salvar fazenda');
+    } catch (err) {
+      setError(err.message);
+      setLogin(false);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   const userLogout = React.useCallback(
     async function () {
       setData(null);
@@ -91,7 +121,7 @@ export function UserStorage({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ userLogin, userCreate, userLogout, data, error, loading, login }}
+      value={{ userLogin, userCreate, userLogout, farmCreate, farmEdit, data, error, loading, login }}
     >
       {children}
     </UserContext.Provider>
