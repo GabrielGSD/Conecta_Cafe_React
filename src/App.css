@@ -138,3 +138,15 @@ input[type=range]::-webkit-slider-runnable-track {
   background-color: #a1a1a1;
   border-radius: 10rem;
 }
+
+
+@media (min-width: 576px){
+  .modal-dialog {
+    max-width: 600px !important;
+  }
+}
+
+.form-check-input:checked {
+  background-color: var(--color-green-main) !important;
+  border: none !important;
+}

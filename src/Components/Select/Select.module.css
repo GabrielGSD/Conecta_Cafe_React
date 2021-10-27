@@ -14,3 +14,31 @@
   color: #6C6B6B !important;
   font-family: var(--type-second) !important;
 }
+
+
+.select {
+  border: 1px solid #ced4da !important;
+  display: block !important;
+  width: 100% !important;
+  font-size: 1rem !important;
+  padding: .8rem !important;
+  border-radius: .4rem !important;
+  background: #fff !important;
+  transition: .2s !important;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E") !important;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background-repeat: no-repeat !important;
+  background-position: right .75rem center !important;
+  background-size: 16px 12px !important;
+  color: #6C6B6B !important;
+  font-family: var(--type-second) !important;
+}
+
+.select:focus, .input:hover {
+  outline: none !important;
+  border-color: #4B9100 !important;
+  background: #fff !important;
+  box-shadow: 0 0 0 2px #E4FFC5 !important;
+}

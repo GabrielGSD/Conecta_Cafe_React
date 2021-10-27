@@ -8,6 +8,37 @@
   position: relative;
   text-align: center;
   color: #6C6B6B;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover .animeTop{
+  display: block;
+  font-weight: 400;
+  animation: animeTop .4s forwards;
+}
+
+.animeTop {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  cursor: pointer;
+}
+
+.animeTop svg > *{
+  fill: #6C6B6B;
+}
+
+.animeTop svg {
+  margin-left: 10px;
+}
+
+@keyframes animeTop {
+  to {
+    opacity: 1;
+    transform: initial;
+  }
 }
 
 .especie {
@@ -17,7 +48,6 @@
 }
 
 .variedade {
-  margin: 50px 0;
   font-size: 1.2rem;
   font-weight: normal;
 }
@@ -25,6 +55,7 @@
 .btnGroup {
   display: flex;
   justify-content: space-evenly;
+  height: 55px;
 }
 
 .btnCircle {
@@ -53,4 +84,10 @@
 .btnCircle:hover svg > *, 
 .btnCircle:focus svg > *{
   fill: #4B9100 !important;
+}
+
+label {
+  color: #828282 !important;
+  font-weight: bold !important;
+  font-size: 1rem !important;
 }

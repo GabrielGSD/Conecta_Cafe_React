@@ -15,13 +15,14 @@ function Fazenda() {
   const fertilizantes = useForm();
 
   const { data, loading, error, request } = useFetch();
-  const [teste, setTeste] = React.useState("sobre");
+  const [sel, setSel] = React.useState("sobre");
   const { farmCreate, farmEdit } = React.useContext(UserContext);
 
 
   async function handleSubmit(event) {
     event.preventDefault();
     var body = {
+      // variavel do BD : variavel declarado no useForm()
       farm_name: nome.value,
       history: historia.value,
       insecticides: inseticidas.value,
@@ -61,14 +62,14 @@ function Fazenda() {
           <h1 className="title">Fazenda</h1>
         </div>
         <div className="navBarCont">
-          <ButtonNavFazenda onClick={()=> {setTeste("sobre")}}>Sobre</ButtonNavFazenda>
-          <ButtonNavFazenda onClick={()=> {setTeste("midia")}}>Fotos/Vídeos</ButtonNavFazenda>
-          <ButtonNavFazenda onClick={()=> {setTeste("local")}}>Localização</ButtonNavFazenda>
-          <ButtonNavFazenda onClick={()=> {setTeste("contato")}}>Contato</ButtonNavFazenda>
-          <ButtonNavFazenda onClick={()=> {setTeste("qrcode")}}>QRCode</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setSel("sobre")}}>Sobre</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setSel("midia")}}>Fotos/Vídeos</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setSel("local")}}>Localização</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setSel("contato")}}>Contato</ButtonNavFazenda>
+          <ButtonNavFazenda onClick={()=> {setSel("qrcode")}}>QRCode</ButtonNavFazenda>
         </div>
         
-        {teste === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
+        {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
 
         <ButtonSalvar onClick={handleSubmit}>Salvar</ButtonSalvar>
       </div>
