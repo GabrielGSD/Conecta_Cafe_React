@@ -21,7 +21,6 @@ const Maps = props => {
     })
 
 
-
     // Coletar os dados que viram no response e adicioná-los nas variáveis abaixo
     const LATITUDE = -22.2483204
     const LONGITUDE = -46.4105015
@@ -29,6 +28,7 @@ const Maps = props => {
     const containerStyle = {
         width: '25%',
         height: '35%',
+        
     }
 
     return (
@@ -54,5 +54,5 @@ const Maps = props => {
 }
 
 export default GoogleApiWrapper({
-    apiKey: (REACT_APP_API_KEY_MAPS)
+    apiKey: (REACT_APP_API_KEY)
 })(Maps)

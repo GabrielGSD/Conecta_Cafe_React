@@ -1,6 +1,7 @@
 .container {
-    position: absolute;
-    margin-left: 45%;
+    position: relative;
+    margin-left: 42%;
+    margin-top: 1%;
     height: 270px;
     width: 230px;
     border-radius: 1rem;
@@ -67,5 +68,5 @@
     border: solid 1px #F9F9F9;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 23%;
+    margin-top: 5%;
 }
