@@ -1,9 +1,10 @@
-import {React, useState} from 'react'
+import { React, useState } from 'react'
 import styles from './Fazenda.module.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Select from '../Select/Select';
+// import API from '../../Services/Api.js';
 import imgFazenda from '../../Assets/fazendaT.jpg'
-import {ReactComponent as ArrowIcon} from '../../Assets/Arrow.svg'
+import { ReactComponent as ArrowIcon } from '../../Assets/Arrow.svg'
 
 function Fazendas() {
   const [torra, setTorra] = useState("");
@@ -12,7 +13,7 @@ function Fazendas() {
   const processos = ['Terreiro', 'Estufa', 'Terreiro suspenso', 'Secagem automática'];
   const teste = ['A', 'S', 'D', 'E', 'F', 'G', 'H', 'J', 'K'];
   // const [altitude, setAltitude] = useState();
-  const photo = {src: imgFazenda, title:"Teste"}
+  const photo = { src: imgFazenda, title: "Teste" }
 
   return (
     <div className={`bgGray center`}>
