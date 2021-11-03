@@ -120,7 +120,7 @@ input[type=range]::-webkit-slider-runnable-track {
 
 .list-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, 230px);
+  grid-template-columns: repeat(auto-fit, 270px);
   gap: 20px;
   justify-content: center;
 }
@@ -149,4 +149,11 @@ input[type=range]::-webkit-slider-runnable-track {
 .form-check-input:checked {
   background-color: var(--color-green-main) !important;
   border: none !important;
+}
+
+.modal-content {
+  background: #fff !important;
+  border-radius: 1.2rem !important;
+  border: 0.25px solid #dbdbdb !important;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%) !important;
 }

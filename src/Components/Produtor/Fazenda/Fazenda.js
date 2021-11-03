@@ -25,7 +25,7 @@ function Fazenda() {
   const instagram = useForm();
   const twitter = useForm();
   const youtube = useForm();
-  const watsapp = useForm();
+  const whatsApp = useForm();
 
 
   const { data, loading, error, request } = useFetch();
@@ -44,12 +44,12 @@ function Fazenda() {
       contact: {
         phone: telefone.value,
         contact_email: email.value,
-        insecticides: linkedin.value,
+        linkedIn: linkedin.value,
         facebook: facebook.value,
-        instagran: instagram.value,
+        instagram: instagram.value,
         twitter: twitter.value,
-        youtube: youtube.value,
-        watsapp: watsapp.value,
+        youTube: youtube.value,
+        whatsApp: whatsApp.value,
       }
     };
     if (data.data.farm[0]) {
@@ -68,12 +68,12 @@ function Fazenda() {
     
     telefone.setValue(r.contact.phone);
     email.setValue(r.contact.contact_email);
-    linkedin.setValue(r.contact.contact.insecticides);
+    linkedin.setValue(r.contact.linkedIn);
     facebook.setValue(r.contact.facebook);
     instagram.setValue(r.contact.instagran);
     twitter.setValue(r.contact.twitter);
     youtube.setValue(r.contact.youtube);
-    watsapp.setValue(r.contact.watsapp);
+    whatsApp.setValue(r.contact.watsapp);
   }
 
   React.useEffect(() => {
@@ -105,7 +105,7 @@ function Fazenda() {
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
         {sel === "midia" && <Dropzone />}
         {sel === "local" && <Maps />}
-        {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} watsapp={watsapp} />}
+        {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
         {sel === "qrcode" && <QRgenerator endpoint={'Em andamento'}/>}
 
         <ButtonSalvar onClick={handleSubmit}>Salvar</ButtonSalvar>

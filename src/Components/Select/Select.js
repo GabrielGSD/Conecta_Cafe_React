@@ -11,7 +11,6 @@ const Select = ({ type, setType, options, def }) => {
         as="select"
         value={type}
         onChange={e => {
-          console.log(e.target.value);
           setType(e.target.value);
         }}
       >
@@ -28,7 +27,7 @@ export default Select
 
 const SelectCafe = ({ type, setType, options, def, label, name }) => {
   return (
-    <Form.Group controlId="formBasicSelect" >
+    <Form.Group>
       <label className={styles.label} htmlFor={name}>
         {label}
       </label>
@@ -39,7 +38,6 @@ const SelectCafe = ({ type, setType, options, def, label, name }) => {
         as="select"
         value={type}
         onChange={e => {
-          console.log(e.target.value);
           setType(e.target.value);
         }}
       >

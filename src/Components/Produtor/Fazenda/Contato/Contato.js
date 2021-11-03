@@ -3,7 +3,7 @@ import styles from '../Fazenda.module.css';
 import { Input } from '../../../Form/Input/Input';
 import { Col, Container, Row } from 'react-bootstrap';
 
-function Contato({ telefone, email, linkedin, facebook, instagram, twitter, youtube, watsapp }) {
+function Contato({ telefone, email, linkedin, facebook, instagram, twitter, youtube, whatsApp }) {
     return (
         <>
             <h1 className={styles.subTitle}>Contato</h1>
@@ -29,7 +29,7 @@ function Contato({ telefone, email, linkedin, facebook, instagram, twitter, yout
                         <Col xs={4}>
                             <Input label="Youtube" type="text" name="youtube" placeholder="Link do canal no Youtube" show={false} {...youtube} />
 
-                            <Input label="Watsapp" type="text" name="watsapp" placeholder="Entre com o Watsapp da Fazenda" show={false} {...watsapp} />
+                            <Input label="Watsapp" type="text" name="watsapp" placeholder="Entre com o Watsapp da Fazenda" show={false} {...whatsApp} />
                         </Col>
                     </Row>
                 </Container>

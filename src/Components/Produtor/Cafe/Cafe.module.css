@@ -1,6 +1,6 @@
 .card {
-  height: 270px;
-  width: 230px;
+  height: 295px;
+  width: 255px;
   background: #FCFCFC;
   border: 0.25px solid #e4e3e3;
   border-radius: 1rem;
@@ -42,20 +42,20 @@
 }
 
 .especie {
-  margin: 15px 0;
+  margin: 25px 0 0 0;
   font-size: 1.85rem;
   font-weight: bold;
 }
 
 .variedade {
-  font-size: 1.2rem;
-  font-weight: normal;
+  font-size: 1.35rem;
+  font-weight: 500;
 }
 
 .btnGroup {
   display: flex;
   justify-content: space-evenly;
-  height: 55px;
+  height: 75px;
 }
 
 .btnCircle {
@@ -90,4 +90,34 @@ label {
   color: #828282 !important;
   font-weight: bold !important;
   font-size: 1rem !important;
+}
+
+.especial {
+  animation: animeTop .3s ease-in-out;
+}
+
+.cafe {
+  animation: anime .3s ease-in-out;
+}
+
+@keyframes anime {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: initial;
+  }
+}
+
+@keyframes animeTop {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: initial;
+  }
 }

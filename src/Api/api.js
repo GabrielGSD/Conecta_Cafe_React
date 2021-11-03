@@ -48,7 +48,7 @@ export function USER_EDIT(body) {
 }
 
 // Funcao deletar usuario
-export function USER_DELELTE() {
+export function USER_DELETE() {
   return {
     url: API_URL + '/coffee-grower',
     options: {
@@ -73,6 +73,16 @@ export function FARM_CREATE(body) {
   };
 }
 
+// Funcao busca Fazenda
+export function FARM_GET(id) {
+  return {
+    url: API_URL + `/farm/${id}`,
+    options: {
+      method: 'GET'
+    }
+  };
+}
+
 // Funcao Editar Fazenda
 export function FARM_EDIT(id, body) {
   return {
@@ -87,3 +97,29 @@ export function FARM_EDIT(id, body) {
     },
   };
 }
+
+// Funcao listar cafés
+export function COFFEES_GET(id) {
+  return {
+    url: `${API_URL}/coffee/${id}`,
+    options: {
+      method: 'GET'
+    },
+  };
+}
+
+// Funcao Cadastrar Café
+export function COFFEE_CREATE(id, body) {
+  return {
+    url: `${API_URL}/coffee/${id}`,
+    options: {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + window.localStorage.getItem("token")
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
+
