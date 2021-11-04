@@ -20,12 +20,12 @@ function Fazenda() {
 
   const telefone = useForm();
   const email = useForm();
-  const linkedin = useForm();
+  const linkedIn = useForm();
   const facebook = useForm();
   const instagram = useForm();
   const twitter = useForm();
-  const youtube = useForm();
-  const watsapp = useForm();
+  const youTube = useForm();
+  const watsApp = useForm();
 
 
   const { data, loading, error, request } = useFetch();
@@ -43,12 +43,12 @@ function Fazenda() {
       contact: {
         phone: telefone.value,
         contact_email: email.value,
-        insecticides: linkedin.value,
+        linkedIn: linkedIn.value,
         facebook: facebook.value,
         instagran: instagram.value,
         twitter: twitter.value,
-        youtube: youtube.value,
-        watsapp: watsapp.value,
+        youTube: youTube.value,
+        watsApp: watsApp.value,
       }
     };
     if (data.data.farm[0]) {
@@ -67,12 +67,12 @@ function Fazenda() {
     
     telefone.setValue(r.contact.phone);
     email.setValue(r.contact.contact_email);
-    linkedin.setValue(r.contact.contact.insecticides);
+    // linkedIn.setValue(r.contact.contact.linkedIn);
     facebook.setValue(r.contact.facebook);
     instagram.setValue(r.contact.instagran);
     twitter.setValue(r.contact.twitter);
-    youtube.setValue(r.contact.youtube);
-    watsapp.setValue(r.contact.watsapp);
+    youTube.setValue(r.contact.youTube);
+    watsApp.setValue(r.contact.whatsApp);
   }
 
   React.useEffect(() => {
@@ -104,7 +104,7 @@ function Fazenda() {
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
         {sel === "midia" && <Dropzone />}
         {sel === "local" && <Maps />}
-        {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} watsapp={watsapp} />}
+        {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedIn} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youTube} watsapp={watsApp} />}
         {sel === "qrcode" && <QRgenerator endpoint={'Em andamento'}/>}
 
         <ButtonSalvar onClick={handleSubmit}>Salvar</ButtonSalvar>
