@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+<h1 align="center">Conecta Café</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```txt
+   _____                                 _                _____            __        
+  / ____|                               | |              / ____|          / _|       
+ | |        ___    _ __     ___    ___  | |_    __ _    | |        __ _  | |_    ___ 
+ | |       / _ \  | '_ \   / _ \  / __| | __|  / _` |   | |       / _` | |  _|  / _ \
+ | |____  | (_) | | | | | |  __/ | (__  | |_  | (_| |   | |____  | (_| | | |   |  __/
+  \_____|  \___/  |_| |_|  \___|  \___|  \__|  \__,_|    \_____|  \__,_| |_|    \___|
 
-## Available Scripts
+```
 
-In the project directory, you can run:
+<h3 align="center">🚧 Em Desenvolvimento 🚧</h3><br>
 
-### `yarn start`
+## ☕ Sobre o projeto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **[🤖 API](https://github.com/Brendhon/conecta-cafe-api)**
+- **[📟 Web](https://github.com/GabrielGSD/Conecta_Cafe_React)**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+FrontEnd do projeto **Conecta Café**, criada para o trabalho de conclusão de curso (TCC) do curso de Engenharia de computação do [Instituto Nacional de Telecomunicações (INATEL)](https://inatel.br/home/).
 
-### `yarn test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 💻 Tecnologias
 
-### `yarn build`
+As principais tecnologias utilizadas na construção do projeto:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ - **<img height="20" src="https://angeloocana.com/imgs/react.svg"/> [ReactJS](https://pt-br.reactjs.org/)**
+ - **<img height="22" src="https://www.probytes.net/wp-content/uploads/2018/07/javascript-logo-E967E87D74-seeklogo.com_.png"/> [JavaScript](https://www.javascript.com/)**
+ - **<img height="16" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg"/>  [BootStrap](https://getbootstrap.com.br/)**
+ - **<img height="20" src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"/> [CSS](w3schools.com/css/)**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Utilitários
+- Editor:  **[Visual Studio Code](https://code.visualstudio.com/)**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `yarn eject`
+## 👨‍💻 Como executar o projeto
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 💡 Pré-requisitos
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+**[Git](https://git-scm.com)** e **[Node.js](https://nodejs.org/en/)**.<br> 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Clone o repositório
+```bash
+git clone https://github.com/GabrielGSD/Conecta_Cafe_React.git
+```
 
-## Learn More
+2. Entra no diretório.
+  ```bash
+  cd Conecta_Cafe_React
+  ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Instale as dependências
+```bash
+yarn
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Para executar.
+  ```bash
+  yarn start
+  ```
+  
+O servidor iniciará em [localhost:3000](http://localhost:3000).
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 👥 Autores
 
-### Analyzing the Bundle Size
+<table  style="text-align:center; border: none" >
+<tr>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<td align="center"> 
+<a href="https://github.com/Brendhon" style="text-align:center;">
+<img style="border-radius: 20%;" src="https://github.com/brendhon.png" width="120px;" alt="autor"/><br> <strong> Brendhon Moreira </strong>
+</a>
+</td>
 
-### Making a Progressive Web App
+<td align="center"> 
+<a href="https://github.com/GabrielGSD" style="text-align:center;">
+<img style="border-radius: 20%;" src="https://github.com/GabrielGSD.png" width="120px;" alt="autor"/><br><strong> Gabriel Daniel </strong>
+</a>
+</td>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<td align="center"> 
+<a href="https://github.com/MoisesSDelmoro" styles="text-align:center;">
+<img style="border-radius: 20%;" src="https://github.com/MoisesSDelmoro.png" width="120px;" alt="autor"/><br><strong> Moises Delmoro </strong>
+</a>
+</td>
 
-### Advanced Configuration
+</tr>
+</table>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Contato
 
-### Deployment
+[![Linkedin Badge](https://img.shields.io/badge/-Brendhon-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/brendhon-moreira)](https://www.linkedin.com/in/brendhon-moreira)
+[![Linkedin Badge](https://img.shields.io/badge/-Gabriel-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gabriel-souza-b1995b216/)](https://www.linkedin.com/in/gabriel-souza-b1995b216/)
+[![Linkedin Badge](https://img.shields.io/badge/-Moises-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/moises-s-delmoro-8747651ba/)](https://www.linkedin.com/in/moises-s-delmoro-8747651ba/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+## 📝 License
+- **[MIT license](https://choosealicense.com/licenses/mit/)**

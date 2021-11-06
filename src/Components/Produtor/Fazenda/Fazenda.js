@@ -24,8 +24,8 @@ function Fazenda() {
   const facebook = useForm();
   const instagram = useForm();
   const twitter = useForm();
-  const youTube = useForm();
-  const watsApp = useForm();
+  const youtube = useForm();
+  const whatsApp = useForm();
 
 
   const { data, loading, error, request } = useFetch();
@@ -36,6 +36,7 @@ function Fazenda() {
   async function handleSubmit(event) {
     event.preventDefault();
     var body = {
+      // variavel do BD : variavel declarado no useForm()
       farm_name: nome.value,
       history: historia.value,
       insecticides: inseticidas.value,
@@ -43,12 +44,12 @@ function Fazenda() {
       contact: {
         phone: telefone.value,
         contact_email: email.value,
-        linkedIn: linkedIn.value,
+        linkedIn: linkedin.value,
         facebook: facebook.value,
-        instagran: instagram.value,
+        instagram: instagram.value,
         twitter: twitter.value,
-        youTube: youTube.value,
-        watsApp: watsApp.value,
+        youTube: youtube.value,
+        whatsApp: whatsApp.value,
       }
     };
     if (data.data.farm[0]) {
@@ -67,12 +68,12 @@ function Fazenda() {
     
     telefone.setValue(r.contact.phone);
     email.setValue(r.contact.contact_email);
-    // linkedIn.setValue(r.contact.contact.linkedIn);
+    linkedin.setValue(r.contact.linkedIn);
     facebook.setValue(r.contact.facebook);
     instagram.setValue(r.contact.instagran);
     twitter.setValue(r.contact.twitter);
-    youTube.setValue(r.contact.youTube);
-    watsApp.setValue(r.contact.whatsApp);
+    youtube.setValue(r.contact.youtube);
+    whatsApp.setValue(r.contact.watsapp);
   }
 
   React.useEffect(() => {
@@ -104,7 +105,7 @@ function Fazenda() {
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
         {sel === "midia" && <Dropzone />}
         {sel === "local" && <Maps />}
-        {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedIn} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youTube} watsapp={watsApp} />}
+        {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
         {sel === "qrcode" && <QRgenerator endpoint={'Em andamento'}/>}
 
         <ButtonSalvar onClick={handleSubmit}>Salvar</ButtonSalvar>

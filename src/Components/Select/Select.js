@@ -11,7 +11,6 @@ const Select = ({ type, setType, options, def }) => {
         as="select"
         value={type}
         onChange={e => {
-          console.log(e.target.value);
           setType(e.target.value);
         }}
       >
@@ -25,3 +24,33 @@ const Select = ({ type, setType, options, def }) => {
 };
 
 export default Select
+
+const SelectCafe = ({ type, setType, options, def, label, name }) => {
+  return (
+    <Form.Group>
+      <label className={styles.label} htmlFor={name}>
+        {label}
+      </label>
+      <Form.Control
+        id={name}
+        name={name}
+        className={styles.select}
+        as="select"
+        value={type}
+        onChange={e => {
+          setType(e.target.value);
+        }}
+      >
+        <option value="" disabled selected hidden>{def}</option>
+        {options.map((op) => (
+          <option key={op} value={op}>{op}</option>
+        ))}
+      </Form.Control>
+    </Form.Group>
+  );
+};
+
+export {
+  Select,
+  SelectCafe
+}

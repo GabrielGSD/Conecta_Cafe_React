@@ -1,5 +1,5 @@
 import React from 'react';
-import { USER_LOGIN, USER_GET, USER_CREATE, FARM_CREATE, FARM_EDIT } from '../Api/api';
+import { USER_LOGIN, USER_GET, USER_CREATE, FARM_CREATE, FARM_GET, FARM_EDIT, COFFEE_CREATE, COFFEE_EDIT, COFFEE_DELETE} from '../Api/api';
 import { useNavigate } from 'react-router';
 
 export const UserContext = React.createContext();
@@ -13,6 +13,14 @@ export function UserStorage({ children }) {
 
   async function getUser(token) {
     const { url, options } = USER_GET(token);
+    const response = await fetch(url, options);
+    const json = await response.json();
+    getFarm(json.data.farm[0].id);
+    setLogin(true);
+  }
+
+  async function getFarm(id) {
+    const { url, options } = FARM_GET(id);
     const response = await fetch(url, options);
     const json = await response.json();
     setData(json);
@@ -84,6 +92,37 @@ export function UserStorage({ children }) {
     }
   }
 
+  async function coffeeCreate(id, body) {
+    try {
+      setError(null);
+      setLoading(true);
+      const {url, options} = COFFEE_CREATE(id, body);
+      const response = await fetch(url, options);
+      console.log(response)
+      if (!response.ok) throw new Error('Erro ao salvar café');
+    } catch (err) {
+      setError(err.message);
+      setLogin(false);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function coffeeEdit(id, body) {
+    try {
+      setError(null);
+      setLoading(true);
+      const {url, options} = FARM_EDIT(id, body);
+      const response = await fetch(url, options);
+      if (!response.ok) throw new Error('Erro ao salvar fazenda');
+    } catch (err) {
+      setError(err.message);
+      setLogin(false);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   const userLogout = React.useCallback(
     async function () {
       setData(null);
@@ -96,17 +135,19 @@ export function UserStorage({ children }) {
     [navigate],
   );
 
+  
+
   React.useEffect(() => {
     async function autoLogin() {
       const token = window.localStorage.getItem('token');
       if (token) {
         try {
           setError(null);
-          setLoading(true);
+          setLoading(true);   
+          await getUser(token);
           const { url, options } = USER_GET(token);
           const response = await fetch(url, options);
           if (!response.ok) throw new Error('Token inválido');
-          await getUser(token);
         } catch (err) {
           userLogout();
         } finally {
@@ -117,11 +158,11 @@ export function UserStorage({ children }) {
       }
     }
     autoLogin();
-  }, [userLogout]);
+  }, [userLogout ]);
 
   return (
     <UserContext.Provider
-      value={{ userLogin, userCreate, userLogout, farmCreate, farmEdit, data, error, loading, login }}
+      value={{ userLogin, userCreate, userLogout, farmCreate, farmEdit, coffeeCreate, coffeeEdit, getFarm, data, error, loading, login }}
     >
       {children}
     </UserContext.Provider>
