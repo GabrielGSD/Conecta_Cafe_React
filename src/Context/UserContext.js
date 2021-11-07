@@ -158,7 +158,7 @@ export function UserStorage({ children }) {
       }
     }
     autoLogin();
-  }, [userLogout ]);
+  }, [userLogout]);
 
   return (
     <UserContext.Provider

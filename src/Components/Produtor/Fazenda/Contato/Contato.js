@@ -15,7 +15,7 @@ function Contato({ telefone, email, linkedin, facebook, instagram, twitter, yout
 
                             <Input label="E-mail" type="text" name="email" placeholder="Entre com seu e-mail" show={false} {...email} />
 
-                            <Input label="Linkedin" type="text" name="linkedin" placeholder="Link do perfil do Linkedin" show={false} {...linkedIn} />
+                            <Input label="Linkedin" type="text" name="linkedin" placeholder="Link do perfil do Linkedin" show={false} {...linkedin} />
 
                         </Col>
                         <Col xs={4}>
@@ -27,7 +27,7 @@ function Contato({ telefone, email, linkedin, facebook, instagram, twitter, yout
 
                         </Col>
                         <Col xs={4}>
-                            <Input label="Youtube" type="text" name="youtube" placeholder="Link do canal no Youtube" show={false} {...youTube} />
+                            <Input label="Youtube" type="text" name="youtube" placeholder="Link do canal no Youtube" show={false} {...youtube} />
 
                             <Input label="Watsapp" type="text" name="watsapp" placeholder="Entre com o Watsapp da Fazenda" show={false} {...whatsApp} />
                         </Col>

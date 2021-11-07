@@ -20,7 +20,7 @@ function Fazenda() {
 
   const telefone = useForm();
   const email = useForm();
-  const linkedIn = useForm();
+  const linkedin = useForm();
   const facebook = useForm();
   const instagram = useForm();
   const twitter = useForm();
