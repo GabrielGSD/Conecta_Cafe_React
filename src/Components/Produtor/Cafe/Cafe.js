@@ -46,7 +46,7 @@ function Cafe() {
       const { url, options } = COFFEES_GET(data.data.id);
       const { response, json } = await request(url, options);
       getFarm(data.data.id)
-      console.log("MUDOU")
+      console.log(data.data.coffee)
       setReload("")
     }
     fetchGrower();
@@ -94,6 +94,10 @@ function Cafe() {
     docura.setValue("")
   }
 
+  function handleClick(cafe) {
+    console.log(cafe)
+  }
+
   return (
     <div className={`bgGray center`}>
       <div className="boxContainer">
@@ -102,7 +106,7 @@ function Cafe() {
         </div>
         <div className="container-scroll list-grid" style={{ margin: ' 0px auto'}}>
           {data.data.coffee.map((cafes) => (
-            <Card especie={cafes.species} variedade={cafes.variety} />
+            <Card especie={cafes} variedade={cafes.variety} {...cafes} />
           ))}
         </div>
 
