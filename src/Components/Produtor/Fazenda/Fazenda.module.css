@@ -11,3 +11,9 @@ label {
   margin: 25px 0 0 25px;
   margin-left: 100px;
 }
+
+.containerMaps {
+  margin: 2% 40%;
+  margin-left: 35%;
+  align-items: center;
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import QRcode from 'qrcode.react'
 
 const QRgenerator = props => {
-  const { endpoint } = props
+  const  endpoint  = "Em andamento"
   const [qr] = useState(endpoint);
 
   return (
@@ -15,7 +15,8 @@ const QRgenerator = props => {
             size={50}
             includeMargin={false}
           // bgColor={"#ffdcb5"}
-          /> :
+          />
+           :
           <p><font size="1">QR code <br /> em anda- <br />mento</font></p>
       }
     </div>

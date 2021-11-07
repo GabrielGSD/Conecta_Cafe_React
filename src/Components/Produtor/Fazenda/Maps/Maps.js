@@ -1,5 +1,6 @@
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React, { useEffect, useState } from "react";
+import styles from '../Fazenda.module.css';
 
 const API_GEOLOCATION_GOOGLE = 'https://maps.googleapis.com/maps/api/geocode/json?'
 const REACT_APP_API_KEY = `${process.env.REACT_APP_API_KEY || "API-KEY NOT FOUND!"}`
@@ -45,22 +46,24 @@ const Maps = props => {
 
     return (
         <>
-            <Map
-                google={window.google}
-                initialCenter={{
-                    lat: LATITUDE,
-                    lng: LONGITUDE
-                }}
-                zoom={16}
-                containerStyle={containerStyle} >
-                <Marker
-                    name={'NomeFazenda'} // Nome que virá do Backend
-                    position={{
+            <div className={styles.containerMaps}>
+                <Map
+                    google={window.google}
+                    initialCenter={{
                         lat: LATITUDE,
                         lng: LONGITUDE
                     }}
-                />
-            </Map>
+                    zoom={16}
+                    containerStyle={containerStyle} >
+                    <Marker
+                        name={'NomeFazenda'} // Nome que virá do Backend
+                        position={{
+                            lat: LATITUDE,
+                            lng: LONGITUDE
+                        }}
+                    />
+                </Map>
+            </div>
         </>
     );
 }

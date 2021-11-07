@@ -8,8 +8,8 @@ import { ButtonNavFazenda, ButtonSalvar } from '../../Button/Button';
 import Sobre from './Sobre/Sobre';
 import Contato from './Contato/Contato';
 import Dropzone from '../../DropZone/DropZone';
-import Maps from '../../Maps/Maps';
-import QRgenerator from '../../Etiqueta/GeneratedQrCode';
+import Maps from './Maps/Maps';
+import EtiquetaPersonalizada from './QRCode/EtiquetasPersonalizadas';
 
 function Fazenda() {
 
@@ -44,7 +44,7 @@ function Fazenda() {
       contact: {
         phone: telefone.value,
         contact_email: email.value,
-        linkedIn: linkedin.value,
+        linkedin: linkedin.value,
         facebook: facebook.value,
         instagram: instagram.value,
         twitter: twitter.value,
@@ -65,10 +65,10 @@ function Fazenda() {
     historia.setValue(r.history);
     inseticidas.setValue(r.insecticides);
     fertilizantes.setValue(r.fertilizers);
-    
+
     telefone.setValue(r.contact.phone);
     email.setValue(r.contact.contact_email);
-    linkedin.setValue(r.contact.linkedIn);
+    linkedin.setValue(r.contact.linkedin);
     facebook.setValue(r.contact.facebook);
     instagram.setValue(r.contact.instagran);
     twitter.setValue(r.contact.twitter);
@@ -103,10 +103,11 @@ function Fazenda() {
         </div>
 
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
-        {sel === "midia" && <Dropzone />}
+        {sel === "midia" && <div className={styles.dropzone} ><Dropzone /></div>}
         {sel === "local" && <Maps />}
         {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
-        {sel === "qrcode" && <QRgenerator endpoint={'Em andamento'}/>}
+        {sel === "qrcode" && <EtiquetaPersonalizada />}
+
 
         <ButtonSalvar onClick={handleSubmit}>Salvar</ButtonSalvar>
       </div>

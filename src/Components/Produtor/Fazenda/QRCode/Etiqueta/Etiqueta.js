@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import styles from './Etiqueta.module.css';
-import API from '../../Services/Api.js';
+import API from '../../../../../Services/Api.js';
 import RequestQrCode from "./GeneratedQrCode";
-import { ReactComponent as Logo } from '../../Assets/logo_black.svg';
+import { ReactComponent as Logo } from '../../../../../Assets/logo_black.svg';
 
 const dataFarm = props => {
 
