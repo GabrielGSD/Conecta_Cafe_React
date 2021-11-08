@@ -41,7 +41,9 @@ function Fazenda() {
       history: historia.value,
       insecticides: inseticidas.value,
       fertilizers: fertilizantes.value,
-      contact: {
+    };
+    if(telefone.value !== "") {
+      var contact = {
         phone: telefone.value,
         contact_email: email.value,
         linkedIn: linkedin.value,
@@ -51,8 +53,11 @@ function Fazenda() {
         youTube: youtube.value,
         whatsApp: whatsApp.value,
       }
-    };
-    if (data.data.farm[0]) {
+
+      body['contact'] = contact;
+    }
+
+    if (data.data.farm.length > 0) {
       farmEdit(data.data.farm[0].id, body);
     }
     else {
@@ -66,14 +71,16 @@ function Fazenda() {
     inseticidas.setValue(r.insecticides);
     fertilizantes.setValue(r.fertilizers);
     
-    telefone.setValue(r.contact.phone);
-    email.setValue(r.contact.contact_email);
-    linkedin.setValue(r.contact.linkedIn);
-    facebook.setValue(r.contact.facebook);
-    instagram.setValue(r.contact.instagran);
-    twitter.setValue(r.contact.twitter);
-    youtube.setValue(r.contact.youtube);
-    whatsApp.setValue(r.contact.watsapp);
+    if(r.contact) {
+      telefone.setValue(r.contact.phone);
+      email.setValue(r.contact.contact_email);
+      linkedin.setValue(r.contact.linkedIn);
+      facebook.setValue(r.contact.facebook);
+      instagram.setValue(r.contact.instagran);
+      twitter.setValue(r.contact.twitter);
+      youtube.setValue(r.contact.youtube);
+      whatsApp.setValue(r.contact.watsapp);
+    }
   }
 
   React.useEffect(() => {

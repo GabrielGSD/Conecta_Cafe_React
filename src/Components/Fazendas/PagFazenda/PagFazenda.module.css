@@ -1,0 +1,20 @@
+.blackbg {
+  width: 100vw;
+  height: calc(100vh - 64px);
+  background: linear-gradient(119.6deg, #000000 0%, #212121 152.34%);
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.carousel {
+  width: 60vw;
+  height: calc(100vh - 64px);
+  position: relative;
+}
+
+.btnGroup {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}

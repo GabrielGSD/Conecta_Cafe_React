@@ -15,7 +15,9 @@ export function UserStorage({ children }) {
     const { url, options } = USER_GET(token);
     const response = await fetch(url, options);
     const json = await response.json();
-    getFarm(json.data.farm[0].id);
+    if(json.data.farm.length > 0) {
+      getFarm(json.data.farm[0].id);
+    }
     setLogin(true);
   }
 
@@ -68,6 +70,7 @@ export function UserStorage({ children }) {
       setLoading(true);
       const {url, options} = FARM_CREATE(body);
       const response = await fetch(url, options);
+      const { data } = await response.json();
       if (!response.ok) throw new Error('Erro ao salvar fazenda');
     } catch (err) {
       setError(err.message);
@@ -98,7 +101,6 @@ export function UserStorage({ children }) {
       setLoading(true);
       const {url, options} = COFFEE_CREATE(id, body);
       const response = await fetch(url, options);
-      console.log(response)
       if (!response.ok) throw new Error('Erro ao salvar café');
     } catch (err) {
       setError(err.message);
