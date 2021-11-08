@@ -25,13 +25,23 @@ const dataFarm = props => {
 }
 
 class ComponentToPrint extends React.Component {
-
     render() {
-        dataFarm()
+        // dataFarm()
+        // {/* Inserir o endpoint da tela da fazenda na URL do QR code*/}
+
+        var endpoint = this.props.endpoint ? this.props.endpoint : "Insira o endpoint aqui"
+        var color = this.props.color ? this.props.color : '#0000ff';
+        var backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : '#ffffff';
+
         return (
             <div>
                 <div className={styles.container}>
-                    <table className={styles.table}>
+                    <table className={styles.table} style={
+                        {
+                            color: color,
+                            backgroundColor: backgroundColor
+                        }
+                    }>
                         <table className={styles.table1}>
                             <tr>
                                 <th className={styles.larguraMaior}>
@@ -198,8 +208,7 @@ class ComponentToPrint extends React.Component {
                         </table>
                         <Logo className={styles.logo} />
                         <div className={styles.qrcode}>
-                            {/* Inserir o endpoint da tela da fazenda na URL do QR code*/}
-                            <RequestQrCode endpoint={'link para o endpoint da fazenda aqui'} />
+                            <RequestQrCode endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
                         </div>
                     </table>
                 </div>
@@ -208,7 +217,8 @@ class ComponentToPrint extends React.Component {
     }
 }
 
-const Etiqueta = () => {
+const Etiqueta = props => {
+    const { endpoint, color, backgroundColor } = props
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -216,8 +226,8 @@ const Etiqueta = () => {
 
     return (
         <div>
-            <ComponentToPrint ref={componentRef} />
-            <button className={styles.saveButton} onClick={handlePrint}>Baixar Etiqueta</button>
+            <ComponentToPrint ref={componentRef} endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
+            <button className={styles.saveButton} onClick={handlePrint} >Baixar Etiqueta</button>
         </div>
     );
 };

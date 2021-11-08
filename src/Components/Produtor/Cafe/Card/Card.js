@@ -5,6 +5,7 @@ import { ReactComponent as Edit } from '../../../../Assets/Edit.svg';
 import { ReactComponent as Delet } from '../../../../Assets/Del.svg';
 import {ReactComponent as More} from '../../../../Assets/more.svg'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import EtiquetaPersonalizada from '../../Fazenda/QRCode/EtiquetasPersonalizadas';
 
 function Card(cafe) {
 
@@ -17,7 +18,10 @@ function Card(cafe) {
           <div className={styles.btnGroup}>
             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Etiqueta</Tooltip>}>
               <div className={styles.btnCircle}>
+                <>
                 <Etiqueta />
+                <EtiquetaPersonalizada />
+                </>
               </div>
             </OverlayTrigger>
             

@@ -3,11 +3,17 @@ import Etiqueta from './Etiqueta/Etiqueta';
 import { SketchPicker } from 'react-color'
 import { Button } from 'react-bootstrap';
 import { observer } from "mobx-react"
+import { Modal, } from 'react-bootstrap';
+import { ButtonSalvar, ButtonAcc } from '../../../Button/Button';
 
 const EtiquetaPersonalizada = observer(props => {
     const { endpoint } = props
-    const [qr] = useState(endpoint);
-    const [color, setColor] = useState('#ff0000')
+    const [color, setColor] = useState('#000000')
+    const [backgroundColor, setBackgroundColor] = useState('#ffffff')
+    const [show, setShow] = React.useState(false);
+    const handleShow = () => setShow(true);
+
+    const handleClose = () => { setShow(false) }
 
     const aux = props => {
         return (
@@ -22,24 +28,38 @@ const EtiquetaPersonalizada = observer(props => {
 
     return (
         <>
-            <div>
-                <Button onClick={aux}> </Button>
 
-                <SketchPicker
-                    color={color}
-                    onChangeComplete={(color) => { setColor(color.hex) }}
-                />
-
-                <div style={{
-                    backgroundColor: color,
-                    height: '50px',
-                    width: '50px',
-                    transition: 'ease all 500ms'
-                }}>
-                    Heloo!!!!
-                </div>
-                <Etiqueta color={color}/>
-            </div>
+            <Button onClick={handleShow}> </Button>
+            <Modal show={show} onHide={''} animation={false} centered>
+                <Modal.Header>
+                    <Modal.Title style={{ fontWeight: 'bold', color: "#4f4e4e" }}>QR Code</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <SketchPicker
+                                color={color}
+                                onChangeComplete={(color) => { setColor(color.hex) }}
+                            />
+                            <SketchPicker
+                                color={backgroundColor}
+                                onChangeComplete={(backgroundColor) => { setBackgroundColor(backgroundColor.hex) }}
+                            />
+                        </div>
+                        <div class="col-md-6 ml-auto">
+                            <Etiqueta color={color} backgroundColor={backgroundColor} />
+                        </div>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer style={{ justifyContent: "center" }}>
+                    <ButtonAcc
+                        style={{ width: '80px', height: '35px', fontWeight: 'normal', padding: '0' }}
+                        onClick={handleClose}
+                    >
+                        Salvar
+                    </ButtonAcc>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 })
