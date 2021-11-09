@@ -1,4 +1,4 @@
-import iconImagess from '../../Assets/ion_images.png'
+import iconImagess from '../../../../../Assets/ion_images.png'
 import styles from './DropZone.module.css'
 import React, { useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
@@ -58,7 +58,7 @@ const DropZone = observer(props => {
                     preview: URL.createObjectURL(file)
                 })))
                 handleUpload()
-            }, 5000)
+            }, 1000)
         }
     });
 
@@ -72,6 +72,9 @@ const DropZone = observer(props => {
                     <button className={styles.searchButton}>Buscar</button>
                 </div>
             </div>
+            <br />
+            <br />
+            <br />
         </>
     );
 })
