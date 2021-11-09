@@ -1,6 +1,8 @@
 import styles  from './PagFazenda.module.css';
 import React from 'react'
 import { FARM_GET } from '../../../Api/api'; 
+import { ReactComponent as ArrowIcon } from '../../../Assets/ArrowFaz.svg'
+import { width } from 'dom-helpers';
 
 function PagFazenda() {
 
@@ -39,13 +41,36 @@ function PagFazenda() {
         <div style={{overflow: "hidden"}} >
           <section className={styles.blackbg}>
             <div className={styles.carousel}>
-              <img className="d-block w-100 h-100" style={{objectFit: 'cover'}} src={photoSel} alt="Image One" />
+              <img className="d-block w-100 h-100" style={{objectFit: 'cover'}} src={photoSel} alt="Imagem da fazenda" />
               <div className={styles.btnGroup}>
-                <h1 onClick={ handleNext }>Next</h1>
-                <h1 onClick={ handleBack }>Back</h1>
+                <a className={styles.btnCarousel} onClick={ handleBack }>
+                  <ArrowIcon/>
+                </a>
+                <a className={styles.btnCarousel} onClick={ handleNext }>
+                  <ArrowIcon style={{transform: 'rotate(-90deg)'}}/>
+                </a>
               </div>
             </div>
-            <div><h1>{fazenda.farm_name}</h1></div>
+            <div className={styles.infos}>
+              <h1 className={styles.nomeFaz}>{fazenda.farm_name}</h1>
+              <p className={styles.infosFaz}><b>Produtor:</b> {fazenda.farm_name}</p>
+              {fazenda.address 
+                ? <p className={styles.infosFaz}><b>Cidade:</b> {fazenda.address.city} - {fazenda.address.uf}</p>
+                : <p className={styles.infosFaz}><b>Cidade:</b> Ouro Fino - MG </p>
+              }
+              <p className={styles.infosFaz}><b>História:</b> {fazenda.history}</p>
+              <div className={styles.boxInfoGroup}>
+                <p className={`${styles.infosFaz} ${styles.boxInfo}`}>
+                  <b>Inseticida: </b><br />
+                  {fazenda.insecticides}
+                </p>
+                <p className={`${styles.infosFaz} ${styles.boxInfo}`}>
+                  <b>Fertilizante: </b><br />
+                  {fazenda.fertilizers}
+                </p>
+              </div>
+              <ArrowIcon className={styles.arrowDown}/>
+            </div>
           </section>
 
           <section className={styles.cafe}>
