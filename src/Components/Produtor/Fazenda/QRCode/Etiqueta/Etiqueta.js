@@ -1,37 +1,27 @@
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import styles from './Etiqueta.module.css';
-import API from '../../Services/Api.js';
 import RequestQrCode from "./GeneratedQrCode";
-import { ReactComponent as Logo } from '../../Assets/logo_black.svg';
+import { ReactComponent as Logo } from '../../../../../Assets/logo_black.svg';
 
-const dataFarm = props => {
-
-    API.get("/farm/c43ecfab-69f0-46bd-aa38-4af3796350cf")
-        .then((response) => {
-            localStorage.setItem('farm_name', response.data.data.farm_name);
-            localStorage.setItem('farm_city', response.data.data.address.city);
-            localStorage.setItem('farm_uf', response.data.data.address.uf);
-            localStorage.setItem('farm_contact', response.data.data.contact.phone);
-            localStorage.setItem('farm_contact_email', response.data.data.contact.contact_email);
-            localStorage.setItem('farm_variety', response.data.data.coffee[0].variety);
-            localStorage.setItem('farm_harvest', response.data.data.coffee[0].harvest);
-            localStorage.setItem('farm_process', response.data.data.coffee[0].process);
-            localStorage.setItem('farm_altitude', response.data.data.coffee[0].altitude);
-        })
-        .catch((err) => {
-            console.error("ops! ocorreu um erro" + err);
-        });
-}
 
 class ComponentToPrint extends React.Component {
-
     render() {
-        dataFarm()
+        // {/* Inserir o endpoint da tela da fazenda na URL do QR code*/}
+
+        var endpoint = this.props.endpoint ? this.props.endpoint : "Insira o endpoint aqui"
+        var color = this.props.color ? this.props.color : '#0000ff';
+        var backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : '#ffffff';
+
         return (
             <div>
                 <div className={styles.container}>
-                    <table className={styles.table}>
+                    <table className={styles.table} style={
+                        {
+                            color: color,
+                            backgroundColor: backgroundColor
+                        }
+                    }>
                         <table className={styles.table1}>
                             <tr>
                                 <th className={styles.larguraMaior}>
@@ -198,8 +188,7 @@ class ComponentToPrint extends React.Component {
                         </table>
                         <Logo className={styles.logo} />
                         <div className={styles.qrcode}>
-                            {/* Inserir o endpoint da tela da fazenda na URL do QR code*/}
-                            <RequestQrCode endpoint={'link para o endpoint da fazenda aqui'} />
+                            <RequestQrCode endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
                         </div>
                     </table>
                 </div>
@@ -208,7 +197,8 @@ class ComponentToPrint extends React.Component {
     }
 }
 
-const Etiqueta = () => {
+const Etiqueta = props => {
+    const { endpoint, color, backgroundColor } = props
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -216,8 +206,8 @@ const Etiqueta = () => {
 
     return (
         <div>
-            <ComponentToPrint ref={componentRef} />
-            <button className={styles.saveButton} onClick={handlePrint}>Baixar Etiqueta</button>
+            <ComponentToPrint ref={componentRef} endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
+            <button className={styles.saveButton} onClick={handlePrint} >Baixar Etiqueta</button>
         </div>
     );
 };

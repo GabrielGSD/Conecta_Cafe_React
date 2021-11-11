@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './Fazenda.module.css';
 import useFetch from '../../../Hooks/useFetch';
 import { USER_GET } from '../../../Api/api';
 import useForm from '../../../Hooks/useForm';
@@ -7,9 +6,9 @@ import { UserContext } from '../../../Context/UserContext';
 import { ButtonNavFazenda, ButtonSalvar } from '../../Button/Button';
 import Sobre from './Sobre/Sobre';
 import Contato from './Contato/Contato';
-import Dropzone from '../../DropZone/DropZone';
-import Maps from '../../Maps/Maps';
-import QRgenerator from '../../Etiqueta/GeneratedQrCode';
+import Localizacao from './Localizacao/Localizacao';
+import EtiquetaPersonalizada from './QRCode/EtiquetasPersonalizadas';
+import FotosVideos from './FotosVideos/FotosVideos';
 
 function Fazenda() {
 
@@ -26,7 +25,13 @@ function Fazenda() {
   const twitter = useForm();
   const youtube = useForm();
   const whatsApp = useForm();
-
+  
+  // const street = useForm();
+  // const streetNumber = useForm();
+  // const district = useForm();
+  // const city = useForm();
+  // const country = useForm();
+  // const uf = useForm();
 
   const { data, loading, error, request } = useFetch();
   const [sel, setSel] = React.useState("sobre");
@@ -46,14 +51,22 @@ function Fazenda() {
       var contact = {
         phone: telefone.value,
         contact_email: email.value,
-        linkedIn: linkedin.value,
+        linkedin: linkedin.value,
         facebook: facebook.value,
         instagram: instagram.value,
         twitter: twitter.value,
         youTube: youtube.value,
         whatsApp: whatsApp.value,
-      }
-
+      },
+      // address: {
+      //   street: street.value,
+      //   // streetNumber: streetNumber.value,
+      //   district: district.value,
+      //   city: city.value,
+      //   country: country.value,
+      //   uf: uf.value
+      // }
+    }
       body['contact'] = contact;
     }
 
@@ -70,17 +83,25 @@ function Fazenda() {
     historia.setValue(r.history);
     inseticidas.setValue(r.insecticides);
     fertilizantes.setValue(r.fertilizers);
-    
+
+
     if(r.contact) {
       telefone.setValue(r.contact.phone);
       email.setValue(r.contact.contact_email);
-      linkedin.setValue(r.contact.linkedIn);
+      linkedin.setValue(r.contact.linkedin);
       facebook.setValue(r.contact.facebook);
       instagram.setValue(r.contact.instagran);
       twitter.setValue(r.contact.twitter);
       youtube.setValue(r.contact.youtube);
       whatsApp.setValue(r.contact.watsapp);
     }
+    
+    // street.setValue(r.address.street);
+    // // streetNumber.setValue(r.address.streetNumber);
+    // district.setValue(r.address.district);
+    // city.setValue(r.address.city);
+    // country.setValue(r.address.country);
+    // uf.setValue(r.address.uf);
   }
 
   React.useEffect(() => {
@@ -110,12 +131,14 @@ function Fazenda() {
         </div>
 
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
-        {sel === "midia" && <Dropzone />}
-        {sel === "local" && <Maps />}
+        {sel === "midia" && <FotosVideos />}
+        {sel === "local" && <Localizacao />}
+        {/* {sel === "local" && <Localizacao street={street} streetNumber={streetNumber} district={district} city={city} country={country} uf={uf} />} */}
         {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
-        {sel === "qrcode" && <QRgenerator endpoint={'Em andamento'}/>}
+        {sel === "qrcode" && <EtiquetaPersonalizada />}
 
-        <ButtonSalvar onClick={handleSubmit}>Salvar</ButtonSalvar>
+
+        <ButtonSalvar onClick={handleSubmit} >Salvar</ButtonSalvar>
       </div>
     </div>
   )
