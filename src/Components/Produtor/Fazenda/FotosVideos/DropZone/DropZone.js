@@ -1,6 +1,6 @@
 import iconImagess from '../../../../../Assets/ion_images.png'
 import styles from './DropZone.module.css'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { observer } from 'mobx-react'
 import { useDropzone } from 'react-dropzone'
 import { storage } from './Firebase'

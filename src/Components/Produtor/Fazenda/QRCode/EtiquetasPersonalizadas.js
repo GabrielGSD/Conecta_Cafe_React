@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import Etiqueta from './Etiqueta/Etiqueta';
-import styles from './EtiquetasPersonalizadas.module.css';
+// import styles from './EtiquetasPersonalizadas.module.css';
 import { SketchPicker } from 'react-color'
 import { Button } from 'react-bootstrap';
 import { observer } from "mobx-react"
 import { Modal } from 'react-bootstrap';
-import { ButtonSalvar, ButtonAcc } from '../../../Button/Button';
+import { ButtonAcc } from '../../../Button/Button';
 
 const EtiquetaPersonalizada = observer(props => {
     const { endpoint } = props
@@ -15,17 +15,6 @@ const EtiquetaPersonalizada = observer(props => {
     const handleShow = () => setShow(true);
 
     const handleClose = () => { setShow(false) }
-
-    const aux = props => {
-        return (
-            <>
-                <SketchPicker
-                    color={color}
-                    onChangeComplete={(color) => { setColor(color.hex) }}
-                />
-            </>
-        )
-    }
 
     return (
         <>

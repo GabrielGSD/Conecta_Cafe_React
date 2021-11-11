@@ -27,10 +27,8 @@ const Localizacao = observer(() => {
         event.preventDefault()
 
         if (endereco.value) {
-            console.log("clicou! " + localizacao)
-
             const URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + 'address=' + localizacao + '&key=' + REACT_APP_API_KEY
-            if (localizacao == endereco.value) {
+            if (localizacao === endereco.value) {
 
                 fetch(URL_DA_REQUISICAO).then((response) => response.json())
                     .then((responseJson) => {

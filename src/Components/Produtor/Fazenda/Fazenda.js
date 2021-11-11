@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './Fazenda.module.css';
 import useFetch from '../../../Hooks/useFetch';
 import { USER_GET } from '../../../Api/api';
 import useForm from '../../../Hooks/useForm';

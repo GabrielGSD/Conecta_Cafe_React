@@ -1,32 +1,12 @@
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import styles from './Etiqueta.module.css';
-import API from '../../../../../Services/Api.js';
 import RequestQrCode from "./GeneratedQrCode";
 import { ReactComponent as Logo } from '../../../../../Assets/logo_black.svg';
 
-const dataFarm = props => {
-
-    API.get("/farm/c43ecfab-69f0-46bd-aa38-4af3796350cf")
-        .then((response) => {
-            localStorage.setItem('farm_name', response.data.data.farm_name);
-            localStorage.setItem('farm_city', response.data.data.address.city);
-            localStorage.setItem('farm_uf', response.data.data.address.uf);
-            localStorage.setItem('farm_contact', response.data.data.contact.phone);
-            localStorage.setItem('farm_contact_email', response.data.data.contact.contact_email);
-            localStorage.setItem('farm_variety', response.data.data.coffee[0].variety);
-            localStorage.setItem('farm_harvest', response.data.data.coffee[0].harvest);
-            localStorage.setItem('farm_process', response.data.data.coffee[0].process);
-            localStorage.setItem('farm_altitude', response.data.data.coffee[0].altitude);
-        })
-        .catch((err) => {
-            console.error("ops! ocorreu um erro" + err);
-        });
-}
 
 class ComponentToPrint extends React.Component {
     render() {
-        // dataFarm()
         // {/* Inserir o endpoint da tela da fazenda na URL do QR code*/}
 
         var endpoint = this.props.endpoint ? this.props.endpoint : "Insira o endpoint aqui"
