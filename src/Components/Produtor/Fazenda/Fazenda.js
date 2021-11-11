@@ -51,24 +51,24 @@ function Fazenda() {
       var contact = {
         phone: telefone.value,
         contact_email: email.value,
-        linkedin: linkedin.value,
+        linkedIn: linkedin.value,
         facebook: facebook.value,
         instagram: instagram.value,
         twitter: twitter.value,
         youTube: youtube.value,
         whatsApp: whatsApp.value,
-      },
-      // address: {
-      //   street: street.value,
-      //   // streetNumber: streetNumber.value,
-      //   district: district.value,
-      //   city: city.value,
-      //   country: country.value,
-      //   uf: uf.value
-      // }
-    }
+      }
+
       body['contact'] = contact;
     }
+    // address: {
+    //   street: street.value,
+    //   // streetNumber: streetNumber.value,
+    //   district: district.value,
+    //   city: city.value,
+    //   country: country.value,
+    //   uf: uf.value
+    // }
 
     if (data.data.farm.length > 0) {
       farmEdit(data.data.farm[0].id, body);
