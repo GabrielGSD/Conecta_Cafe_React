@@ -4,6 +4,7 @@ import './App.css';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import Fazendas from './Components/Fazendas/Fazendas';
+import PagFazenda from './Components/Fazendas/PagFazenda/PagFazenda';
 import Login from './Components/Accounts/Login/Login';
 import Cadastro from './Components/Accounts/Cadastro/Cadastro';
 import Fazenda from './Components/Produtor/Fazenda/Fazenda';
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />    
             <Route path="fazendas/" element={<Fazendas />} />
+            <Route path="fazendas/*" element={<PagFazenda />} />
             <Route path="login/" element={<Login />} />
             <Route path="cadastro/" element={<Cadastro />} />
             <ProtectedRoute path="conta/" element={< Home />} />

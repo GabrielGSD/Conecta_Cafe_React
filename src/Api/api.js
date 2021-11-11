@@ -123,3 +123,13 @@ export function COFFEE_CREATE(id, body) {
   };
 }
 
+//Funcao listar fazendas cadastradas 
+// Funcao listar cafés
+export function FARMER_GET_ALL() {
+  return {
+    url: `${API_URL}/farm/all`,
+    options: {
+      method: 'GET'
+    },
+  };
+}
