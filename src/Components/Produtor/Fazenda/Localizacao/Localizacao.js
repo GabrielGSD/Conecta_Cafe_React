@@ -17,6 +17,21 @@ const Localizacao = observer(() => {
     const [longitude, setLongitude] = useState('-46.3722224')
     const [localizacao, setLocalizacao] = useState('Ouro Fino, MG')
 
+    const [street, setStreet] = useState('')
+    const [streetNumber, setStreetNumber] = useState('')
+    const [district, setDistrict] = useState('')
+    const [city, setCity] = useState('')
+    const [country, setCountry] = useState('')
+    const [uf, setUF] = useState('')
+
+
+    // "address": {
+    //     "street": "Rua dos Pinheiros, Taguá",
+    //     "district": "Delcides Teles",
+    //     "city": "Ouro Fino",
+    //     "country": "Brasil",
+    //     "uf": "MG"
+    //   },
 
     // Rua: Maria Joaquina, 185, Crisólia, Ouro Fino, MG
     useEffect(() => {
@@ -28,23 +43,49 @@ const Localizacao = observer(() => {
 
         if (endereco.value) {
             const URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + 'address=' + localizacao + '&key=' + REACT_APP_API_KEY
-            if (localizacao === endereco.value) {
 
+            if (localizacao === endereco.value) {
                 fetch(URL_DA_REQUISICAO).then((response) => response.json())
                     .then((responseJson) => {
                         if (responseJson.status === 'OK') {
                             setLatitude(responseJson.results[0].geometry.location.lat);
                             setLongitude(responseJson.results[0].geometry.location.lng);
+
+                            for (let i = 0; i < responseJson.results[0].address_components.length; i++) {
+                                // console.log(responseJson.results[0].address_components[i].types[0])
+                                if (responseJson.results[0].address_components[i].types[0] === "street_number") {
+                                    setStreetNumber(responseJson.results[0].address_components[i].long_name)
+                                }
+                                else if (responseJson.results[0].address_components[i].types[0] === "route") {
+                                    setStreet(responseJson.results[0].address_components[i].long_name)
+                                }
+                                else if (responseJson.results[0].address_components[i].types[0] === "administrative_area_level_4") {
+                                    setDistrict(responseJson.results[0].address_components[i].long_name)
+                                }
+                                else if (responseJson.results[0].address_components[i].types[0] === "administrative_area_level_2") {
+                                    setCity(responseJson.results[0].address_components[i].long_name)
+                                }
+                                else if (responseJson.results[0].address_components[i].types[0] === "administrative_area_level_1") {
+                                    setUF(responseJson.results[0].address_components[i].short_name)
+                                }
+                                else if (responseJson.results[0].address_components[i].types[0] === "country") {
+                                    setCountry(responseJson.results[0].address_components[i].long_name)
+                                }
+                            }
                         }
                     })
 
-                console.log(URL_DA_REQUISICAO)
-                console.log(latitude)
-                console.log(longitude)
+
             }
         } else {
             console.log("Nenhum endereço inserido!!!")
         }
+        console.log("street " + street)
+        console.log("streetNumber " + streetNumber)
+        console.log("district " + district)
+        console.log("city " + city)
+        console.log("uf " + uf)
+        console.log("country " + country)
     }
 
     return (

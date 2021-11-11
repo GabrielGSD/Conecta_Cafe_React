@@ -25,7 +25,13 @@ function Fazenda() {
   const twitter = useForm();
   const youtube = useForm();
   const whatsApp = useForm();
-
+  
+  // const street = useForm();
+  // const streetNumber = useForm();
+  // const district = useForm();
+  // const city = useForm();
+  // const country = useForm();
+  // const uf = useForm();
 
   const { data, loading, error, request } = useFetch();
   const [sel, setSel] = React.useState("sobre");
@@ -49,7 +55,15 @@ function Fazenda() {
         twitter: twitter.value,
         youTube: youtube.value,
         whatsApp: whatsApp.value,
-      }
+      },
+      // address: {
+      //   street: street.value,
+      //   // streetNumber: streetNumber.value,
+      //   district: district.value,
+      //   city: city.value,
+      //   country: country.value,
+      //   uf: uf.value
+      // }
     };
     if (data.data.farm[0]) {
       farmEdit(data.data.farm[0].id, body);
@@ -73,6 +87,13 @@ function Fazenda() {
     twitter.setValue(r.contact.twitter);
     youtube.setValue(r.contact.youtube);
     whatsApp.setValue(r.contact.watsapp);
+
+    // street.setValue(r.address.street);
+    // // streetNumber.setValue(r.address.streetNumber);
+    // district.setValue(r.address.district);
+    // city.setValue(r.address.city);
+    // country.setValue(r.address.country);
+    // uf.setValue(r.address.uf);
   }
 
   React.useEffect(() => {
@@ -104,6 +125,7 @@ function Fazenda() {
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
         {sel === "midia" && <FotosVideos />}
         {sel === "local" && <Localizacao />}
+        {/* {sel === "local" && <Localizacao street={street} streetNumber={streetNumber} district={district} city={city} country={country} uf={uf} />} */}
         {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
         {sel === "qrcode" && <EtiquetaPersonalizada />}
 
