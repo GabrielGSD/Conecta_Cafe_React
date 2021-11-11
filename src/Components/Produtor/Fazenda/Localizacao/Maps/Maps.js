@@ -1,6 +1,6 @@
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import { observer } from 'mobx-react-lite';
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from '../../Fazenda.module.css';
 
 
@@ -23,7 +23,7 @@ const Maps = observer(props => {
                         lat: latitude,
                         lng: longitude
                     }}
-                    zoom={16}
+                    zoom={17}
                     containerStyle={containerStyle} >
                     <Marker
                         name={'NomeFazenda'} // Nome que virá do Backend

@@ -11,22 +11,27 @@ import useForm from '../../../../Hooks/useForm';
 const API_GEOLOCATION_GOOGLE = 'https://maps.googleapis.com/maps/api/geocode/json?'
 const REACT_APP_API_KEY = `${process.env.REACT_APP_API_KEY || "API-KEY NOT FOUND!"}`
 
-const Localizacao = observer(props => {
+const Localizacao = observer(() => {
     const endereco = useForm();
     const [latitude, setLatitude] = useState('-22.2797829')
     const [longitude, setLongitude] = useState('-46.3722224')
     const [localizacao, setLocalizacao] = useState('Ouro Fino, MG')
 
-    const URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + 'address=' + localizacao + '&key=' + REACT_APP_API_KEY
 
     // Rua: Maria Joaquina, 185, Crisólia, Ouro Fino, MG
+    useEffect(() => {
+        setLocalizacao(endereco.value)
+    }, [endereco.value])
+
     const handleLocalizacao = (event) => {
         event.preventDefault()
 
         if (endereco.value) {
-            setLocalizacao(endereco.value)
+            console.log("clicou! " + localizacao)
 
+            const URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + 'address=' + localizacao + '&key=' + REACT_APP_API_KEY
             if (localizacao == endereco.value) {
+
                 fetch(URL_DA_REQUISICAO).then((response) => response.json())
                     .then((responseJson) => {
                         if (responseJson.status === 'OK') {

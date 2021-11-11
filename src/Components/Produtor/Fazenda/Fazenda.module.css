@@ -13,7 +13,8 @@ label {
 }
 
 .containerMaps {
+  display: block;
   margin: 2% 40%;
-  margin-left: 32%;
+  margin-left: 5%;
   align-items: center;
 }
