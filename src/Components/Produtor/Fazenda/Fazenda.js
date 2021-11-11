@@ -7,7 +7,7 @@ import { UserContext } from '../../../Context/UserContext';
 import { ButtonNavFazenda, ButtonSalvar } from '../../Button/Button';
 import Sobre from './Sobre/Sobre';
 import Contato from './Contato/Contato';
-import Maps from './Maps/Maps';
+import Localizacao from './Localizacao/Localizacao';
 import EtiquetaPersonalizada from './QRCode/EtiquetasPersonalizadas';
 import FotosVideos from './FotosVideos/FotosVideos';
 
@@ -104,12 +104,12 @@ function Fazenda() {
 
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
         {sel === "midia" && <FotosVideos />}
-        {sel === "local" && <Maps />}
+        {sel === "local" && <Localizacao />}
         {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
         {sel === "qrcode" && <EtiquetaPersonalizada />}
 
 
-        <ButtonSalvar onClick={handleSubmit}>Salvar</ButtonSalvar>
+        <ButtonSalvar onClick={handleSubmit} >Salvar</ButtonSalvar>
       </div>
     </div>
   )

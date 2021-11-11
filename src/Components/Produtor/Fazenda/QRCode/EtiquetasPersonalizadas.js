@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import Etiqueta from './Etiqueta/Etiqueta';
+import styles from './EtiquetasPersonalizadas.module.css';
 import { SketchPicker } from 'react-color'
 import { Button } from 'react-bootstrap';
 import { observer } from "mobx-react"
-import { Modal, } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { ButtonSalvar, ButtonAcc } from '../../../Button/Button';
 
 const EtiquetaPersonalizada = observer(props => {
@@ -28,9 +29,8 @@ const EtiquetaPersonalizada = observer(props => {
 
     return (
         <>
-
             <Button onClick={handleShow}> </Button>
-            <Modal show={show} onHide={''} animation={false} centered>
+            <Modal className='modalEtiqueta' show={show} centered  fullscreen={true} >
                 <Modal.Header>
                     <Modal.Title style={{ fontWeight: 'bold', color: "#4f4e4e" }}>QR Code</Modal.Title>
                 </Modal.Header>
