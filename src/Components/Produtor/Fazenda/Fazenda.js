@@ -25,13 +25,13 @@ function Fazenda() {
   const twitter = useForm();
   const youtube = useForm();
   const whatsApp = useForm();
-  
-  // const street = useForm();
+
+  const street = useForm();
   // const streetNumber = useForm();
-  // const district = useForm();
-  // const city = useForm();
-  // const country = useForm();
-  // const uf = useForm();
+  const district = useForm();
+  const city = useForm();
+  const country = useForm();
+  const uf = useForm();
 
   const { data, loading, error, request } = useFetch();
   const [sel, setSel] = React.useState("sobre");
@@ -47,7 +47,7 @@ function Fazenda() {
       insecticides: inseticidas.value,
       fertilizers: fertilizantes.value,
     };
-    if(telefone.value !== "") {
+    if (telefone.value !== "") {
       var contact = {
         phone: telefone.value,
         contact_email: email.value,
@@ -58,17 +58,20 @@ function Fazenda() {
         youTube: youtube.value,
         whatsApp: whatsApp.value,
       }
-
       body['contact'] = contact;
+
+      if (city.value !== "") {
+        var address = {
+          street: street.value,
+          // streetNumber: streetNumber.value,
+          district: district.value,
+          city: city.value,
+          country: country.value,
+          uf: uf.value
+        }
+      }
+      body['address'] = address;
     }
-    // address: {
-    //   street: street.value,
-    //   // streetNumber: streetNumber.value,
-    //   district: district.value,
-    //   city: city.value,
-    //   country: country.value,
-    //   uf: uf.value
-    // }
 
     if (data.data.farm.length > 0) {
       farmEdit(data.data.farm[0].id, body);
@@ -85,7 +88,7 @@ function Fazenda() {
     fertilizantes.setValue(r.fertilizers);
 
 
-    if(r.contact) {
+    if (r.contact) {
       telefone.setValue(r.contact.phone);
       email.setValue(r.contact.contact_email);
       linkedin.setValue(r.contact.linkedin);
@@ -95,13 +98,15 @@ function Fazenda() {
       youtube.setValue(r.contact.youtube);
       whatsApp.setValue(r.contact.watsapp);
     }
-    
-    // street.setValue(r.address.street);
-    // // streetNumber.setValue(r.address.streetNumber);
-    // district.setValue(r.address.district);
-    // city.setValue(r.address.city);
-    // country.setValue(r.address.country);
-    // uf.setValue(r.address.uf);
+
+    if (r.address) {
+      street.setValue(r.address.street);
+      // streetNumber.setValue(r.address.streetNumber);
+      district.setValue(r.address.district);
+      city.setValue(r.address.city);
+      country.setValue(r.address.country);
+      uf.setValue(r.address.uf);
+    }
   }
 
   React.useEffect(() => {
@@ -132,7 +137,7 @@ function Fazenda() {
 
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
         {sel === "midia" && <FotosVideos />}
-        {sel === "local" && <Localizacao />}
+        {sel === "local" && <Localizacao street={street} district={district} city={city} country={country} uf={uf} />}
         {/* {sel === "local" && <Localizacao street={street} streetNumber={streetNumber} district={district} city={city} country={country} uf={uf} />} */}
         {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
         {sel === "qrcode" && <EtiquetaPersonalizada />}
