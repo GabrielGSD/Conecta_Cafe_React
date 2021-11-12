@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, setState } from 'react';
 import { observer } from "mobx-react";
 import { Input } from '../../../Form/Input/Input';
 import { Container, Row } from 'react-bootstrap';
@@ -11,34 +11,34 @@ import useForm from '../../../../Hooks/useForm';
 const API_GEOLOCATION_GOOGLE = 'https://maps.googleapis.com/maps/api/geocode/json?'
 const REACT_APP_API_KEY = `${process.env.REACT_APP_API_KEY || "API-KEY NOT FOUND!"}`
 
-const Localizacao = observer(() => {
+const Localizacao = observer(({ street, districty, city, country, uf }) => {
     const endereco = useForm();
     const [latitude, setLatitude] = useState('-22.2797829')
     const [longitude, setLongitude] = useState('-46.3722224')
     const [localizacao, setLocalizacao] = useState('Ouro Fino, MG')
 
-    const [street, setStreet] = useState('')
-    const [streetNumber, setStreetNumber] = useState('')
-    const [district, setDistrict] = useState('')
-    const [city, setCity] = useState('')
-    const [country, setCountry] = useState('')
-    const [uf, setUF] = useState('')
-
-
-    // "address": {
-    //     "street": "Rua dos Pinheiros, Taguá",
-    //     "district": "Delcides Teles",
-    //     "city": "Ouro Fino",
-    //     "country": "Brasil",
-    //     "uf": "MG"
-    //   },
+    const [streetResp, setStreet] = useState('')
+    const [streetNumberResp, setStreetNumber] = useState('')
+    const [districtyResp, setDistrict] = useState('')
+    const [cityResp, setCity] = useState('')
+    const [countryResp, setCountry] = useState('')
+    const [ufResp, setUF] = useState('')
 
     // Rua: Maria Joaquina, 185, Crisólia, Ouro Fino, MG
     useEffect(() => {
         setLocalizacao(endereco.value)
     }, [endereco.value])
 
-    const handleLocalizacao = (event) => {
+    useEffect(() => {
+        if ((streetResp && streetNumberResp && districtyResp && cityResp && countryResp && ufResp) !== '') {
+            sendDataLocation()
+        } else {
+            console.log(streetResp + " | " + streetNumberResp + " | " + districtyResp + " | " + cityResp + " | " + ufResp + " | " + countryResp + "\n")
+            console.log("Insira todos da localização na busca")
+        }
+    }, [streetResp, streetNumberResp, districtyResp, cityResp, ufResp, countryResp])
+
+    const handleLocation = (event) => {
         event.preventDefault()
 
         if (endereco.value) {
@@ -56,7 +56,8 @@ const Localizacao = observer(() => {
                                 if (responseJson.results[0].address_components[i].types[0] === "street_number") {
                                     setStreetNumber(responseJson.results[0].address_components[i].long_name)
                                 }
-                                else if (responseJson.results[0].address_components[i].types[0] === "route") {
+                                else if (responseJson.results[0].address_components[i].types[0] === "route" ||
+                                    responseJson.results[0].address_components[i].types[0] === "locality") {
                                     setStreet(responseJson.results[0].address_components[i].long_name)
                                 }
                                 else if (responseJson.results[0].address_components[i].types[0] === "administrative_area_level_4") {
@@ -74,18 +75,27 @@ const Localizacao = observer(() => {
                             }
                         }
                     })
-
-
             }
         } else {
             console.log("Nenhum endereço inserido!!!")
         }
-        console.log("street " + street)
-        console.log("streetNumber " + streetNumber)
-        console.log("district " + district)
-        console.log("city " + city)
-        console.log("uf " + uf)
-        console.log("country " + country)
+    }
+
+    const sendDataLocation = props => {
+        console.log("streetResp: " + streetResp)
+        console.log("streetNumberResp: " + streetNumberResp)
+        console.log("districtyResp: " + districtyResp)
+        console.log("cityResp: " + cityResp)
+        console.log("ufResp: " + ufResp)
+        console.log("countryResp: " + countryResp)
+
+        async function setDataLocation() {
+            street.setValue(streetResp)
+            districty.setValue(districtyResp)
+            city.setValue(cityResp)
+            country.setValue(ufResp)
+            uf.setValue(countryResp)
+        }
     }
 
     return (
@@ -96,7 +106,7 @@ const Localizacao = observer(() => {
                     <Row>
                         <Input label="Endereço" type="text" name="endereco" placeholder="Entre com seu endereco (Rua, N°, Bairro, Cidade, UF)" show={false} {...endereco} />
                     </Row>
-                    <ButtonSalvar style={{ width: '130px', marginTop: '15px', backgroundColor: '#dddddd', color: '#666666' }} onClick={handleLocalizacao} >Buscar</ButtonSalvar>
+                    <ButtonSalvar style={{ width: '130px', marginTop: '15px', backgroundColor: '#dddddd', color: '#666666' }} onClick={handleLocation} >Buscar</ButtonSalvar>
                     <Maps latitude={latitude} longitude={longitude} />
                 </Container>
             </div>
