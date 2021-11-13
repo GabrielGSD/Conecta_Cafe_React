@@ -24,6 +24,7 @@ function Fazendas() {
       const response = await fetch(url, options);
       const json = await response.json();
       setFazendas(json.data)
+      console.log(json.data)
     }
     fetchGrower();
   }, [torra, processo]);

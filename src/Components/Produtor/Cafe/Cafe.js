@@ -8,6 +8,7 @@ import useFetch from '../../../Hooks/useFetch';
 import CafeCont from './CafeCont/CafeCont';
 import Especial from './Especial/Especial';
 import { COFFEES_GET } from '../../../Api/api';
+import styles  from './Cafe.module.css';
 
 function Cafe() {
 
@@ -55,21 +56,23 @@ function Cafe() {
   async function handleSubmit(event) {
     event.preventDefault();
     var body = {
-    variety: variedade,
-    species: especie,
-    altitude: parseInt(altitude.value),
-    process: processo.value,
-    harvest: parseInt(safra.value),
-    harvestValue: parseInt(valor.value),
-    special: {
-      aroma: aroma.value,
-      flavor: sabor.value,
-      completion: finalizacao.value,
-      acidity: acidez.value,
-      body: corpo.value,
-      sweetness: docura.value
-      }
+      variety: variedade,
+      species: especie,
+      altitude: parseInt(altitude.value),
+      process: processo.value,
+      harvest: parseInt(safra.value),
+      harvestValue: parseInt(valor.value),
     };
+    if(especial) {
+      body['special'] = {
+        aroma: aroma.value,
+        flavor: sabor.value,
+        completion: finalizacao.value,
+        acidity: acidez.value,
+        body: corpo.value,
+        sweetness: docura.value
+      }
+    }
     coffeeCreate(data.data.id, body);
     setReload("A")
     handleClose()
@@ -86,18 +89,14 @@ function Cafe() {
     safra.setValue("")
     valor.setValue("")
     setEspecial(false)
-    aroma.setValue("")
-    sabor.setValue("")
-    finalizacao.setValue("")
-    acidez.setValue("")
-    corpo.setValue("")
-    docura.setValue("")
+    aroma.setValue(null)
+    sabor.setValue(null)
+    finalizacao.setValue(null)
+    acidez.setValue(null)
+    corpo.setValue(null)
+    docura.setValue(null)
   }
-
-  function handleClick(cafe) {
-    console.log(cafe)
-  }
-
+  
   return (
     <div className={`bgGray center`}>
       <div className="boxContainer">
@@ -110,7 +109,7 @@ function Cafe() {
           ))}
         </div>
 
-        <Modal show={show} onHide={handleClose} animation={false} centered>
+        <Modal className="modalAdesivo" show={show} onHide={handleClose} animation={false} centered>
           <Modal.Header>
             <Modal.Title style={{fontWeight: 'bold', color: "#4f4e4e"}}>Adicionar Café</Modal.Title>
           </Modal.Header>

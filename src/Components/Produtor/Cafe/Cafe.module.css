@@ -42,8 +42,8 @@
 }
 
 .especie {
-  margin: 25px 0 0 0;
-  font-size: 1.85rem;
+  margin: 30px 0 0 0;
+  font-size: 1.65rem;
   font-weight: bold;
 }
 
@@ -119,5 +119,11 @@ label {
   to {
     opacity: 1;
     transform: initial;
+  }
+}
+
+@media (min-width: 576px){
+  .modal-dialog {
+    max-width: 70vw !important;
   }
 }

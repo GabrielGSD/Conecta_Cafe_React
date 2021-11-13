@@ -2,12 +2,23 @@ import styles  from './PagFazenda.module.css';
 import React from 'react'
 import { FARM_GET } from '../../../Api/api'; 
 import { ReactComponent as ArrowIcon } from '../../../Assets/ArrowFaz.svg'
-import { width } from 'dom-helpers';
+import { Col, Row } from 'react-bootstrap';
 
 function PagFazenda() {
 
+  React.useEffect(() => {
+    async function fetchFarm() {
+      const { url, options } = FARM_GET(getId());
+      const response = await fetch(url, options);
+      const json = await response.json();
+      setFazenda(json.data)
+      setCoffeeSel(json.data.coffee)
+      console.log(json.data)
+    }
+    fetchFarm();
+  }, []);
+
   const [fazenda, setFazenda] = React.useState(null);
-  const [teste, setTeste] = React.useState(null);
   const fotos = [
     'http://s2.glbimg.com/P6Nn4AXYPq-K1Xek4cCKyONYYyA=/e.glbimg.com/og/ed/f/original/2014/01/15/cafe.jpg', 
     'https://verticemt.com.br/wp-content/uploads/2020/09/lake-constance-sheep-pasture-sheep-blue-158179.jpeg"',
@@ -15,25 +26,19 @@ function PagFazenda() {
   let photoIndex = 0;
   const [photoSel, setPhotoSel] = React.useState(fotos[0]);
 
-  const handleNext = () => { (photoIndex < fotos.length - 1) && photoIndex++; setPhotoSel(fotos[photoIndex]) };
+  const handleNext = () => { (photoIndex < fotos.length - 1) && photoIndex++; setPhotoSel(fotos[photoIndex]); };
   const handleBack = () => { (photoIndex > 0) && photoIndex--; setPhotoSel(fotos[photoIndex]) };
+  
+  let cafeIndex = 0;
+  const [coffeeSel, setCoffeeSel] = React.useState(null);
+  const handlCoffeeeBack = () => { (cafeIndex < fazenda.coffee.length - 1) && cafeIndex++; setCoffeeSel(fazenda.coffee[cafeIndex]); console.log(cafeIndex) };
+  const handleCoffeeNext = () => { (cafeIndex > 0) && cafeIndex--; setCoffeeSel(fazenda.coffee[cafeIndex]); console.log(cafeIndex) };
   
   function getId() {
     var url = window.location.href;
     var id = url.substring(url.lastIndexOf('/') + 1);
     return id
   }
-  
-  React.useEffect(() => {
-    async function fetchFarm() {
-      const { url, options } = FARM_GET(getId());
-      const response = await fetch(url, options);
-      const json = await response.json();
-      setFazenda(json.data)
-    }
-    fetchFarm();
-  }, []);
-
 
   return (
     <>
@@ -53,7 +58,7 @@ function PagFazenda() {
             </div>
             <div className={styles.infos}>
               <h1 className={styles.nomeFaz}>{fazenda.farm_name}</h1>
-              <p className={styles.infosFaz}><b>Produtor:</b> {fazenda.farm_name}</p>
+              <p className={styles.infosFaz}><b>Produtor:</b> {fazenda.coffeeGrower.name}</p>
               {fazenda.address 
                 ? <p className={styles.infosFaz}><b>Cidade:</b> {fazenda.address.city} - {fazenda.address.uf}</p>
                 : <p className={styles.infosFaz}><b>Cidade:</b> Ouro Fino - MG </p>
@@ -73,9 +78,104 @@ function PagFazenda() {
             </div>
           </section>
 
-          <section className={styles.cafe}>
-            <h1>Café</h1>
-            <div><h1>{fazenda.farm_name}</h1></div>
+          <section className={styles.cafeSection}>
+            <Row style={{ minHeight:'70vh' }}>
+              <Col sm={4} className={`${styles.cafeBg}`} >
+                <h1 
+                  className="title" 
+                  style={{ fontSize: 'calc(3.5rem + 1.5vw)', display: 'inline-block', maxHeight: 'calc(3.8rem + 1.5vw)', marginTop: '-8vh' }}
+                >
+                  Café
+                </h1>
+              </Col>
+
+              <Col sm={8} className={styles.carouselCafe}>
+
+                <a className={styles.btnCarouselCafe} style={{left: 'calc(3.5vw + 10px)'}} onClick={ handlCoffeeeBack }>
+                  <ArrowIcon/>
+                </a>
+                <a className={styles.btnCarouselCafe} style={{right: 'calc(3.5vw + 10px)'}} onClick={ handleCoffeeNext }>
+                  <ArrowIcon style={{transform: 'rotate(-90deg)'}}/>
+                </a>
+
+                {coffeeSel && 
+                  <div style={{minWidth: '80%'}}>
+                    <Row className={styles.dadoCafe}>
+                      <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Espécie:</b></p></Col>
+                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].species}</p></Col>
+                    </Row>
+
+                    <Row className={styles.dadoCafe}>
+                      <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Variedade:</b></p></Col>
+                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].variety}</p></Col>
+                    </Row>
+
+                    <Row className={styles.dadoCafe}>
+                      <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Altitude:</b></p></Col>
+                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].altitude}</p></Col>
+                    </Row>
+
+                    <Row className={styles.dadoCafe}>
+                      <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Processo:</b></p></Col>
+                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].process}</p></Col>
+                    </Row>
+
+                    <Row className={styles.dadoCafe}>
+                      <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Safra:</b></p></Col>
+                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].harvest}</p></Col>
+                    </Row>
+
+                    <Row className={styles.dadoCafe}>
+                      <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Valor da safra:</b></p></Col>
+                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].harvestValue}</p></Col>
+                    </Row>
+
+                    {coffeeSel.special && <>
+                      <Row className={styles.dadoCafe}>
+                        <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Acidez:</b></p></Col>
+                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].special.acidity}</p></Col>
+                      </Row>
+
+                      <Row className={styles.dadoCafe}>
+                        <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Aroma:</b></p></Col>
+                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].special.aroma}</p></Col>
+                      </Row>
+
+                      <Row className={styles.dadoCafe}>
+                        <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Corpo:</b></p></Col>
+                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].special.body}</p></Col>
+                      </Row>
+
+                      <Row className={styles.dadoCafe}>
+                        <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Finalização:</b></p></Col>
+                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].special.completion}</p></Col>
+                      </Row>
+
+                      <Row className={styles.dadoCafe}>
+                        <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Sabor:</b></p></Col>
+                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].special.flavor}</p></Col>
+                      </Row>
+                    </>}
+                  </div>
+                }
+              </Col>
+            </Row>
+          </section>
+
+          <section>
+            <Row className={styles.localSection}>
+              <Col sm={7}>
+                TESTE
+              </Col>
+              <Col sm={5} className={`${styles.localBg}`} >
+                <h1 
+                  className="title" 
+                  style={{ fontSize: 'calc(2.5rem + 1.5vw)', display: 'inline-block', maxHeight: 'calc(3.8rem + 1.5vw)', marginTop: '-8vh' }}
+                >
+                  Localização
+                </h1>
+              </Col>
+            </Row>
           </section>
         </div>
       )}
