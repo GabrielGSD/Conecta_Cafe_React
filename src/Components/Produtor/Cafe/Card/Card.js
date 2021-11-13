@@ -5,7 +5,7 @@ import { ReactComponent as Edit } from '../../../../Assets/Edit.svg';
 import { ReactComponent as Delet } from '../../../../Assets/Del.svg';
 import { ReactComponent as More } from '../../../../Assets/more.svg'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import EtiquetaPersonalizada from '../../Fazenda/QRCode/EtiquetasPersonalizadas';
+import EtiquetaPersonalizada from '../../Fazenda/QRCode/EtiquetaPersonalizada';
 import ModalEditMore from './ModalEditMore';
 import Modalremove from './ModalRemove';
 
