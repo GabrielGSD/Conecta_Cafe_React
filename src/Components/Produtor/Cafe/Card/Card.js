@@ -9,13 +9,7 @@ import EtiquetaPersonalizada from '../../Fazenda/QRCode/EtiquetasPersonalizadas'
 import ModalEditMore from './ModalEditMore';
 import Modalremove from './ModalRemove';
 
-function Card(cafe, cafeID) {
-
-  const handleClickEtiqueta = props => {
-      return (
-      <EtiquetaPersonalizada />
-    )
-  }
+function Card(cafe, fazenda) {
 
   return (
     <>
@@ -24,34 +18,47 @@ function Card(cafe, cafeID) {
         <h1 className={styles.variedade}>{cafe.variety}</h1>
         <div>
           <div className={styles.btnGroup}>
-            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" onClick={handleClickEtiqueta}>Etiqueta</Tooltip>}>
+            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" >Etiqueta</Tooltip>}>
               <div className={styles.btnCircle}>
                 <>
                   <Etiqueta />
-                  <EtiquetaPersonalizada />
+                  <Tooltip id="tooltip-disabled" >
+                    <EtiquetaPersonalizada cafe={cafe} fazenda={fazenda}/>
+                  </Tooltip>
                 </>
               </div>
             </OverlayTrigger>
 
             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Editar</Tooltip>}>
               <div className={styles.btnCircle}>
-                <Edit />
-                <ModalEditMore onlyView={false} />
+                <>
+                  <Edit />
+                  <Tooltip id="tooltip-disabled" >
+                    <ModalEditMore onlyView={false} />
+                  </Tooltip>
+                </>
               </div>
             </OverlayTrigger>
 
             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Excluir</Tooltip>}>
               <div className={styles.btnCircle}>
-                <Delet />
-                <Modalremove id={cafe.id}/>
+                <>
+                  <Delet />
+                  <Tooltip id="tooltip-disabled" >
+                    <Modalremove id={cafe.id} />
+                  </Tooltip>
+                </>
               </div>
             </OverlayTrigger>
 
             <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Ver mais</Tooltip>}>
               <div className={styles.btnCircle}>
-                {/* <More onClick={() => { console.log(cafe) }} /> */}
-                <More />
-                <ModalEditMore onlyView={true} />
+                <>
+                  <More />
+                  <Tooltip id="tooltip-disabled" >
+                    <ModalEditMore onlyView={true} />
+                  </Tooltip>
+                </>
               </div>
             </OverlayTrigger>
           </div>

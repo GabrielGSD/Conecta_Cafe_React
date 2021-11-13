@@ -9,7 +9,8 @@ import styles from './EtiquetasPersonalizadas.module.css';
 import EtiquetaPequena from './Etiqueta/EtiquetaPequena';
 
 const EtiquetaPersonalizada = observer(props => {
-    const { endpoint } = props
+    const { endpoint, cafe, fazenda } = props
+    // console.log(fazenda)
 
     const [color, setColor] = useState('#000000')
     const [backgroundColor, setBackgroundColor] = useState('#ffffff')
@@ -28,8 +29,8 @@ const EtiquetaPersonalizada = observer(props => {
 
     return (
         <>
-            <Button onClick={handleShow}> </Button>
-            <Modal className='modalAdesivo' show={show} centered fullscreen={true} >
+            <Button variant="outline-light" onClick={handleShow}> </Button>
+            <Modal className='modalAdesivo' show={show} cestylesntered fullscreen={true} >
                 <Modal.Header>
                     <Modal.Title style={{ fontWeight: 'bold', color: "#4f4e4e" }}>QR Code</Modal.Title>
                 </Modal.Header>
@@ -63,7 +64,7 @@ const EtiquetaPersonalizada = observer(props => {
                             </Col>
                             <Col xs={4}>
                                 <div>
-                                    <Etiqueta endpoint={endpoint? endpoint : "Em andamento"} color={color} backgroundColor={backgroundColor} />
+                                    <Etiqueta cafe={cafe} endpoint={endpoint? endpoint : "Em andamento"} color={color} backgroundColor={backgroundColor} />
                                 </div>
                             </Col>
                         </Row>

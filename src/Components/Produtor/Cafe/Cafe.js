@@ -101,7 +101,7 @@ function Cafe() {
         </div>
         <div className="container-scroll list-grid" style={{ margin: ' 0px auto'}}>
           {data.data.coffee.map((cafes) => (
-            <Card id={cafes.id} especie={cafes} variedade={cafes.variety} {...cafes} />
+            <Card fazenda={data.data} id={cafes.id} especie={cafes} variedade={cafes.variety} {...cafes} />
           ))}
         </div>
 

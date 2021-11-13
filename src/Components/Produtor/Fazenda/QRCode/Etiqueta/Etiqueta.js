@@ -12,6 +12,7 @@ class ComponentToPrint extends React.Component {
         var endpoint = this.props.endpoint ? this.props.endpoint : "Insira o endpoint aqui"
         var color = this.props.color ? this.props.color : '#0000ff';
         var backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : '#ffffff';
+        var cafe = this.props.cafe ? this.props.cafe : {};
 
         return (
             <div>
@@ -47,21 +48,21 @@ class ComponentToPrint extends React.Component {
                                     <div>
                                         Espécie:
                                         <br />
-                                        100% arábica
+                                        {cafe.species}
                                     </div>
                                 </th>
                                 <th className={styles.larguraMedia}>
                                     <div>
                                         Variedade:
                                         <br />
-                                        Catuaí vermelho
+                                        {cafe.variety}
                                     </div>
                                 </th>
                                 <th className={styles.larguraMedia}>
                                     <div>
                                         Altitude:
                                         <br />
-                                        1200m
+                                        {cafe.altitude}
                                     </div>
                                 </th>
                             </tr>
@@ -72,21 +73,21 @@ class ComponentToPrint extends React.Component {
                                     <div>
                                         Processo:
                                         <br />
-                                        Natural
+                                        {cafe.process}
                                     </div>
                                 </th>
                                 <th className={styles.larguraMedia}>
                                     <div>
                                         Safra:
                                         <br />
-                                        2021
+                                        {cafe.harvest}
                                     </div>
                                 </th>
                                 <th className={styles.larguraMedia}>
                                     <div>
                                         Valor da Safra:
                                         <br />
-                                        R$ 1.500,00
+                                        R$ {cafe.harvestValue},00
                                     </div>
                                 </th>
                             </tr>
@@ -205,7 +206,7 @@ class ComponentToPrint extends React.Component {
 }
 
 const Etiqueta = props => {
-    const { endpoint, color, backgroundColor } = props
+    const { endpoint, color, backgroundColor, cafe } = props
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -213,7 +214,7 @@ const Etiqueta = props => {
 
     return (
         <div>
-            <ComponentToPrint ref={componentRef} endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
+            <ComponentToPrint ref={componentRef} endpoint={endpoint} color={color} backgroundColor={backgroundColor} cafe={cafe}/>
             <button className={styles.saveButton} onClick={handlePrint} >Download</button>
         </div>
     );
