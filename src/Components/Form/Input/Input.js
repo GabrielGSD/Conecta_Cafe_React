@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Input.module.css';
 
-function Input({ label, type, name, value, onChange, error, onBlur, show, placeholder }) {
+function Input({ onlyView, label, type, name, value, onChange, error, onBlur, show, placeholder }) {
 
   var showError = (show !== false ? true : false);
 
@@ -14,11 +14,12 @@ function Input({ label, type, name, value, onChange, error, onBlur, show, placeh
         id={name}
         name={name}
         className={styles.input}
-        type={type}
+        type={onlyView? null : type}
         value={value}
         placeholder={placeholder}
-        onChange={onChange}
-        onBlur={onBlur}
+        onChange={onlyView? null : onChange}
+        onBlur={onBlur? null : onChange}
+        disabled={onlyView}
       />
       {error && showError && <p className={styles.error}>{error}</p>}
     </div>

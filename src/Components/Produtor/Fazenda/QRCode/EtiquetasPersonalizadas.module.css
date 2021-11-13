@@ -1,6 +1,15 @@
-.modal {
-    width: 80%;
-    height: 80%;
-    background-color: brown;
-    align-items: center;
+.colors {
+    margin-top: 60px;
+    margin-left: 50px;
+    height: 100px;
+    width: 120px;
+    border-radius: 1rem;
+    box-shadow: 3px 4px 5px rgb(0 0 0 / 40%);
+    position: relative;
+}
+
+.icon {
+    margin-left: 35px;
+    height: 40px;
+    width: 50px;
 }

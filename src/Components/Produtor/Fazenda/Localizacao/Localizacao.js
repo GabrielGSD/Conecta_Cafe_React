@@ -1,4 +1,4 @@
-import React, { useState, useEffect, setState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { observer } from "mobx-react";
 import { Input } from '../../../Form/Input/Input';
 import { Container, Row } from 'react-bootstrap';
@@ -11,7 +11,7 @@ import useForm from '../../../../Hooks/useForm';
 const API_GEOLOCATION_GOOGLE = 'https://maps.googleapis.com/maps/api/geocode/json?'
 const REACT_APP_API_KEY = `${process.env.REACT_APP_API_KEY || "API-KEY NOT FOUND!"}`
 
-const Localizacao = observer(({ street, districty, city, country, uf }) => {
+const Localizacao = observer(({ nome, street, districty, city, country, uf }) => {
     const endereco = useForm();
     const [latitude, setLatitude] = useState('-22.2797829')
     const [longitude, setLongitude] = useState('-46.3722224')
@@ -107,7 +107,7 @@ const Localizacao = observer(({ street, districty, city, country, uf }) => {
                         <Input label="Endereço" type="text" name="endereco" placeholder="Entre com seu endereco (Rua, N°, Bairro, Cidade, UF)" show={false} {...endereco} />
                     </Row>
                     <ButtonSalvar style={{ width: '130px', marginTop: '15px', backgroundColor: '#dddddd', color: '#666666' }} onClick={handleLocation} >Buscar</ButtonSalvar>
-                    <Maps latitude={latitude} longitude={longitude} />
+                    <Maps nameFarm={nome} latitude={latitude ? latitude : '-22.2797829'} longitude={longitude ? longitude : '-46.3722224'} />
                 </Container>
             </div>
         </>

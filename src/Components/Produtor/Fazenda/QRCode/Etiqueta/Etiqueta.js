@@ -12,6 +12,7 @@ class ComponentToPrint extends React.Component {
         var endpoint = this.props.endpoint ? this.props.endpoint : "Insira o endpoint aqui"
         var color = this.props.color ? this.props.color : '#0000ff';
         var backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : '#ffffff';
+        var cafe = this.props.cafe ? this.props.cafe : {};
 
         return (
             <div>
@@ -19,10 +20,11 @@ class ComponentToPrint extends React.Component {
                     <table className={styles.table} style={
                         {
                             color: color,
-                            backgroundColor: backgroundColor
+                            backgroundColor: backgroundColor,
+                            borderColor: color
                         }
                     }>
-                        <table className={styles.table1}>
+                        <table className={styles.table1} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMaior}>
                                     <div className={styles.regionCoffee}>
@@ -40,57 +42,57 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table2}>
+                        <table className={styles.table2} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMedia}>
                                     <div>
                                         Espécie:
                                         <br />
-                                        100% arábica
+                                        {cafe.species}
                                     </div>
                                 </th>
                                 <th className={styles.larguraMedia}>
                                     <div>
                                         Variedade:
                                         <br />
-                                        Catuaí vermelho
+                                        {cafe.variety}
                                     </div>
                                 </th>
                                 <th className={styles.larguraMedia}>
                                     <div>
                                         Altitude:
                                         <br />
-                                        1200m
+                                        {cafe.altitude}
                                     </div>
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table2}>
+                        <table className={styles.table2} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMedia}>
                                     <div>
                                         Processo:
                                         <br />
-                                        Natural
+                                        {cafe.process}
                                     </div>
                                 </th>
                                 <th className={styles.larguraMedia}>
                                     <div>
                                         Safra:
                                         <br />
-                                        2021
+                                        {cafe.harvest}
                                     </div>
                                 </th>
                                 <th className={styles.larguraMedia}>
                                     <div>
                                         Valor da Safra:
                                         <br />
-                                        R$ 1.500,00
+                                        R$ {cafe.harvestValue},00
                                     </div>
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table3}>
+                        <table className={styles.table3} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMenor1}>
                                     <div >
@@ -106,7 +108,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table3}>
+                        <table className={styles.table3} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMenor1}>
                                     <div >
@@ -122,7 +124,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table3}>
+                        <table className={styles.table3} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMenor1}>
                                     <div >
@@ -138,7 +140,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table3}>
+                        <table className={styles.table3} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMenor1}>
                                     <div >
@@ -154,7 +156,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table4} cellspacing="">
+                        <table className={styles.table4} cellspacing="" style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMenor2}>
                                     <div >
@@ -170,7 +172,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table4}>
+                        <table className={styles.table4} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMenor2}>
                                     <div >
@@ -186,7 +188,13 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <Logo className={styles.logo} />
+                        <Logo className={styles.logo}>
+                            <svg>
+                                <style>
+                                    {`.logo > *{ fill: ${color}}`}
+                                </style>
+                            </svg>
+                        </Logo>
                         <div className={styles.qrcode}>
                             <RequestQrCode endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
                         </div>
@@ -198,7 +206,7 @@ class ComponentToPrint extends React.Component {
 }
 
 const Etiqueta = props => {
-    const { endpoint, color, backgroundColor } = props
+    const { endpoint, color, backgroundColor, cafe } = props
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -206,8 +214,8 @@ const Etiqueta = props => {
 
     return (
         <div>
-            <ComponentToPrint ref={componentRef} endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
-            <button className={styles.saveButton} onClick={handlePrint} >Baixar Etiqueta</button>
+            <ComponentToPrint ref={componentRef} endpoint={endpoint} color={color} backgroundColor={backgroundColor} cafe={cafe}/>
+            <button className={styles.saveButton} onClick={handlePrint} >Download</button>
         </div>
     );
 };

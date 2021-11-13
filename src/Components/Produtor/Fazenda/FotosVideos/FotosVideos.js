@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react'
-import styles from './FotosVideos.module.css'
 import DropZone from './DropZone/DropZone'
 
 const FotosVideos = observer(PROPS => {

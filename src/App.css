@@ -144,6 +144,11 @@ input[type=range]::-webkit-slider-runnable-track {
   .modalAdesivo .modal-dialog {
     max-width: 70vw !important;
   }
+  .modalWarning .modal-dialog {
+    max-width: 18vw !important;
+    color: #E41838;
+    text-align: center;
+  }
   .modal-dialog {
     max-width: 600px !important;
   }
