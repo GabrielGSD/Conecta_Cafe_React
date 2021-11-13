@@ -4,14 +4,19 @@ import { observer } from 'mobx-react';
 import { UserContext } from '../../../../Context/UserContext';
 
 const Modalremove = observer(props => {
-    const { cafe } = props 
+    const { cafe } = props
 
     const { coffeeDelete } = React.useContext(UserContext);
-    
+
     const [show, setShow] = useState('')
     const handleShow = () => { setShow(true) }
     const handleClose = () => { setShow(false) }
-    const handleDelete = () => { coffeeDelete(cafe.id); setShow(false) }
+
+    const handleDelete = () => {
+        coffeeDelete(cafe.id)
+        setShow(false)
+        window.location.reload(true)
+    }
 
 
     return (

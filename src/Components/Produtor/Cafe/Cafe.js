@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { UserContext } from '../../../Context/UserContext';
 import { ButtonSalvar, ButtonAcc } from '../../Button/Button';
 import { Modal, } from 'react-bootstrap';
@@ -8,7 +8,7 @@ import useFetch from '../../../Hooks/useFetch';
 import CafeCont from './CafeCont/CafeCont';
 import Especial from './Especial/Especial';
 import { COFFEES_GET } from '../../../Api/api';
-import styles  from './Cafe.module.css';
+import styles from './Cafe.module.css';
 
 function Cafe() {
 
@@ -42,14 +42,16 @@ function Cafe() {
 
   const especialClose = () => setEspecial(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function fetchGrower() {
-      const { url, options } = COFFEES_GET(data.data.id);
-      const { response, json } = await request(url, options);
-      getFarm(data.data.id)
-      setReload("")
+      if (data) {
+        const { url, options } = COFFEES_GET(data.data.id);
+        const { response, json } = await request(url, options);
+        getFarm(data.data.id)
+        setReload("")
+      }
+      fetchGrower();
     }
-    fetchGrower();
   }, [request, reload]);
 
   async function handleSubmit(event) {
@@ -62,7 +64,7 @@ function Cafe() {
       harvest: parseInt(safra.value),
       harvestValue: parseInt(valor.value),
     };
-    if(especial) {
+    if (especial) {
       body['special'] = {
         aroma: aroma.value,
         flavor: sabor.value,
@@ -77,11 +79,11 @@ function Cafe() {
     handleClose()
   }
 
-  function clearInputs(){
+  function clearInputs() {
     setVariedade("")
     setEspecie("")
     altitude.setValue()
-    processo.setValue("") 
+    processo.setValue("")
     safra.setValue("")
     valor.setValue("")
     setEspecial(false)
@@ -92,51 +94,61 @@ function Cafe() {
     corpo.setValue(null)
     docura.setValue(null)
   }
-  
+
   return (
-    <div className={`bgGray center`}>
-      <div className="boxContainer">
-        <div className="center">
-          <h1 className="title">Café</h1>
-        </div>
-        <div className="container-scroll list-grid" style={{ margin: ' 0px auto'}}>
-          {data.data.coffee.map((cafes) => (
-            <Card fazenda={data.data} id={cafes.id} especie={cafes} variedade={cafes.variety} {...cafes} />
-          ))}
-        </div>
 
-        <Modal className="modal" show={show} onHide={handleClose} animation={false} centered>
-          <Modal.Header>
-            <Modal.Title style={{fontWeight: 'bold', color: "#4f4e4e"}}>Adicionar Café</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {!especial ? 
-              <CafeCont variedade={variedade} setVariedade={setVariedade} variedades={variedades} especie={especie} setEspecie={setEspecie} arrRobusta={arrRobusta} arrArabica={arrArabica} altitude={altitude} processo={processo} safra={safra} valor={valor} setEspecial={setEspecial}  />
-            : 
-              <Especial aroma={aroma} sabor={sabor} finalizacao={finalizacao} acidez={acidez} corpo={corpo} docura={docura}  />
-            }
-          </Modal.Body>
-          <Modal.Footer style={{justifyContent: "center"}}>
-            {especial &&
-              <ButtonAcc 
-                style={{width: '80px', height: '35px', fontWeight: 'normal', padding: '0', background: 'transparent', border: '1px solid #C2C2C2', color: '#8C8C8C'}}
-                onClick={especialClose}
-              >
-                Voltar
-              </ButtonAcc>
-            }
-            <ButtonAcc 
-              style={{width: '80px', height: '35px', fontWeight: 'normal', padding: '0'}}
-              onClick={handleSubmit}
-            >
-              Salvar
-            </ButtonAcc>
-          </Modal.Footer>
-        </Modal>
+    <>
+      {
+        data ?
 
-        <ButtonSalvar style={{width: '130px', marginTop: '35px'}}  onClick={handleShow}> Adicionar café</ButtonSalvar>
-      </div>
-    </div>
+          <div className={`bgGray center`}>
+            <div className="boxContainer">
+              <div className="center">
+                <h1 className="title">Café</h1>
+              </div>
+              <div className="container-scroll list-grid" style={{ margin: ' 0px auto' }}>
+                {data.data.coffee.map((cafes) => (
+                  <Card fazenda={data.data} id={cafes.id} especie={cafes} variedade={cafes.variety} {...cafes} />
+                ))}
+              </div>
+
+              <Modal className="modal" show={show} onHide={handleClose} animation={false} centered>
+                <Modal.Header>
+                  <Modal.Title style={{ fontWeight: 'bold', color: "#4f4e4e" }}>Adicionar Café</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  {!especial ?
+                    <CafeCont variedade={variedade} setVariedade={setVariedade} variedades={variedades} especie={especie} setEspecie={setEspecie} arrRobusta={arrRobusta} arrArabica={arrArabica} altitude={altitude} processo={processo} safra={safra} valor={valor} setEspecial={setEspecial} />
+                    :
+                    <Especial aroma={aroma} sabor={sabor} finalizacao={finalizacao} acidez={acidez} corpo={corpo} docura={docura} />
+                  }
+                </Modal.Body>
+                <Modal.Footer style={{ justifyContent: "center" }}>
+                  {especial &&
+                    <ButtonAcc
+                      style={{ width: '80px', height: '35px', fontWeight: 'normal', padding: '0', background: 'transparent', border: '1px solid #C2C2C2', color: '#8C8C8C' }}
+                      onClick={especialClose}
+                    >
+                      Voltar
+                    </ButtonAcc>
+                  }
+                  <ButtonAcc
+                    style={{ width: '80px', height: '35px', fontWeight: 'normal', padding: '0' }}
+                    onClick={handleSubmit}
+                  >
+                    Salvar
+                  </ButtonAcc>
+                </Modal.Footer>
+              </Modal>
+
+              <ButtonSalvar style={{ width: '130px', marginTop: '35px' }} onClick={handleShow}> Adicionar café</ButtonSalvar>
+            </div>
+          </div>
+          :
+          <>
+          </>
+      }
+    </>
   )
 }
 

@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
-import { useReactToPrint } from "react-to-print";
-import styles from './Etiqueta.module.css';
-import RequestQrCode from "./GeneratedQrCode";
-import { ReactComponent as Logo } from '../../../../../Assets/logo_black.svg';
+import React, { useRef } from "react"
+import { useReactToPrint } from "react-to-print"
+import styles from './EtiquetaGrande.module.css'
+import RequestQrCode from "./GeneratedQrCode"
+import { ReactComponent as Logo } from '../../../../../Assets/logo_black.svg'
 
 
 class ComponentToPrint extends React.Component {
@@ -205,7 +205,7 @@ class ComponentToPrint extends React.Component {
     }
 }
 
-const Etiqueta = props => {
+const EtiquetaGrande = props => {
     const { endpoint, color, backgroundColor, cafe } = props
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
@@ -220,4 +220,4 @@ const Etiqueta = props => {
     );
 };
 
-export default Etiqueta
+export default EtiquetaGrande

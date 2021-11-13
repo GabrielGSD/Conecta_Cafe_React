@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import Etiqueta from './Etiqueta/Etiqueta';
-// import styles from './EtiquetasPersonalizadas.module.css';
+import EtiquetaGrande from './Etiqueta/EtiquetaGrande';
 import { Button, Form } from 'react-bootstrap';
 import { observer } from "mobx-react"
 import { Modal, Col, Row } from 'react-bootstrap';
 import { ButtonAcc } from '../../../Button/Button';
-import styles from './EtiquetasPersonalizadas.module.css';
+import styles from './EtiquetaPersonalizada.module.css';
 import EtiquetaPequena from './Etiqueta/EtiquetaPequena';
 
 const EtiquetaPersonalizada = observer(props => {
@@ -64,7 +63,7 @@ const EtiquetaPersonalizada = observer(props => {
                             </Col>
                             <Col xs={4}>
                                 <div>
-                                    <Etiqueta cafe={cafe} endpoint={endpoint? endpoint : "Em andamento"} color={color} backgroundColor={backgroundColor} />
+                                    <EtiquetaGrande cafe={cafe} endpoint={endpoint? endpoint : "Em andamento"} color={color} backgroundColor={backgroundColor} />
                                 </div>
                             </Col>
                         </Row>
