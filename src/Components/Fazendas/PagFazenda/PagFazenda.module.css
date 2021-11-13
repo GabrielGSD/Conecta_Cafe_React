@@ -183,6 +183,19 @@
   justify-content: center;
 }
 
+.contactGroup {
+  display: flex;
+}
+
+.contact {
+  font-weight: 500;
+  color: #fff;
+}
+
+.contact svg {
+  margin-right: 7px;
+}
+
 @media (max-width: 950px){
   .cafeBg {
     background-position: center;
