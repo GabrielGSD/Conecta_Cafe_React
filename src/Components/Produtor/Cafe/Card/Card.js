@@ -45,7 +45,7 @@ function Card(cafe, fazenda) {
                 <>
                   <Delet />
                   <Tooltip id="tooltip-disabled" >
-                    <Modalremove id={cafe.id} />
+                    <Modalremove cafe={cafe}/>
                   </Tooltip>
                 </>
               </div>

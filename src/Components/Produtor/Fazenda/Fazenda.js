@@ -7,8 +7,8 @@ import { ButtonNavFazenda, ButtonSalvar } from '../../Button/Button';
 import Sobre from './Sobre/Sobre';
 import Contato from './Contato/Contato';
 import Localizacao from './Localizacao/Localizacao';
-import EtiquetaPersonalizada from './QRCode/EtiquetasPersonalizadas';
 import FotosVideos from './FotosVideos/FotosVideos';
+import QRCode from './QRCode/QRCode';
 
 function Fazenda() {
 
@@ -138,9 +138,8 @@ function Fazenda() {
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
         {sel === "midia" && <FotosVideos />}
         {sel === "local" && <Localizacao nome={nome} street={street} district={district} city={city} country={country} uf={uf} />}
-        {/* {sel === "local" && <Localizacao street={street} streetNumber={streetNumber} district={district} city={city} country={country} uf={uf} />} */}
         {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
-        {sel === "qrcode" && <EtiquetaPersonalizada />}
+        {sel === "qrcode" && <QRCode />}
 
 
         <ButtonSalvar onClick={handleSubmit} >Salvar</ButtonSalvar>
