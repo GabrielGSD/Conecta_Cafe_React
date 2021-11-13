@@ -3,6 +3,14 @@ import React from 'react'
 import { FARM_GET } from '../../../Api/api'; 
 import { ReactComponent as ArrowIcon } from '../../../Assets/ArrowFaz.svg'
 import { Col, Row } from 'react-bootstrap';
+import { ReactComponent as EmailIcon } from '../../../Assets/emailIcon.svg'
+import { ReactComponent as FacebookIcon } from '../../../Assets/facebookIcon.svg'
+import { ReactComponent as InstagramIcon } from '../../../Assets/instagramIcon.svg'
+import { ReactComponent as LinkedinIcon } from '../../../Assets/linkedinIcon.svg'
+import { ReactComponent as PhoneIcon } from '../../../Assets/phoneIcon.svg'
+import { ReactComponent as TwitterIcon } from '../../../Assets/twitterIcon.svg'
+import { ReactComponent as YoutubeIcon } from '../../../Assets/youtubeIcon.svg'
+import { ReactComponent as WppIcon } from '../../../Assets/wppIcon.svg'
 
 function PagFazenda() {
 
@@ -174,6 +182,82 @@ function PagFazenda() {
                 >
                   Localização
                 </h1>
+              </Col>
+            </Row>
+          </section>
+
+          <section>
+            <Row className={`${styles.blackbg} `} style={{height: '35vh', margin: '0'}} >
+              <Col sm={4} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <h1 
+                  className="title" 
+                  style={{ fontSize: 'calc(2.5rem + 1.5vw)', display: 'inline-block', maxHeight: 'calc(3.8rem + 1.5vw)', margin: '0' }}
+                >
+                  Contato
+                </h1>
+              </Col>
+              <Col sm={8} className={styles.contactGroup}>
+                <div>
+                  <a className={styles.contact} style={{marginRight: '10px'}}><PhoneIcon />{fazenda.contact.phone}</a>
+                  
+                  <a className={styles.contact} style={{marginRight: '10px'}}><EmailIcon />{fazenda.contact.contact_email}</a>
+                </div>
+                
+                <div>
+                  <a 
+                    className={styles.contact} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    href={`https://api.whatsapp.com/send?phone=55${fazenda.contact.whatsApp}`}
+                  >
+                    <WppIcon />
+                  </a>
+                  
+                  <a 
+                    className={styles.contact} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    href={fazenda.contact.facebook}
+                  >
+                    <FacebookIcon />
+                  </a>
+                  
+                  <a 
+                    className={styles.contact} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    href={fazenda.contact.instagram}
+                  >
+                    <InstagramIcon />
+                  </a>
+                  
+                  <a 
+                    className={styles.contact} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    href={fazenda.contact.twitter}
+                  >
+                    <TwitterIcon />
+                  </a>
+                  
+                  <a 
+                    className={styles.contact} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    href={fazenda.contact.linkedin}
+                  >
+                    <LinkedinIcon />
+                  </a>
+
+                  <a 
+                    className={styles.contact} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    href={fazenda.contact.youtube}
+                  >
+                    <YoutubeIcon />
+                  </a>
+                </div>
               </Col>
             </Row>
           </section>
