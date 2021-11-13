@@ -29,7 +29,7 @@ const EtiquetaPersonalizada = observer(props => {
     return (
         <>
             <Button onClick={handleShow}> </Button>
-            <Modal className='modalEtiqueta' show={show} centered fullscreen={true} >
+            <Modal className='modalAdesivo' show={show} centered fullscreen={true} >
                 <Modal.Header>
                     <Modal.Title style={{ fontWeight: 'bold', color: "#4f4e4e" }}>QR Code</Modal.Title>
                 </Modal.Header>
