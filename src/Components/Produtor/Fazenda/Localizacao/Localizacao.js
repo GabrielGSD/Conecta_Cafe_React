@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from "mobx-react";
 import { Input } from '../../../Form/Input/Input';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import styles from '../Fazenda.module.css';
 import Maps from './Maps/Maps'
 import { ButtonSalvar } from '../../../Button/Button';
@@ -55,7 +55,7 @@ const Localizacao = observer(({ nome, street, streetNumber, district, city, coun
 
         if (endereco.value) {
             const URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + 'address=' + localizacao + '&key=' + REACT_APP_API_KEY
-            
+
             if (localizacao === endereco.value) {
                 fetch(URL_DA_REQUISICAO).then((response) => response.json())
                     .then((responseJson) => {
@@ -100,10 +100,16 @@ const Localizacao = observer(({ nome, street, streetNumber, district, city, coun
             <div className="container-scroll" style={{ marginTop: ' 15px', marginBottom: "0px" }}>
                 <Container>
                     <Row>
-                        <Input label="Endereço" type="text" name="endereco" placeholder="Entre com seu endereco (Rua, N°, Bairro, Cidade, UF)" show={false} {...endereco} />
+                        <Col xs={10}>
+                            <Input label="Endereço" type="text" name="endereco" placeholder="Entre com seu endereco (Rua, N°, Bairro, Cidade, UF)" show={false} {...endereco} />
+                        </Col>
+                        <Col xs={2}>
+                            <ButtonSalvar style={{ width: '130px', marginTop: '15%', backgroundColor: '#dddddd', color: '#666666' }} onClick={handleLocation} >Buscar</ButtonSalvar>
+                        </Col>
                     </Row>
-                    <ButtonSalvar style={{ width: '130px', marginTop: '15px', backgroundColor: '#dddddd', color: '#666666' }} onClick={handleLocation} >Buscar</ButtonSalvar>
-                    <Maps nameFarm={nome} latitude={latitude} longitude={longitude} />
+                    <Row>
+                        <Maps nameFarm={nome} latitude={latitude} longitude={longitude} />
+                    </Row>
                 </Container>
             </div>
         </>

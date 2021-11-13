@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { UserContext } from '../../../../Context/UserContext';
-import { ButtonSalvar, ButtonAcc } from '../../../Button/Button';
+import { ButtonAcc } from '../../../Button/Button';
 import { Modal, Button } from 'react-bootstrap';
 import useForm from '../../../../Hooks/useForm';
 import useFetch from '../../../../Hooks/useFetch';
@@ -31,11 +31,10 @@ const ModalEditMore = observer(props => {
     const corpo = useForm();
     const docura = useForm();
 
-    const { data, coffeeCreate, coffeeEdit, getFarm } = React.useContext(UserContext);
-    const { loading, error, request } = useFetch();
-    const [show, setShow] = React.useState(false);
-    const [cafes, setCafes] = React.useState();
-    const [reload, setReload] = React.useState("");
+    const { data, coffeeEdit, getFarm } = React.useContext(UserContext)
+    const { request } = useFetch()
+    const [show, setShow] = React.useState(false)
+    const [reload, setReload] = React.useState("")
 
     const handleClose = () => { clearInputs(); setShow(false) }
     const handleShow = () => { fillInputs(); setShow(true) }
@@ -51,7 +50,7 @@ const ModalEditMore = observer(props => {
         }
         fetchGrower()
         fillInputs()
-    }, [show]);
+    }, [show, reload]);
 
     async function handleSubmit(event) {
         if (!onlyView){
