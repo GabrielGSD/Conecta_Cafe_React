@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
-import { observer } from "mobx-react";
 import styles from './EtiquetaPequena.module.css'
 import { ReactComponent as Logo } from '../../../../../Assets/logo_black.svg';
 import { Form } from "react-bootstrap";

@@ -123,6 +123,36 @@ export function COFFEE_CREATE(id, body) {
   };
 }
 
+// Funcao Atualizar Café
+export function COFFEE_EDIT(id, body) {
+  return {
+    url: API_URL + `/coffee/${id}`,
+    options: {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + window.localStorage.getItem("token")
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
+
+// Funcao de Remover Café
+export function COFFEE_DELETE(id, body) {
+  return {
+    url: API_URL + `/coffee/${id}`,
+    options: {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + window.localStorage.getItem("token")
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
+
 //Funcao listar fazendas cadastradas 
 // Funcao listar cafés
 export function FARMER_GET_ALL() {

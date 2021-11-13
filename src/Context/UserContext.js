@@ -114,7 +114,23 @@ export function UserStorage({ children }) {
     try {
       setError(null);
       setLoading(true);
-      const {url, options} = FARM_EDIT(id, body);
+      const {url, options} = COFFEE_EDIT(id, body);
+      const response = await fetch(url, options);
+      if (!response.ok) throw new Error('Erro ao salvar fazenda');
+    } catch (err) {
+      setError(err.message);
+      setLogin(false);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+
+  async function coffeeDelete(id, body) {
+    try {
+      setError(null);
+      setLoading(true);
+      const {url, options} = COFFEE_DELETE(id, body);
       const response = await fetch(url, options);
       if (!response.ok) throw new Error('Erro ao salvar fazenda');
     } catch (err) {
@@ -164,7 +180,7 @@ export function UserStorage({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ userLogin, userCreate, userLogout, farmCreate, farmEdit, coffeeCreate, coffeeEdit, getFarm, data, error, loading, login }}
+      value={{ userLogin, userCreate, userLogout, farmCreate, farmEdit, coffeeCreate, coffeeEdit, coffeeDelete, getFarm, data, error, loading, login }}
     >
       {children}
     </UserContext.Provider>

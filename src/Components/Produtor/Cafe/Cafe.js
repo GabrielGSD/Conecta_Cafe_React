@@ -47,7 +47,6 @@ function Cafe() {
       const { url, options } = COFFEES_GET(data.data.id);
       const { response, json } = await request(url, options);
       getFarm(data.data.id)
-      console.log(data.data.coffee)
       setReload("")
     }
     fetchGrower();
@@ -81,9 +80,6 @@ function Cafe() {
   function clearInputs(){
     setVariedade("")
     setEspecie("")
-    setEspecie("")
-    setEspecie("")
-    setEspecie("")
     altitude.setValue()
     processo.setValue("") 
     safra.setValue("")
@@ -105,11 +101,11 @@ function Cafe() {
         </div>
         <div className="container-scroll list-grid" style={{ margin: ' 0px auto'}}>
           {data.data.coffee.map((cafes) => (
-            <Card especie={cafes} variedade={cafes.variety} {...cafes} />
+            <Card id={cafes.id} especie={cafes} variedade={cafes.variety} {...cafes} />
           ))}
         </div>
 
-        <Modal className="modalAdesivo" show={show} onHide={handleClose} animation={false} centered>
+        <Modal className="modal" show={show} onHide={handleClose} animation={false} centered>
           <Modal.Header>
             <Modal.Title style={{fontWeight: 'bold', color: "#4f4e4e"}}>Adicionar Café</Modal.Title>
           </Modal.Header>
