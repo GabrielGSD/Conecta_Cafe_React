@@ -19,12 +19,16 @@ const Maps = observer(props => {
             <div className={styles.containerMaps}>
                 <Map
                     google={window.google}
+                    initialCenter={{
+                        lat: latitude ? latitude : -22.2571437,
+                        lng: longitude ? longitude : -45.6966806
+                    }}
                     center={{
-                        lat: latitude,
-                        lng: longitude
+                        lat: latitude, 
+                        lng: longitude 
                     }}
                     zoom={17}
-                    containerStyle={containerStyle} >
+                    containerStyle={containerStyle} style={{borderRadius: '10%'}}>
                     <Marker
                         name={nameFarm.value} // Nome que virá do Backend
                         position={{
@@ -41,7 +45,7 @@ const Maps = observer(props => {
                         strokeColor='transparent'
                         strokeOpacity={0}
                         strokeWeight={5}
-                        fillColor='#FF0000'
+                        fillColor='#ff0000'
                         fillOpacity={0.2}
                     />
                 </Map>

@@ -16,7 +16,7 @@ function Fazenda() {
   const historia = useForm();
   const inseticidas = useForm();
   const fertilizantes = useForm();
-
+  
   const telefone = useForm();
   const email = useForm();
   const linkedin = useForm();
@@ -25,6 +25,8 @@ function Fazenda() {
   const twitter = useForm();
   const youtube = useForm();
   const whatsApp = useForm();
+  
+  var urls_midia = []
 
   const street = useForm();
   // const streetNumber = useForm();
@@ -47,6 +49,7 @@ function Fazenda() {
       insecticides: inseticidas.value,
       fertilizers: fertilizantes.value,
     };
+    
     if (telefone.value !== "") {
       var contact = {
         phone: telefone.value,
@@ -59,7 +62,6 @@ function Fazenda() {
         whatsApp: whatsApp.value,
       }
       body['contact'] = contact;
-
     }
 
     if (city.value !== "") {
@@ -74,6 +76,10 @@ function Fazenda() {
       body['address'] = address;
     }
 
+    // if(medias.value !== []){
+    //   var medias = urls_midia
+    // }
+
     if (data.data.farm.length > 0) {
       farmEdit(data.data.farm[0].id, body);
     }
@@ -87,6 +93,8 @@ function Fazenda() {
     historia.setValue(r.history);
     inseticidas.setValue(r.insecticides);
     fertilizantes.setValue(r.fertilizers);
+    
+    // urls_midia.setValue(r.medias)
 
 
     if (r.contact) {

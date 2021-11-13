@@ -1,17 +1,25 @@
 import iconImagess from '../../../../../Assets/ion_images.png'
 import styles from './DropZone.module.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { observer } from 'mobx-react'
 import { useDropzone } from 'react-dropzone'
 import { storage } from './Firebase'
 
 
-const DropZone = observer(props => {
+const DropZone = observer(({ urls_midia }) => {
     const iconImages = { src: iconImagess, title: "icon" }
     const [files, setFiles] = useState([]);
     const [image, setImage] = useState(null)
     const [url, setUrl] = useState('')
     const [progress, setProgress] = useState(0)
+
+    useEffect(() => {
+        if (url !== '') {
+            console.log(typeof urls_midia)
+            // urls_midia.push(url)
+            console.log(urls_midia)
+        }
+    }, [url])
 
     const handleChange = e => {
         if (e.target.files[0]) {
@@ -20,8 +28,7 @@ const DropZone = observer(props => {
     }
 
     const handleUpload = () => {
-        console.log(image)
-        if (image.name != null) {
+        if (image) {
             const upload = storage.ref(`images/${image.name}`).put(image)
 
             upload.on(
@@ -41,7 +48,6 @@ const DropZone = observer(props => {
                         .child(image.name)
                         .getDownloadURL()
                         .then(url => {
-                            console.log(url)
                             setUrl(url)
                         })
                 }
@@ -53,7 +59,6 @@ const DropZone = observer(props => {
         accept: 'image/*',
         onDrop: acceptedFiles => {
             setTimeout(() => {
-                console.log("Here")
                 setFiles(acceptedFiles.map(file => Object.assign(file, {
                     preview: URL.createObjectURL(file)
                 })))

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, setValue } from 'react';
 import { observer } from "mobx-react";
 import { Input } from '../../../Form/Input/Input';
 import { Container, Row } from 'react-bootstrap';
@@ -11,10 +11,10 @@ import useForm from '../../../../Hooks/useForm';
 const API_GEOLOCATION_GOOGLE = 'https://maps.googleapis.com/maps/api/geocode/json?'
 const REACT_APP_API_KEY = `${process.env.REACT_APP_API_KEY || "API-KEY NOT FOUND!"}`
 
-const Localizacao = observer(({ nome, street, districty, city, country, uf }) => {
+const Localizacao = observer(({ nome, street, district, city, country, uf }) => {
     const endereco = useForm();
-    const [latitude, setLatitude] = useState('-22.2797829')
-    const [longitude, setLongitude] = useState('-46.3722224')
+    const [latitude, setLatitude] = useState('-22.2571437')
+    const [longitude, setLongitude] = useState('-45.6966806')
     const [localizacao, setLocalizacao] = useState('Ouro Fino, MG')
 
     const [streetResp, setStreet] = useState('')
@@ -37,6 +37,16 @@ const Localizacao = observer(({ nome, street, districty, city, country, uf }) =>
             console.log("Insira todos da localização na busca")
         }
     }, [streetResp, streetNumberResp, districtyResp, cityResp, ufResp, countryResp])
+
+    const sendDataLocation = props => {
+        street.setValue(streetResp)
+        // streetNumber.setValue(streetNumberResp)
+        district.setValue(districtyResp)
+        city.setValue(cityResp)
+        country.setValue(countryResp)
+        uf.setValue(ufResp)
+        
+    }
 
     const handleLocation = (event) => {
         event.preventDefault()
@@ -81,23 +91,6 @@ const Localizacao = observer(({ nome, street, districty, city, country, uf }) =>
         }
     }
 
-    const sendDataLocation = props => {
-        console.log("streetResp: " + streetResp)
-        console.log("streetNumberResp: " + streetNumberResp)
-        console.log("districtyResp: " + districtyResp)
-        console.log("cityResp: " + cityResp)
-        console.log("ufResp: " + ufResp)
-        console.log("countryResp: " + countryResp)
-
-        async function setDataLocation() {
-            street.setValue(streetResp)
-            districty.setValue(districtyResp)
-            city.setValue(cityResp)
-            country.setValue(ufResp)
-            uf.setValue(countryResp)
-        }
-    }
-
     return (
         <>
             <h1 className={styles.subTitle}>Localização</h1>
@@ -107,7 +100,7 @@ const Localizacao = observer(({ nome, street, districty, city, country, uf }) =>
                         <Input label="Endereço" type="text" name="endereco" placeholder="Entre com seu endereco (Rua, N°, Bairro, Cidade, UF)" show={false} {...endereco} />
                     </Row>
                     <ButtonSalvar style={{ width: '130px', marginTop: '15px', backgroundColor: '#dddddd', color: '#666666' }} onClick={handleLocation} >Buscar</ButtonSalvar>
-                    <Maps nameFarm={nome} latitude={latitude ? latitude : '-22.2797829'} longitude={longitude ? longitude : '-46.3722224'} />
+                    <Maps nameFarm={nome} latitude={latitude} longitude={longitude} />
                 </Container>
             </div>
         </>
