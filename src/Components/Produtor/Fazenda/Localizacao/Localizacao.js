@@ -1,4 +1,4 @@
-import React, { useState, useEffect, setValue } from 'react';
+import React, { useState, useEffect } from 'react';
 import { observer } from "mobx-react";
 import { Input } from '../../../Form/Input/Input';
 import { Container, Row } from 'react-bootstrap';
@@ -11,7 +11,7 @@ import useForm from '../../../../Hooks/useForm';
 const API_GEOLOCATION_GOOGLE = 'https://maps.googleapis.com/maps/api/geocode/json?'
 const REACT_APP_API_KEY = `${process.env.REACT_APP_API_KEY || "API-KEY NOT FOUND!"}`
 
-const Localizacao = observer(({ nome, street, district, city, country, uf }) => {
+const Localizacao = observer(({ nome, street, streetNumber, district, city, country, uf }) => {
     const endereco = useForm();
     const [latitude, setLatitude] = useState('-22.2571437')
     const [longitude, setLongitude] = useState('-45.6966806')
@@ -33,19 +33,21 @@ const Localizacao = observer(({ nome, street, district, city, country, uf }) => 
         if ((streetResp && streetNumberResp && districtyResp && cityResp && countryResp && ufResp) !== '') {
             sendDataLocation()
         } else {
-            console.log(streetResp + " | " + streetNumberResp + " | " + districtyResp + " | " + cityResp + " | " + ufResp + " | " + countryResp + "\n")
+            // console.log(streetResp + " | " + streetNumberResp + " | " + districtyResp + " | " + cityResp + " | " + ufResp + " | " + countryResp + "\n")
             console.log("Insira todos da localização na busca")
         }
     }, [streetResp, streetNumberResp, districtyResp, cityResp, ufResp, countryResp])
 
-    const sendDataLocation = props => {
+    const sendDataLocation = () => {
+        // console.log(streetResp + " | " + streetNumberResp + " | " + districtyResp + " | " + cityResp + " | " + ufResp + " | " + countryResp + "\n")
+
         street.setValue(streetResp)
-        // streetNumber.setValue(streetNumberResp)
+        streetNumber.setValue(streetNumberResp)
         district.setValue(districtyResp)
         city.setValue(cityResp)
         country.setValue(countryResp)
         uf.setValue(ufResp)
-        
+
     }
 
     const handleLocation = (event) => {
@@ -53,7 +55,7 @@ const Localizacao = observer(({ nome, street, district, city, country, uf }) => 
 
         if (endereco.value) {
             const URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + 'address=' + localizacao + '&key=' + REACT_APP_API_KEY
-
+            
             if (localizacao === endereco.value) {
                 fetch(URL_DA_REQUISICAO).then((response) => response.json())
                     .then((responseJson) => {
@@ -62,7 +64,6 @@ const Localizacao = observer(({ nome, street, district, city, country, uf }) => 
                             setLongitude(responseJson.results[0].geometry.location.lng);
 
                             for (let i = 0; i < responseJson.results[0].address_components.length; i++) {
-                                // console.log(responseJson.results[0].address_components[i].types[0])
                                 if (responseJson.results[0].address_components[i].types[0] === "street_number") {
                                     setStreetNumber(responseJson.results[0].address_components[i].long_name)
                                 }
@@ -70,7 +71,9 @@ const Localizacao = observer(({ nome, street, district, city, country, uf }) => 
                                     responseJson.results[0].address_components[i].types[0] === "locality") {
                                     setStreet(responseJson.results[0].address_components[i].long_name)
                                 }
-                                else if (responseJson.results[0].address_components[i].types[0] === "administrative_area_level_4") {
+                                else if (responseJson.results[0].address_components[i].types[0] === "administrative_area_level_4" ||
+                                    responseJson.results[0].address_components[i].types[1] === "sublocality" ||
+                                    responseJson.results[0].address_components[i].types[2] === "sublocality_level_1") {
                                     setDistrict(responseJson.results[0].address_components[i].long_name)
                                 }
                                 else if (responseJson.results[0].address_components[i].types[0] === "administrative_area_level_2") {

@@ -29,7 +29,7 @@ function Fazenda() {
   var urls_midia = []
 
   const street = useForm();
-  // const streetNumber = useForm();
+  const streetNumber = useForm();
   const district = useForm();
   const city = useForm();
   const country = useForm();
@@ -67,7 +67,7 @@ function Fazenda() {
     if (city.value !== "") {
       var address = {
         street: street.value,
-        // streetNumber: streetNumber.value,
+        address_number: parseInt(streetNumber.value),
         district: district.value,
         city: city.value,
         country: country.value,
@@ -110,7 +110,7 @@ function Fazenda() {
 
     if (r.address) {
       street.setValue(r.address.street);
-      // streetNumber.setValue(r.address.streetNumber);
+      streetNumber.setValue(r.address.address_number);
       district.setValue(r.address.district);
       city.setValue(r.address.city);
       country.setValue(r.address.country);
@@ -146,7 +146,7 @@ function Fazenda() {
 
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
         {sel === "midia" && <FotosVideos />}
-        {sel === "local" && <Localizacao nome={nome} street={street} district={district} city={city} country={country} uf={uf} />}
+        {sel === "local" && <Localizacao nome={nome} street={street} streetNumber={streetNumber} district={district} city={city} country={country} uf={uf} />}
         {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
         {sel === "qrcode" && <QRCode />}
 
