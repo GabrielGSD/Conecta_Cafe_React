@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import QRcode from 'qrcode.react'
+import { observer } from 'mobx-react';
 
-const QRgenerator = props => {
+const QRgenerator = observer(props => {
   const { endpoint, color, backgroundColor } = props
   const [qr] = useState(endpoint);
   return (
@@ -16,11 +17,11 @@ const QRgenerator = props => {
             fgColor={color}
             bgColor={backgroundColor}
           />
-           :
+          :
           <p><font size="1">QR code <br /> em anda- <br />mento</font></p>
       }
     </div>
   );
-}
+})
 
 export default QRgenerator

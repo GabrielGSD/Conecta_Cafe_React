@@ -1,4 +1,4 @@
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, GoogleApiWrapper, Circle } from 'google-maps-react';
 import { observer } from 'mobx-react-lite';
 import React from "react";
 import styles from '../../Fazenda.module.css';
@@ -7,7 +7,7 @@ import styles from '../../Fazenda.module.css';
 const REACT_APP_API_KEY = `${process.env.REACT_APP_API_KEY || "API-KEY NOT FOUND!"}`
 
 const Maps = observer(props => {
-    const { latitude, longitude } = props
+    const { nameFarm, latitude, longitude,  } = props
 
     const containerStyle = {
         width: '25%',
@@ -26,11 +26,23 @@ const Maps = observer(props => {
                     zoom={17}
                     containerStyle={containerStyle} >
                     <Marker
-                        name={'NomeFazenda'} // Nome que virá do Backend
+                        name={nameFarm.value} // Nome que virá do Backend
                         position={{
                             lat: latitude,
                             lng: longitude
                         }}
+                    />
+                    <Circle
+                        radius={50}
+                        center={{
+                            lat: latitude,
+                            lng: longitude
+                        }}
+                        strokeColor='transparent'
+                        strokeOpacity={0}
+                        strokeWeight={5}
+                        fillColor='#FF0000'
+                        fillOpacity={0.2}
                     />
                 </Map>
             </div>

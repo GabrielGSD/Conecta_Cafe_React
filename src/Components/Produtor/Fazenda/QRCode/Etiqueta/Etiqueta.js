@@ -19,10 +19,11 @@ class ComponentToPrint extends React.Component {
                     <table className={styles.table} style={
                         {
                             color: color,
-                            backgroundColor: backgroundColor
+                            backgroundColor: backgroundColor,
+                            borderColor: color
                         }
                     }>
-                        <table className={styles.table1}>
+                        <table className={styles.table1} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMaior}>
                                     <div className={styles.regionCoffee}>
@@ -40,7 +41,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table2}>
+                        <table className={styles.table2} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMedia}>
                                     <div>
@@ -65,7 +66,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table2}>
+                        <table className={styles.table2} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMedia}>
                                     <div>
@@ -90,7 +91,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table3}>
+                        <table className={styles.table3} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMenor1}>
                                     <div >
@@ -106,7 +107,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table3}>
+                        <table className={styles.table3} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMenor1}>
                                     <div >
@@ -122,7 +123,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table3}>
+                        <table className={styles.table3} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMenor1}>
                                     <div >
@@ -138,7 +139,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table3}>
+                        <table className={styles.table3} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMenor1}>
                                     <div >
@@ -154,7 +155,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table4} cellspacing="">
+                        <table className={styles.table4} cellspacing="" style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMenor2}>
                                     <div >
@@ -170,7 +171,7 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <table className={styles.table4}>
+                        <table className={styles.table4} style={{ borderColor: color }}>
                             <tr>
                                 <th className={styles.larguraMenor2}>
                                     <div >
@@ -186,7 +187,13 @@ class ComponentToPrint extends React.Component {
                                 </th>
                             </tr>
                         </table>
-                        <Logo className={styles.logo} />
+                        <Logo className={styles.logo}>
+                            <svg>
+                                <style>
+                                    {`.logo > *{ fill: ${color}}`}
+                                </style>
+                            </svg>
+                        </Logo>
                         <div className={styles.qrcode}>
                             <RequestQrCode endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
                         </div>
@@ -207,7 +214,7 @@ const Etiqueta = props => {
     return (
         <div>
             <ComponentToPrint ref={componentRef} endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
-            <button className={styles.saveButton} onClick={handlePrint} >Baixar Etiqueta</button>
+            <button className={styles.saveButton} onClick={handlePrint} >Download</button>
         </div>
     );
 };

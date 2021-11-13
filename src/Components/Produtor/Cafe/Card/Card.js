@@ -9,6 +9,12 @@ import EtiquetaPersonalizada from '../../Fazenda/QRCode/EtiquetasPersonalizadas'
 
 function Card(cafe) {
 
+  const handleClickEtiqueta  = props => {
+    return(
+      <EtiquetaPersonalizada />
+    )
+  }
+
   return (
     <>
       <div className={styles.card}>
@@ -16,11 +22,11 @@ function Card(cafe) {
         <h1 className={styles.variedade}>{ cafe.variety }</h1>
         <div>
           <div className={styles.btnGroup}>
-            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Etiqueta</Tooltip>}>
+            <OverlayTrigger overlay={<Tooltip id="tooltip-disabled" onClick={handleClickEtiqueta}>Etiqueta</Tooltip>}>
               <div className={styles.btnCircle}>
                 <>
-                <Etiqueta />
-                <EtiquetaPersonalizada />
+                  <Etiqueta />
+                  <EtiquetaPersonalizada />
                 </>
               </div>
             </OverlayTrigger>
