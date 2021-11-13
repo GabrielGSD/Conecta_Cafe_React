@@ -60,15 +60,16 @@ function Fazenda() {
       }
       body['contact'] = contact;
 
-      if (city.value !== "") {
-        var address = {
-          street: street.value,
-          // streetNumber: streetNumber.value,
-          district: district.value,
-          city: city.value,
-          country: country.value,
-          uf: uf.value
-        }
+    }
+
+    if (city.value !== "") {
+      var address = {
+        street: street.value,
+        // streetNumber: streetNumber.value,
+        district: district.value,
+        city: city.value,
+        country: country.value,
+        uf: uf.value
       }
       body['address'] = address;
     }
@@ -91,12 +92,12 @@ function Fazenda() {
     if (r.contact) {
       telefone.setValue(r.contact.phone);
       email.setValue(r.contact.contact_email);
-      linkedin.setValue(r.contact.linkedin);
+      linkedin.setValue(r.contact.linkedIn);
       facebook.setValue(r.contact.facebook);
-      instagram.setValue(r.contact.instagran);
+      instagram.setValue(r.contact.instagram);
       twitter.setValue(r.contact.twitter);
-      youtube.setValue(r.contact.youtube);
-      whatsApp.setValue(r.contact.watsapp);
+      youtube.setValue(r.contact.youTube);
+      whatsApp.setValue(r.contact.whatsApp);
     }
 
     if (r.address) {
