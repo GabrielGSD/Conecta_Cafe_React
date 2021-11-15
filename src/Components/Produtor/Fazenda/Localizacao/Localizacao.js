@@ -15,7 +15,7 @@ const Localizacao = observer(({ nome, street, streetNumber, district, city, coun
     const endereco = useForm();
     const [latitude, setLatitude] = useState('-22.2571437')
     const [longitude, setLongitude] = useState('-45.6966806')
-    const [localizacao, setLocalizacao] = useState('Ouro Fino, MG')
+    const [localizacao, setLocalizacao] = useState('')
 
     const [streetResp, setStreet] = useState('')
     const [streetNumberResp, setStreetNumber] = useState('')
@@ -37,6 +37,22 @@ const Localizacao = observer(({ nome, street, streetNumber, district, city, coun
             console.log("Insira todos da localização na busca")
         }
     }, [streetResp, streetNumberResp, districtyResp, cityResp, ufResp, countryResp])
+
+    useEffect(() => {
+        if ((street && streetNumber && district && city && uf && country) !== '') {
+            endereco.setValue(street.value + ", " + streetNumber.value + ", " + district.value + ", " + city.value + ", " + uf.value + ", " + country.value)
+            
+            const URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + 'address=' + street.value + "," + streetNumber.value + "," + district.value + "," + city.value + "," + uf.value + "," + country.value + '&key=' + REACT_APP_API_KEY
+
+            fetch(URL_DA_REQUISICAO).then((response) => response.json())
+                .then((responseJson) => {
+                    if (responseJson.status === 'OK') {
+                        setLatitude(responseJson.results[0].geometry.location.lat);
+                        setLongitude(responseJson.results[0].geometry.location.lng);
+                    }
+                })
+        }
+    }, [])
 
     const sendDataLocation = () => {
         // console.log(streetResp + " | " + streetNumberResp + " | " + districtyResp + " | " + cityResp + " | " + ufResp + " | " + countryResp + "\n")
