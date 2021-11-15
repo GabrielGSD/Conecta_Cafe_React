@@ -22,7 +22,7 @@ function QRCode({ nome }) {
                             </Col>
 
                             <Col xs={4}>
-                                <QRCodeFazenda nome={nome} endpoint={`https://www.conectacafe.com.br/${nome}`} size={180} />
+                                <QRCodeFazenda nome={nome} endpoint={`https://www.conectacafe.com.br/${nome.value}`} size={180} />
                             </Col>
 
                         </Row>
