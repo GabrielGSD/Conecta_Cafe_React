@@ -7,12 +7,7 @@ import styles from '../../Fazenda.module.css';
 const REACT_APP_API_KEY = `${process.env.REACT_APP_API_KEY || "API-KEY NOT FOUND!"}`
 
 const Maps = observer(props => {
-    const { nameFarm, latitude, longitude,  } = props
-
-    const containerStyle = {
-        width: '25%',
-        height: '35%',
-    }
+    const { nameFarm, latitude, longitude, } = props
 
     return (
         <>
@@ -24,11 +19,11 @@ const Maps = observer(props => {
                         lng: longitude ? longitude : -45.6966806
                     }}
                     center={{
-                        lat: latitude, 
-                        lng: longitude 
+                        lat: latitude,
+                        lng: longitude
                     }}
                     zoom={17}
-                    containerStyle={containerStyle} style={{borderRadius: '10%'}}>
+                    containerStyle={{ width: '25%', height: '35%' }} style={{ borderRadius: '10%' }}>
                     <Marker
                         name={nameFarm.value} // Nome que virá do Backend
                         position={{
