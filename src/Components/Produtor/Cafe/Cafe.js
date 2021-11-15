@@ -8,7 +8,6 @@ import useFetch from '../../../Hooks/useFetch';
 import CafeCont from './CafeCont/CafeCont';
 import Especial from './Especial/Especial';
 import { COFFEES_GET } from '../../../Api/api';
-import styles from './Cafe.module.css';
 
 function Cafe() {
 
@@ -32,21 +31,19 @@ function Cafe() {
   const docura = useForm();
 
   const { data, coffeeCreate, getFarm } = React.useContext(UserContext);
-  const { loading, error, request } = useFetch();
+  const { request } = useFetch();
   const [show, setShow] = React.useState(false);
-  const [cafes, setCafes] = React.useState();
   const [reload, setReload] = React.useState("");
 
   const handleClose = () => { clearInputs(); setShow(false) }
   const handleShow = () => setShow(true);
 
   const especialClose = () => setEspecial(false);
-
+  
   useEffect(() => {
     async function fetchGrower() {
       if (data) {
         const { url, options } = COFFEES_GET(data.data.id);
-        const { response, json } = await request(url, options);
         getFarm(data.data.id)
         setReload("")
       }
@@ -77,6 +74,7 @@ function Cafe() {
     coffeeCreate(data.data.id, body);
     setReload("A")
     handleClose()
+    window.location.reload(true)
   }
 
   function clearInputs() {

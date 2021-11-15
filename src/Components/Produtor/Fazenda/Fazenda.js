@@ -16,7 +16,7 @@ function Fazenda() {
   const historia = useForm();
   const inseticidas = useForm();
   const fertilizantes = useForm();
-
+  
   const telefone = useForm();
   const email = useForm();
   const linkedin = useForm();
@@ -25,9 +25,11 @@ function Fazenda() {
   const twitter = useForm();
   const youtube = useForm();
   const whatsApp = useForm();
+  
+  var urls_midia = []
 
   const street = useForm();
-  // const streetNumber = useForm();
+  const streetNumber = useForm();
   const district = useForm();
   const city = useForm();
   const country = useForm();
@@ -47,6 +49,7 @@ function Fazenda() {
       insecticides: inseticidas.value,
       fertilizers: fertilizantes.value,
     };
+    
     if (telefone.value !== "") {
       var contact = {
         phone: telefone.value,
@@ -59,13 +62,12 @@ function Fazenda() {
         whatsApp: whatsApp.value,
       }
       body['contact'] = contact;
-
     }
 
     if (city.value !== "") {
       var address = {
         street: street.value,
-        // streetNumber: streetNumber.value,
+        address_number: parseInt(streetNumber.value),
         district: district.value,
         city: city.value,
         country: country.value,
@@ -73,6 +75,10 @@ function Fazenda() {
       }
       body['address'] = address;
     }
+
+    // if(medias.value !== []){
+    //   var medias = urls_midia
+    // }
 
     if (data.data.farm.length > 0) {
       farmEdit(data.data.farm[0].id, body);
@@ -87,6 +93,8 @@ function Fazenda() {
     historia.setValue(r.history);
     inseticidas.setValue(r.insecticides);
     fertilizantes.setValue(r.fertilizers);
+    
+    // urls_midia.setValue(r.medias)
 
 
     if (r.contact) {
@@ -102,7 +110,7 @@ function Fazenda() {
 
     if (r.address) {
       street.setValue(r.address.street);
-      // streetNumber.setValue(r.address.streetNumber);
+      streetNumber.setValue(r.address.address_number);
       district.setValue(r.address.district);
       city.setValue(r.address.city);
       country.setValue(r.address.country);
@@ -138,9 +146,9 @@ function Fazenda() {
 
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
         {sel === "midia" && <FotosVideos />}
-        {sel === "local" && <Localizacao nome={nome} street={street} district={district} city={city} country={country} uf={uf} />}
+        {sel === "local" && <Localizacao nome={nome} street={street} streetNumber={streetNumber} district={district} city={city} country={country} uf={uf} />}
         {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
-        {sel === "qrcode" && <QRCode />}
+        {sel === "qrcode" && <QRCode nome={nome}/>}
 
 
         <ButtonSalvar onClick={handleSubmit} >Salvar</ButtonSalvar>
