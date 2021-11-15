@@ -23,7 +23,7 @@ const Maps = observer(props => {
                         lng: longitude
                     }}
                     zoom={17}
-                    containerStyle={{ width: '25%', height: '35%' }} style={{ borderRadius: '10%' }}>
+                    containerStyle={{ width: '90%', height: '100%' }} style={{ borderRadius: '3%' }}>
                     <Marker
                         name={nameFarm.value} // Nome que virá do Backend
                         position={{

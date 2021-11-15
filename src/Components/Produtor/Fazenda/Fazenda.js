@@ -12,6 +12,7 @@ import QRCode from './QRCode/QRCode';
 
 function Fazenda() {
 
+  const id = useForm();
   const nome = useForm();
   const historia = useForm();
   const inseticidas = useForm();
@@ -89,6 +90,7 @@ function Fazenda() {
   }
 
   async function setInputs(r) {
+    id.setValue(r.id);
     nome.setValue(r.farm_name);
     historia.setValue(r.history);
     inseticidas.setValue(r.insecticides);
@@ -148,7 +150,7 @@ function Fazenda() {
         {sel === "midia" && <FotosVideos />}
         {sel === "local" && <Localizacao nome={nome} street={street} streetNumber={streetNumber} district={district} city={city} country={country} uf={uf} />}
         {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
-        {sel === "qrcode" && <QRCode nome={nome}/>}
+        {sel === "qrcode" && <QRCode nome={nome} id={id}/>}
 
 
         <ButtonSalvar onClick={handleSubmit} >Salvar</ButtonSalvar>
