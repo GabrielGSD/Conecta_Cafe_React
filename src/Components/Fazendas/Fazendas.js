@@ -35,11 +35,6 @@ function Fazendas() {
         <div className="center">
           <h1 className="title">Fazendas</h1>
         </div>
-        <div className="navBarCont">
-          <Select type={torra} setType={setTorra} options={torras} def="Torra" />
-          <Select type={processo} setType={setProcesso} options={processos} def="Processamento" />
-          {/* <input type="range" class="form-range"  max='5000' value={altitude} onChange={altitude => setAltitude(altitude)}/> */}
-        </div>
         <div className="container-scroll list-grid">
           {fazendas && 
             <>

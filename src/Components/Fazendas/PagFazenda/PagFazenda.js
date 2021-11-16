@@ -11,6 +11,7 @@ import { ReactComponent as PhoneIcon } from '../../../Assets/phoneIcon.svg'
 import { ReactComponent as TwitterIcon } from '../../../Assets/twitterIcon.svg'
 import { ReactComponent as YoutubeIcon } from '../../../Assets/youtubeIcon.svg'
 import { ReactComponent as WppIcon } from '../../../Assets/wppIcon.svg'
+import Localizacao from '../../Produtor/Fazenda/Localizacao/Localizacao';
 
 function PagFazenda() {
 
@@ -173,7 +174,11 @@ function PagFazenda() {
           <section>
             <Row className={styles.localSection}>
               <Col sm={7}>
-                TESTE
+                <br />
+                <br />
+                <br />
+                <br />
+                <Localizacao onlyMaps={true}/>
               </Col>
               <Col sm={5} className={`${styles.localBg}`} >
                 <h1 

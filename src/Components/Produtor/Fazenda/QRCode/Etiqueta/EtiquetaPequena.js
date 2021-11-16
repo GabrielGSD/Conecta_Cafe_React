@@ -4,6 +4,7 @@ import styles from './EtiquetaPequena.module.css'
 import { ReactComponent as Logo } from '../../../../../Assets/logo_black.svg';
 import { Form } from "react-bootstrap";
 import RequestQrCode from "./GeneratedQrCode";
+import { ButtonSalvar } from '../../../../Button/Button';
 
 class ComponentToPrintHere extends React.Component {
     render() {
@@ -37,7 +38,9 @@ const EtiquetaPequena = props => {
     return (
         <div>
             <ComponentToPrintHere ref={componentRefP} endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
-            <button className={styles.saveButton} onClick={handlePrint} >Download Litle</button>
+            <ButtonSalvar style={{ backgroundColor: '#828D9F', margin: '100px 10px' }} onClick={handlePrint} >
+                Download
+            </ButtonSalvar>
         </div>
     );
 };

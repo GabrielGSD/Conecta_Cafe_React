@@ -143,6 +143,7 @@ input[type=range]::-webkit-slider-runnable-track {
 @media (min-width: 576px){
   .modalAdesivo .modal-dialog {
     max-width: 70vw !important;
+    margin-top: 15vh;
   }
   .modalWarning .modal-dialog {
     max-width: 18vw !important;

@@ -3,6 +3,7 @@ import { useReactToPrint } from "react-to-print"
 import styles from './EtiquetaGrande.module.css'
 import RequestQrCode from "./GeneratedQrCode"
 import { ReactComponent as Logo } from '../../../../../Assets/logo_black.svg'
+import { ButtonSalvar } from '../../../../Button/Button';
 
 
 class ComponentToPrint extends React.Component {
@@ -214,8 +215,10 @@ const EtiquetaGrande = props => {
 
     return (
         <div>
-            <ComponentToPrint ref={componentRef} endpoint={endpoint} color={color} backgroundColor={backgroundColor} cafe={cafe}/>
-            <button className={styles.saveButton} onClick={handlePrint} >Download</button>
+            <ComponentToPrint ref={componentRef} endpoint={endpoint} color={color} backgroundColor={backgroundColor} cafe={cafe} />
+            <ButtonSalvar style={{ backgroundColor: '#828D9F', margin: '50px 200px' }} onClick={handlePrint} >
+                Download
+            </ButtonSalvar>
         </div>
     );
 };
