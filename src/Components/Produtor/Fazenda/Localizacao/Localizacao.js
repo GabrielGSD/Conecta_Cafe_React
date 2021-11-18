@@ -39,9 +39,19 @@ const Localizacao = observer(({ nome, street, streetNumber, district, city, uf, 
     }, [streetResp, streetNumberResp, districtyResp, cityResp, ufResp, countryResp])
 
     useEffect(() => {
+        var URL_DA_REQUISICAO = ''
         if ((street && streetNumber && district && city && uf && country) !== undefined) {
-            endereco.setValue(street + ", " + streetNumber + ", " + district + ", " + city + ", " + uf + ", " + country)
-            const URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + 'address=' + street + "," + streetNumber + "," + district + "," + city + "," + uf + "," + country + '&key=' + REACT_APP_API_KEY
+            if (onlyMaps){
+                endereco.setValue(street + ", " + streetNumber + ", " + district + ", " + city + ", " + uf + ", " + country)
+                URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + 'address=' + street + "," + streetNumber + "," + district + "," + city + "," + uf + "," + country + '&key=' + REACT_APP_API_KEY
+            }
+            else {
+                endereco.setValue(street.value + ", " + streetNumber.value + ", " + district.value + ", " + city.value + ", " + uf.value + ", " + country.value)
+                URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + 'address=' + street.value + "," + streetNumber.value + "," + district.value + "," + city.value + "," + uf.value + "," + country.value + '&key=' + REACT_APP_API_KEY
+            }
+
+            console.log("**********")
+            console.log(URL_DA_REQUISICAO)
 
             fetch(URL_DA_REQUISICAO).then((response) => response.json())
                 .then((responseJson) => {
