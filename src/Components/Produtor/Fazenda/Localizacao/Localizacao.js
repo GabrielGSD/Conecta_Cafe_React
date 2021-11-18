@@ -11,7 +11,7 @@ import useForm from '../../../../Hooks/useForm';
 const API_GEOLOCATION_GOOGLE = 'https://maps.googleapis.com/maps/api/geocode/json?'
 const REACT_APP_API_KEY = `${process.env.REACT_APP_API_KEY || "API-KEY NOT FOUND!"}`
 
-const Localizacao = observer(({ nome, street, streetNumber, district, city, country, uf }) => {
+const Localizacao = observer(({ nome, street, streetNumber, district, city, uf, country, onlyMaps }) => {
     const endereco = useForm();
     const [latitude, setLatitude] = useState('-22.2571437')
     const [longitude, setLongitude] = useState('-45.6966806')
@@ -39,10 +39,9 @@ const Localizacao = observer(({ nome, street, streetNumber, district, city, coun
     }, [streetResp, streetNumberResp, districtyResp, cityResp, ufResp, countryResp])
 
     useEffect(() => {
-        if ((street && streetNumber && district && city && uf && country) !== '') {
-            endereco.setValue(street.value + ", " + streetNumber.value + ", " + district.value + ", " + city.value + ", " + uf.value + ", " + country.value)
-            
-            const URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + 'address=' + street.value + "," + streetNumber.value + "," + district.value + "," + city.value + "," + uf.value + "," + country.value + '&key=' + REACT_APP_API_KEY
+        if ((street && streetNumber && district && city && uf && country) !== undefined) {
+            endereco.setValue(street + ", " + streetNumber + ", " + district + ", " + city + ", " + uf + ", " + country)
+            const URL_DA_REQUISICAO = API_GEOLOCATION_GOOGLE + 'address=' + street + "," + streetNumber + "," + district + "," + city + "," + uf + "," + country + '&key=' + REACT_APP_API_KEY
 
             fetch(URL_DA_REQUISICAO).then((response) => response.json())
                 .then((responseJson) => {
@@ -52,7 +51,7 @@ const Localizacao = observer(({ nome, street, streetNumber, district, city, coun
                     }
                 })
         }
-    }, [])
+    }, [street, streetNumber, district, city, uf, country])
 
     const sendDataLocation = () => {
         // console.log(streetResp + " | " + streetNumberResp + " | " + districtyResp + " | " + cityResp + " | " + ufResp + " | " + countryResp + "\n")
@@ -111,23 +110,38 @@ const Localizacao = observer(({ nome, street, streetNumber, district, city, coun
     }
 
     return (
-        <>
-            <h1 className={styles.subTitle}>Localização</h1>
-            <div className="container-scroll" style={{ marginTop: ' 15px', marginBottom: "0px" }}>
-                <Container>
-                    <Row>
-                        <Col xs={10}>
-                            <Input label="Endereço" type="text" name="endereco" placeholder="Entre com seu endereco (Rua, N°, Bairro, Cidade, UF)" show={false} {...endereco} />
-                        </Col>
-                        <Col xs={2}>
-                            <ButtonSalvar style={{ width: '130px', marginTop: '15%', backgroundColor: '#dddddd', color: '#666666' }} onClick={handleLocation} >Buscar</ButtonSalvar>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Maps nameFarm={nome} latitude={latitude} longitude={longitude} />
-                    </Row>
-                </Container>
-            </div>
+        <>{
+            (street && streetNumber && district && city && uf && country) !== '' ?
+                <>
+                    {
+                        onlyMaps ?
+                            <>
+                                <Maps nameFarm={nome} latitude={latitude} longitude={longitude} />
+                            </>
+                            :
+                            <>
+                                <h1 className={styles.subTitle}>Localização</h1>
+                                <div className="container-scroll" style={{ marginTop: ' 15px', marginBottom: "0px" }}>
+                                    <Container>
+                                        <Row>
+                                            <Col xs={10}>
+                                                <Input label="Endereço" type="text" name="endereco" placeholder="Entre com seu endereco (Rua, N°, Bairro, Cidade, UF)" show={false} {...endereco} />
+                                            </Col>
+                                            <Col xs={2}>
+                                                <ButtonSalvar style={{ width: '130px', marginTop: '15%', backgroundColor: '#dddddd', color: '#666666' }} onClick={handleLocation} >Buscar</ButtonSalvar>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Maps nameFarm={nome} latitude={latitude} longitude={longitude} />
+                                        </Row>
+                                    </Container>
+                                </div>
+                            </>
+                    }</>
+                :
+                <>
+                </>
+        }
         </>
     )
 })
