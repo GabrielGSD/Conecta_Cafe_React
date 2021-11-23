@@ -10,7 +10,7 @@ import { COFFEES_GET } from '../../../../Api/api';
 import { observer } from 'mobx-react';
 
 const ModalEditMore = observer(props => {
-    const { onlyView } = props
+    const { onlyView, cafe } = props
 
     const [variedade, setVariedade] = React.useState("");
     const variedades = ['Arábica ', 'Robusta (Conilon)'];
@@ -41,17 +41,6 @@ const ModalEditMore = observer(props => {
 
     const especialClose = () => setEspecial(false);
 
-    useEffect(() => {
-        async function fetchGrower() {
-            const { url, options } = COFFEES_GET(data.data.id);
-            const { response, json } = await request(url, options);
-            getFarm(data.data.id)
-            setReload("")
-        }
-        fetchGrower()
-        fillInputs()
-    }, [show, reload]);
-
     async function handleSubmit(event) {
         if (!onlyView){
         event.preventDefault();
@@ -73,10 +62,11 @@ const ModalEditMore = observer(props => {
                 sweetness: docura.value
             }
         }
-        coffeeEdit(data.data.coffee[0].id, body);
+        coffeeEdit(cafe.id, body);
         setReload("A")
     }
         handleClose()
+        window.location.reload(true);
     }
 
     function clearInputs() {
@@ -96,12 +86,12 @@ const ModalEditMore = observer(props => {
     }
 
     function fillInputs() {
-        setVariedade(data.data.coffee[0].variety)
-        setEspecie(data.data.coffee[0].species)
-        altitude.setValue(data.data.coffee[0].altitude)
-        processo.setValue(data.data.coffee[0].process)
-        safra.setValue(data.data.coffee[0].harvest)
-        valor.setValue(data.data.coffee[0].harvestValue)
+        setVariedade(cafe.variety)
+        setEspecie(cafe.species)
+        altitude.setValue(cafe.altitude)
+        processo.setValue(cafe.process)
+        safra.setValue(cafe.harvest)
+        valor.setValue(cafe.harvestValue)
         setEspecial(false)
         aroma.setValue(null)
         sabor.setValue(null)

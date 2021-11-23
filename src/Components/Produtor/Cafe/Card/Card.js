@@ -34,7 +34,7 @@ function Card(cafe, fazenda) {
                 <>
                   <Edit />
                   <Tooltip id="tooltip-disabled" >
-                    <ModalEditMore onlyView={false} />
+                    <ModalEditMore onlyView={false} cafe={cafe}/>
                   </Tooltip>
                 </>
               </div>
@@ -56,7 +56,7 @@ function Card(cafe, fazenda) {
                 <>
                   <More />
                   <Tooltip id="tooltip-disabled" >
-                    <ModalEditMore onlyView={true} />
+                    <ModalEditMore onlyView={true} cafe={cafe}/>
                   </Tooltip>
                 </>
               </div>
