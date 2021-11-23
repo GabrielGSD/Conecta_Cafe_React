@@ -34,39 +34,49 @@ const ModalEditMore = observer(props => {
     const { data, coffeeEdit, getFarm } = React.useContext(UserContext)
     const { request } = useFetch()
     const [show, setShow] = React.useState(false)
-    const [reload, setReload] = React.useState("")
+    const [reload, setReload] = React.useState(0)
 
     const handleClose = () => { clearInputs(); setShow(false) }
     const handleShow = () => { fillInputs(); setShow(true) }
 
     const especialClose = () => setEspecial(false);
 
-    async function handleSubmit(event) {
-        if (!onlyView){
-        event.preventDefault();
-        var body = {
-            variety: variedade,
-            species: especie,
-            altitude: parseInt(altitude.value),
-            process: processo.value,
-            harvest: parseInt(safra.value),
-            harvestValue: parseInt(valor.value),
-        };
-        if (especial) {
-            body['special'] = {
-                aroma: aroma.value,
-                flavor: sabor.value,
-                completion: finalizacao.value,
-                acidity: acidez.value,
-                body: corpo.value,
-                sweetness: docura.value
-            }
+    useEffect(() => {
+        function fetchGrower() {
+          if (data && reload>0) {
+            getFarm(data.data.id)
+          }
         }
-        coffeeEdit(cafe.id, body);
-        setReload("A")
-    }
+        fetchGrower();
+      }, [reload]);
+
+    async function handleSubmit(event) {
+        if (!onlyView) {
+            event.preventDefault();
+            var body = {
+                variety: variedade,
+                species: especie,
+                altitude: parseInt(altitude.value),
+                process: processo.value,
+                harvest: parseInt(safra.value),
+                harvestValue: parseInt(valor.value),
+            };
+            if (especial) {
+                body['special'] = {
+                    aroma: aroma.value,
+                    flavor: sabor.value,
+                    completion: finalizacao.value,
+                    acidity: acidez.value,
+                    body: corpo.value,
+                    sweetness: docura.value
+                }
+            }
+            coffeeEdit(cafe.id, body);
+            setReload(reload + 1)
+        }
+
         handleClose()
-        window.location.reload(true);
+
     }
 
     function clearInputs() {
@@ -128,7 +138,7 @@ const ModalEditMore = observer(props => {
                         style={{ width: '80px', height: '35px', fontWeight: 'normal', padding: '0' }}
                         onClick={handleSubmit}
                     >
-                        {onlyView? "Fechar" : "Salvar"}
+                        {onlyView ? "Fechar" : "Salvar"}
                     </ButtonAcc>
                 </Modal.Footer>
             </Modal>
