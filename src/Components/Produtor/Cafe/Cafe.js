@@ -4,10 +4,8 @@ import { ButtonSalvar, ButtonAcc } from '../../Button/Button';
 import { Modal, } from 'react-bootstrap';
 import Card from './Card/Card';
 import useForm from '../../../Hooks/useForm';
-import useFetch from '../../../Hooks/useFetch';
 import CafeCont from './CafeCont/CafeCont';
 import Especial from './Especial/Especial';
-import { COFFEES_GET } from '../../../Api/api';
 
 function Cafe() {
 
@@ -31,9 +29,8 @@ function Cafe() {
   const docura = useForm();
 
   const { data, coffeeCreate, getFarm } = React.useContext(UserContext);
-  const { request } = useFetch();
   const [show, setShow] = React.useState(false);
-  const [reload, setReload] = React.useState("");
+  const [reload, setReload] = React.useState(0);
 
   const handleClose = () => { clearInputs(); setShow(false) }
   const handleShow = () => setShow(true);
@@ -41,15 +38,13 @@ function Cafe() {
   const especialClose = () => setEspecial(false);
   
   useEffect(() => {
-    async function fetchGrower() {
-      if (data) {
-        const { url, options } = COFFEES_GET(data.data.id);
+    function fetchGrower() {
+      if (data && reload>0) {
         getFarm(data.data.id)
-        setReload("")
       }
-      fetchGrower();
     }
-  }, [request, reload]);
+    fetchGrower();
+  }, [reload]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -72,9 +67,8 @@ function Cafe() {
       }
     }
     coffeeCreate(data.data.id, body);
-    setReload("A")
+    setReload(reload+1)
     handleClose()
-    window.location.reload(true)
   }
 
   function clearInputs() {
