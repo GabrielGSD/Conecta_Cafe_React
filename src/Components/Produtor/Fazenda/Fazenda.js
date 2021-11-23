@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useFetch from '../../../Hooks/useFetch';
 import { USER_GET } from '../../../Api/api';
 import useForm from '../../../Hooks/useForm';
@@ -17,7 +17,7 @@ function Fazenda() {
   const historia = useForm();
   const inseticidas = useForm();
   const fertilizantes = useForm();
-  
+
   const telefone = useForm();
   const email = useForm();
   const linkedin = useForm();
@@ -26,8 +26,9 @@ function Fazenda() {
   const twitter = useForm();
   const youtube = useForm();
   const whatsApp = useForm();
-  
+
   var urls_midia = []
+  const [medias, setMedias] = useState([])
 
   const street = useForm();
   const streetNumber = useForm();
@@ -50,7 +51,7 @@ function Fazenda() {
       insecticides: inseticidas.value,
       fertilizers: fertilizantes.value,
     };
-    
+
     if (telefone.value !== "") {
       var contact = {
         phone: telefone.value,
@@ -77,7 +78,7 @@ function Fazenda() {
       body['address'] = address;
     }
 
-    // if(medias.value !== []){
+    // if (medias.value !== []) {
     //   var medias = urls_midia
     // }
 
@@ -95,8 +96,8 @@ function Fazenda() {
     historia.setValue(r.history);
     inseticidas.setValue(r.insecticides);
     fertilizantes.setValue(r.fertilizers);
-    
-    // urls_midia.setValue(r.medias)
+
+    // urls_midia = (r.medias)
 
 
     if (r.contact) {
@@ -147,10 +148,10 @@ function Fazenda() {
         </div>
 
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
-        {sel === "midia" && <FotosVideos />}
-        {sel === "local" && <Localizacao nome={nome} street={street} streetNumber={streetNumber} district={district} city={city} country={country} uf={uf} onlyMaps={false}/>}
+        {sel === "midia" && <FotosVideos urls_midia={urls_midia} />}
+        {sel === "local" && <Localizacao nome={nome} street={street} streetNumber={streetNumber} district={district} city={city} country={country} uf={uf} onlyMaps={false} />}
         {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
-        {sel === "qrcode" && <QRCode nome={nome} id={id}/>}
+        {sel === "qrcode" && <QRCode nome={nome} id={id} />}
 
 
         <ButtonSalvar onClick={handleSubmit} >Salvar</ButtonSalvar>
