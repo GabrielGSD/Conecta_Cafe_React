@@ -12,12 +12,12 @@ const DropZone = observer(({ urls_midia }) => {
     const [image, setImage] = useState(null)
     const [url, setUrl] = useState('')
     const [progress, setProgress] = useState(0)
+    var listMidias = []
 
     useEffect(() => {
         if (url !== '') {
-            console.log(typeof urls_midia)
-            // urls_midia.push(url)
-            console.log(urls_midia)
+            listMidias = listMidias.push(url)
+            console.log(listMidias)
         }
     }, [url])
 
@@ -49,6 +49,7 @@ const DropZone = observer(({ urls_midia }) => {
                         .getDownloadURL()
                         .then(url => {
                             setUrl(url)
+                            console.log(url)
                         })
                 }
             )

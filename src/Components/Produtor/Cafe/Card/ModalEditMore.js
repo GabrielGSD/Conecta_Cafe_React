@@ -10,7 +10,7 @@ import { COFFEES_GET } from '../../../../Api/api';
 import { observer } from 'mobx-react';
 
 const ModalEditMore = observer(props => {
-    const { onlyView } = props
+    const { onlyView, cafe } = props
 
     const [variedade, setVariedade] = React.useState("");
     const variedades = ['Arábica ', 'Robusta (Conilon)'];
@@ -34,7 +34,7 @@ const ModalEditMore = observer(props => {
     const { data, coffeeEdit, getFarm } = React.useContext(UserContext)
     const { request } = useFetch()
     const [show, setShow] = React.useState(false)
-    const [reload, setReload] = React.useState("")
+    const [reload, setReload] = React.useState(0)
 
     const handleClose = () => { clearInputs(); setShow(false) }
     const handleShow = () => { fillInputs(); setShow(true) }
@@ -42,41 +42,41 @@ const ModalEditMore = observer(props => {
     const especialClose = () => setEspecial(false);
 
     useEffect(() => {
-        async function fetchGrower() {
-            const { url, options } = COFFEES_GET(data.data.id);
-            const { response, json } = await request(url, options);
+        function fetchGrower() {
+          if (data && reload>0) {
             getFarm(data.data.id)
-            setReload("")
+          }
         }
-        fetchGrower()
-        fillInputs()
-    }, [show, reload]);
+        fetchGrower();
+      }, [reload]);
 
     async function handleSubmit(event) {
-        if (!onlyView){
-        event.preventDefault();
-        var body = {
-            variety: variedade,
-            species: especie,
-            altitude: parseInt(altitude.value),
-            process: processo.value,
-            harvest: parseInt(safra.value),
-            harvestValue: parseInt(valor.value),
-        };
-        if (especial) {
-            body['special'] = {
-                aroma: aroma.value,
-                flavor: sabor.value,
-                completion: finalizacao.value,
-                acidity: acidez.value,
-                body: corpo.value,
-                sweetness: docura.value
+        if (!onlyView) {
+            event.preventDefault();
+            var body = {
+                variety: variedade,
+                species: especie,
+                altitude: parseInt(altitude.value),
+                process: processo.value,
+                harvest: parseInt(safra.value),
+                harvestValue: parseInt(valor.value),
+            };
+            if (especial) {
+                body['special'] = {
+                    aroma: aroma.value,
+                    flavor: sabor.value,
+                    completion: finalizacao.value,
+                    acidity: acidez.value,
+                    body: corpo.value,
+                    sweetness: docura.value
+                }
             }
+            coffeeEdit(cafe.id, body);
+            setReload(reload + 1)
         }
-        coffeeEdit(data.data.coffee[0].id, body);
-        setReload("A")
-    }
+
         handleClose()
+
     }
 
     function clearInputs() {
@@ -96,12 +96,12 @@ const ModalEditMore = observer(props => {
     }
 
     function fillInputs() {
-        setVariedade(data.data.coffee[0].variety)
-        setEspecie(data.data.coffee[0].species)
-        altitude.setValue(data.data.coffee[0].altitude)
-        processo.setValue(data.data.coffee[0].process)
-        safra.setValue(data.data.coffee[0].harvest)
-        valor.setValue(data.data.coffee[0].harvestValue)
+        setVariedade(cafe.variety)
+        setEspecie(cafe.species)
+        altitude.setValue(cafe.altitude)
+        processo.setValue(cafe.process)
+        safra.setValue(cafe.harvest)
+        valor.setValue(cafe.harvestValue)
         setEspecial(false)
         aroma.setValue(null)
         sabor.setValue(null)
@@ -138,7 +138,7 @@ const ModalEditMore = observer(props => {
                         style={{ width: '80px', height: '35px', fontWeight: 'normal', padding: '0' }}
                         onClick={handleSubmit}
                     >
-                        {onlyView? "Fechar" : "Salvar"}
+                        {onlyView ? "Fechar" : "Salvar"}
                     </ButtonAcc>
                 </Modal.Footer>
             </Modal>

@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from '../Fazenda.module.css'
 import styles1 from './QRCode.module.css'
-import { Container, Row, Form, Col } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import QRCodeFazenda from './Etiqueta/GeneratedQrCodeFazenda'
 
-function QRCode({ nome, id }) {
+function QRCode({id, nome}) {
     return (
         <>
             <h1 className={styles.subTitle}>QR Code</h1>
@@ -13,7 +13,7 @@ function QRCode({ nome, id }) {
                     <p>O link e o QRCode abaixo levará para a página web de sua fazenda.</p>
                     <Row style={{maxWidth: '60vw', margin: '0 auto', display: 'flex', alignItems: 'center'}}>
                         <Col style={{paddingTop: '20px'}}>
-                            <QRCodeFazenda nome={nome} endpoint={`https://www.conectacafe.com.br/${nome.value}`} size={180} />
+                            <QRCodeFazenda nome={nome} endpoint={ `http://localhost:3000/fazendas/${id.value}` } size={180} />
                         </Col>
 
                         <Col>
