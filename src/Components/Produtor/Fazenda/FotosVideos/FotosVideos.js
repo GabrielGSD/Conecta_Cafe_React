@@ -5,20 +5,21 @@ import styles from './FotosVideos.module.css'
 import stylesTitle from '../Fazenda.module.css'
 import { useDropzone } from 'react-dropzone'
 import { storage } from './DropZone/Firebase'
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { ReactComponent as Delet } from '../../../../Assets/Del.svg';
+import { UserContext } from '../../../../Context/UserContext';
 
 
 
-const FotosVideos = observer(({ id, midia, midias }) => {
+const FotosVideos = observer(({ id, midia, midias, dataFarm }) => {
     const iconImages = { src: iconImagess, title: "icon" }
     const [files, setFiles] = useState([]);
     const [image, setImage] = useState(null)
-    const [url, setUrl] = useState('')
+    const [url, setUrl] = useState("")
     const [progress, setProgress] = useState(0)
+    const { farmEdit } = React.useContext(UserContext);
 
     useEffect(() => {
-        if (url !== '') {
+        if (url !== "") {
             midia.setValue(url)
         }
     }, [url])
@@ -70,11 +71,15 @@ const FotosVideos = observer(({ id, midia, midias }) => {
         }
     });
 
-    // const handleMidiaDelete = (({item}) => {
-    //     console.log("*******************")
-    //     console.log(item)   
-    //     midias = midias.filter(value => value !== item)
-    // })
+    const handleMidiaDelete = ((item) => {
+        midias = midias.filter(value => value !== item)
+        
+        if (dataFarm.medias !== midias) {
+            console.log("aqui")
+            dataFarm.medias = midias
+            farmEdit(dataFarm.id, dataFarm)
+        }
+    })
 
     return (
         <>
@@ -93,15 +98,11 @@ const FotosVideos = observer(({ id, midia, midias }) => {
                         <>
                             {
                                 midias.map((item => (
-                                    <>
-                                        <div className={styles.card} key={item}>
-                                            <>
-                                            <img src={item} />
-                                            {/* <button onClick={handleMidiaDelete(item)}><Delet /></button> */}
-                                            <button><Delet /></button>
-                                            </>
-                                        </div>
-                                    </>
+                                    <div className={styles.card} key={item}>
+                                        <img src={item} />
+                                        <button className={styles.btn} onClick={() => { handleMidiaDelete(item) }}><Delet /></button>
+                                        {/* <button><Delet /></button> */}
+                                    </div>
                                 )))
                             }
                         </>

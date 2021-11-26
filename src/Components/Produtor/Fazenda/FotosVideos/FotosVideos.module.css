@@ -54,9 +54,17 @@
     position: relative;
     margin-top: 2%;
     margin-left: 46%;
-    display: 'block';
     width: 150px;
     height: 150px
+}
+
+.btn {
+    position: relative;
+    margin-top: 7%;
+    left: 67%;
+    border-radius: 0.5rem;
+    border-color: #FBFBFB;
+    background-color: #FBFBFB;
 }
 
 .text {
