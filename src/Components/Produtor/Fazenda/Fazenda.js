@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useFetch from '../../../Hooks/useFetch';
 import { USER_GET } from '../../../Api/api';
 import useForm from '../../../Hooks/useForm';
@@ -37,10 +37,20 @@ function Fazenda() {
   const country = useForm();
   const uf = useForm();
 
+  const midia = useForm();
+
   const { data, loading, error, request } = useFetch();
   const [sel, setSel] = React.useState("sobre");
   const { farmCreate, farmEdit } = React.useContext(UserContext);
 
+  useEffect(() => {
+    if (midia !== '' && data !== null ) {
+      urls_midia = data.data.farm[0].medias
+      urls_midia.push(midia.value)
+      data.data.farm[0].medias = urls_midia
+      farmEdit(data.data.farm[0].id, data.data.farm[0])
+    }
+  }, [midia.value])
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -77,10 +87,6 @@ function Fazenda() {
       }
       body['address'] = address;
     }
-
-    // if (medias.value !== []) {
-    //   var medias = urls_midia
-    // }
 
     if (data.data.farm.length > 0) {
       farmEdit(data.data.farm[0].id, body);
@@ -148,7 +154,7 @@ function Fazenda() {
         </div>
 
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
-        {sel === "midia" && <FotosVideos urls_midia={urls_midia} />}
+        {sel === "midia" && <FotosVideos id={id} midia={midia} />}
         {sel === "local" && <Localizacao nome={nome} street={street} streetNumber={streetNumber} district={district} city={city} country={country} uf={uf} onlyMaps={false} />}
         {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
         {sel === "qrcode" && <QRCode nome={nome} id={id} />}
