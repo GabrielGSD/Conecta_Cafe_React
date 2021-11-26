@@ -5,17 +5,17 @@ import styles from './FotosVideos.module.css'
 import stylesTitle from '../Fazenda.module.css'
 import { useDropzone } from 'react-dropzone'
 import { storage } from './DropZone/Firebase'
-import { UserContext } from '../../../../Context/UserContext'
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { ReactComponent as Delet } from '../../../../Assets/Del.svg';
 
-const FotosVideos = observer(({ id, midia }) => {
+
+
+const FotosVideos = observer(({ id, midia, midias }) => {
     const iconImages = { src: iconImagess, title: "icon" }
     const [files, setFiles] = useState([]);
     const [image, setImage] = useState(null)
     const [url, setUrl] = useState('')
     const [progress, setProgress] = useState(0)
-    const { data, getFarm, farmEdit } = React.useContext(UserContext)
-    var urls_midia = []
-    var body = {}
 
     useEffect(() => {
         if (url !== '') {
@@ -70,16 +70,45 @@ const FotosVideos = observer(({ id, midia }) => {
         }
     });
 
+    // const handleMidiaDelete = (({item}) => {
+    //     console.log("*******************")
+    //     console.log(item)   
+    //     midias = midias.filter(value => value !== item)
+    // })
+
     return (
         <>
             <h1 className={stylesTitle.subTitle}>Fotos / Vídeos</h1>
-            <div className={styles.container}>
-                <img className={styles.icon} src={iconImages.src} alt={''} />
-                <div onChange={handleChange} {...getRootProps({ className: 'dropzone' })}>
-                    <input {...getInputProps()} />
-                    <p className={styles.text}>Arraste ou Click para adicionar uma foto / vídeo</p>
-                    <button className={styles.searchButton}>Buscar</button>
+            <div className="container-scroll list-grid" style={{ margin: ' 15px auto' }}>
+                <div className={styles.container} style={{ margin: ' 0px auto' }}>
+                    <img className={styles.icon} src={iconImages.src} alt={''} />
+                    <div onChange={handleChange} {...getRootProps({ className: 'dropzone' })}>
+                        <input {...getInputProps()} />
+                        <p className={styles.text}>Arraste ou Click para adicionar uma foto / vídeo</p>
+                        <button className={styles.searchButton}>Buscar</button>
+                    </div>
                 </div>
+                {
+                    midias ?
+                        <>
+                            {
+                                midias.map((item => (
+                                    <>
+                                        <div className={styles.card} key={item}>
+                                            <>
+                                            <img src={item} />
+                                            {/* <button onClick={handleMidiaDelete(item)}><Delet /></button> */}
+                                            <button><Delet /></button>
+                                            </>
+                                        </div>
+                                    </>
+                                )))
+                            }
+                        </>
+                        :
+                        <>
+                        </>
+                }
             </div>
             <br />
             <br />

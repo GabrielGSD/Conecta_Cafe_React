@@ -27,17 +27,19 @@ function Fazenda() {
   const youtube = useForm();
   const whatsApp = useForm();
 
-  var urls_midia = []
+  
   const [medias, setMedias] = useState([])
-
+  
   const street = useForm();
   const streetNumber = useForm();
   const district = useForm();
   const city = useForm();
   const country = useForm();
   const uf = useForm();
-
+  
   const midia = useForm();
+  var urls_midia = []
+  var midias = []
 
   const { data, loading, error, request } = useFetch();
   const [sel, setSel] = React.useState("sobre");
@@ -154,7 +156,7 @@ function Fazenda() {
         </div>
 
         {sel === "sobre" && <Sobre nome={nome} historia={historia} inseticidas={inseticidas} fertilizantes={fertilizantes} />}
-        {sel === "midia" && <FotosVideos id={id} midia={midia} />}
+        {sel === "midia" && <FotosVideos id={id} midia={midia} midias={data.data.farm[0].medias}/>}
         {sel === "local" && <Localizacao nome={nome} street={street} streetNumber={streetNumber} district={district} city={city} country={country} uf={uf} onlyMaps={false} />}
         {sel === "contato" && <Contato telefone={telefone} email={email} linkedin={linkedin} facebook={facebook} instagram={instagram} twitter={twitter} youtube={youtube} whatsApp={whatsApp} />}
         {sel === "qrcode" && <QRCode nome={nome} id={id} />}
