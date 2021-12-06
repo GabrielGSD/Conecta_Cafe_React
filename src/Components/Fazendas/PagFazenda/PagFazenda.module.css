@@ -183,6 +183,12 @@
   justify-content: center;
 }
 
+.titlePhone {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
 .contactGroup {
   display: flex;
 }
@@ -249,5 +255,17 @@
   }
   .localSection .map{
     margin: 30px 0 !important;
+  }
+  .titlePhone {
+    height: 100px;
+  }
+  .contactGroup {
+    height: 110px;
+    margin-top: 10px;
+  }
+  .contactGroup > * {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 }

@@ -17,3 +17,11 @@ label {
   position: relative;
   height: 30vh;
 }
+
+@media (max-width: 420px) {
+  .containerMaps {
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
