@@ -218,7 +218,8 @@
     height: auto;
   }
   .carousel img {
-    object-fit: contain !important;
+    object-fit: cover !important;
+    max-height: 275px !important;
   }
   .carousel, .infos {
     width: 100vw;
