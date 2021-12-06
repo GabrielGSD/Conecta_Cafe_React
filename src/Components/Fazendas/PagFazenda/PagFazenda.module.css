@@ -222,4 +222,32 @@
   .infos {
     padding: 5vh 3vw 8vh 3vw;
   }
+  .cafeBg {
+    align-items: flex-end;
+    background-position-x: calc(470px/2 - 38vw) !important;
+  }
+  .carouselCafe {
+    align-items: flex-start;
+  }
+  .btnCarouselCafe {
+    bottom: 20px !important;
+  }
+  .btnCarouselCafe:first-of-type {
+    left: 35% !important;
+  }
+  .btnCarouselCafe:last-of-type {
+    right: 35% !important;
+  }
+  .localSection {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .localBg {
+    height: 100px;
+    align-items: flex-end;
+    background-position-x: 8vw;
+  }
+  .localSection .map{
+    margin: 30px 0 !important;
+  }
 }

@@ -173,11 +173,7 @@ function PagFazenda() {
 
           <section>
             <Row className={styles.localSection}>
-              <Col sm={7}>
-                <br />
-                <br />
-                <br />
-                <br />
+              <Col sm={7} className={styles.map}>
                 <Localizacao
                   street={fazenda.address.street}
                   streetNumber={fazenda.address.address_number}
