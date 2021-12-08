@@ -4,6 +4,9 @@
     width: 120px;
     height: 250px;
     border-radius: 0.8rem;
+    border: 1px solid #ccc;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .logo {
@@ -14,7 +17,7 @@
 }
 
 .logo * {
-    fill: #FFF
+    fill: rgba(255, 255, 255, 0)
 }
 
 .qr {
@@ -25,7 +28,8 @@
 .text {
     margin-top: 30px;
     margin-left: 10px;
-    color: #FFF !important
+    font-weight: bold !important;
+    font-size: 1rem !important;
 }
 
 .saveButton {
