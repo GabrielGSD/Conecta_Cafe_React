@@ -58,12 +58,14 @@ const EtiquetaPersonalizada = observer(props => {
                                     />
                                 </div>
                             </Col>
-                            <Col xs={2}>
-                                <EtiquetaPequena endpoint={endpoint? endpoint : "Em andamento"} color={color} backgroundColor={backgroundColor} />
+                            <Col xs={1}>
+                                <EtiquetaPequena endpoint={endpoint ? endpoint : "Em andamento"} color={color} backgroundColor={backgroundColor} />
                             </Col>
-                            <Col xs={4}>
+                            <Col xs={1}>
+                            </Col>
+                            <Col xs={5}>
                                 <div>
-                                    <EtiquetaGrande cafe={cafe} endpoint={endpoint? endpoint : "Em andamento"} color={color} backgroundColor={backgroundColor} />
+                                    <EtiquetaGrande cafe={cafe} endpoint={endpoint ? endpoint : "Em andamento"} color={color} backgroundColor={backgroundColor} />
                                 </div>
                             </Col>
                         </Row>

@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import styles from './EtiquetaPequena.module.css'
 import { ReactComponent as Logo } from '../../../../../Assets/logo_black.svg';
-import { Form } from "react-bootstrap";
 import RequestQrCode from "./GeneratedQrCode";
 import { ButtonSalvar } from '../../../../Button/Button';
 
@@ -17,11 +16,19 @@ class ComponentToPrintHere extends React.Component {
         return (
             <>
                 <div className={styles.body} style={{ color: backgroundColor, backgroundColor: color }}>
-                    <Logo className={styles.logo} style={{ fill: color }} />
+                    {/* <Logo className={styles.logo} styles={{ fill: `${color} !important` }} /> */}
+                    <div>
+                        <Logo className={styles.logo} style={{ fill: backgroundColor }} stroke={backgroundColor} />
+                        {/* <Logo className={styles.logo} stroke={backgroundColor} fill={`>*{color: ${backgroundColor}`}> </Logo> */}
+                    </div>
+
                     <div className={styles.qr}>
                         <RequestQrCode endpoint={endpoint} color={backgroundColor} backgroundColor={color} />
                     </div>
-                    <Form.Label className={styles.text} style={{ color: `${backgroundColor} !important`, backgroundColor: color }}>Escaneie e saiba mais</Form.Label>
+
+                    <div>
+                        <h2 className={styles.text} style={{ color: backgroundColor }}>Escaneie e saiba mais</h2>
+                    </div>
                 </div>
             </>
         )
