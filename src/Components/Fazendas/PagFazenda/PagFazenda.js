@@ -173,11 +173,7 @@ function PagFazenda() {
 
           <section>
             <Row className={styles.localSection}>
-              <Col sm={7}>
-                <br />
-                <br />
-                <br />
-                <br />
+              <Col sm={7} className={styles.map}>
                 <Localizacao
                   street={fazenda.address.street}
                   streetNumber={fazenda.address.address_number}
@@ -199,8 +195,8 @@ function PagFazenda() {
           </section>
 
           <section>
-            <Row className={`${styles.blackbg} `} style={{ height: '35vh', margin: '0' }} >
-              <Col sm={4} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Row className={styles.blackbg} style={{ height: '35vh', margin: '0' }} >
+              <Col sm={4} className={styles.titlePhone}>
                 <h1
                   className="title"
                   style={{ fontSize: 'calc(2.5rem + 1.5vw)', display: 'inline-block', maxHeight: 'calc(3.8rem + 1.5vw)', margin: '0' }}
