@@ -1,12 +1,16 @@
 .container {
     position: relative;
-    margin-top: 6%;
+    margin-top: 10vh;
     height: 250px;
     width: 210px;
     border-radius: 1rem;
     box-shadow: 1px 3px 4px 5px rgb(0 0 0 / 10%);
     text-align: center;
     color: rgb(130, 141, 159);
+}
+
+.column {
+    position: relative;
 }
 
 .card {
@@ -27,9 +31,9 @@
   }
   
 .icon {
-    position: relative;
+    position: absolute;
     margin-left: 42%;
-    margin-top: 10%;
+    margin-top: 15%;
     padding-block-end: 10%
 }
 
@@ -61,26 +65,27 @@
 .btn {
     position: relative;
     margin-top: 7%;
-    left: 67%;
+    left: 65%;
     border-radius: 0.5rem;
     border-color: #FBFBFB;
     background-color: #FBFBFB;
 }
 
 .text {
+    position: absolute;
+    margin-top: 35%;
     padding: 3% 20%;
 }
 
 .searchButton {
-    position: relative;
+    position: absolute;
     text-align: center;
     color: white;
     background-color: rgb(130, 141, 159);
     border-radius: 5px;
     border: solid 1px #F9F9F9;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
+    margin-top: 90%;
+    margin-left: 33%;
 }
 
 .uploadButton {
