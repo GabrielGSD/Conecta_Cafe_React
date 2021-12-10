@@ -71,7 +71,7 @@ const FotosVideos = observer(({ id, midia, midias, dataFarm }) => {
             <h1 className={stylesTitle.subTitle}>Fotos / Vídeos</h1>
             <Row>
                 {
-                    midias ?
+                    midias.length !== 0 ?
                         <>
                             <Col xs={4}>
                                 <div className={styles.column}>
