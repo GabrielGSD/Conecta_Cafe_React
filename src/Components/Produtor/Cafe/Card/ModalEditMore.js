@@ -50,9 +50,8 @@ const ModalEditMore = observer(props => {
         fetchGrower();
       }, [reload]);
 
-    async function handleSubmit(event) {
+    async function handleSubmit() {
         if (!onlyView) {
-            event.preventDefault();
             var body = {
                 variety: variedade,
                 species: especie,
@@ -72,7 +71,9 @@ const ModalEditMore = observer(props => {
                 }
             }
             coffeeEdit(cafe.id, body);
+            console.log(reload)
             setReload(reload + 1)
+            console.log(reload)
         }
 
         handleClose()
@@ -103,12 +104,23 @@ const ModalEditMore = observer(props => {
         safra.setValue(cafe.harvest)
         valor.setValue(cafe.harvestValue)
         setEspecial(false)
-        aroma.setValue(null)
-        sabor.setValue(null)
-        finalizacao.setValue(null)
-        acidez.setValue(null)
-        corpo.setValue(null)
-        docura.setValue(null)
+
+        if (cafe.special !== null ){
+        aroma.setValue(cafe.special.aroma)
+        sabor.setValue(cafe.special.flavor)
+        finalizacao.setValue(cafe.special.completion)
+        acidez.setValue(cafe.special.acidity)
+        corpo.setValue(cafe.special.body)
+        docura.setValue(cafe.special.sweetness)
+        } 
+        else {
+            aroma.setValue(null)
+            sabor.setValue(null)
+            finalizacao.setValue(null)
+            acidez.setValue(null)
+            corpo.setValue(null)
+            docura.setValue(null)
+        }
     }
 
     return (

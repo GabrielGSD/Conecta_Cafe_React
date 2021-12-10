@@ -154,10 +154,19 @@ export function COFFEE_DELETE(id, body) {
 }
 
 //Funcao listar fazendas cadastradas 
-// Funcao listar cafés
 export function FARMER_GET_ALL() {
   return {
     url: `${API_URL}/farm/all`,
+    options: {
+      method: 'GET'
+    },
+  };
+}
+
+// Funcao listar cafés
+export function COFFEE_GET_ALL() {
+  return {
+    url: `${API_URL}/coffee/all`,
     options: {
       method: 'GET'
     },

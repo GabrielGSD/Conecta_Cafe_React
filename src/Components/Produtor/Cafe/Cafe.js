@@ -46,8 +46,7 @@ function Cafe() {
     fetchGrower();
   }, [reload]);
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  async function handleSubmit() {
     var body = {
       variety: variedade,
       species: especie,
@@ -67,7 +66,9 @@ function Cafe() {
       }
     }
     coffeeCreate(data.data.id, body);
+    console.log(reload)
     setReload(reload+1)
+    console.log(reload)
     handleClose()
   }
 

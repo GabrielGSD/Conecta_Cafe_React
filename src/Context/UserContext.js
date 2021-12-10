@@ -1,5 +1,5 @@
 import React from 'react';
-import { USER_LOGIN, USER_GET, USER_CREATE, FARM_CREATE, FARM_GET, FARM_EDIT, COFFEE_CREATE, COFFEE_EDIT, COFFEE_DELETE} from '../Api/api';
+import { USER_LOGIN, USER_GET, USER_CREATE, FARM_CREATE, FARM_GET, FARM_EDIT, COFFEE_CREATE, COFFEE_EDIT, COFFEE_DELETE, COFFEE_GET_ALL} from '../Api/api';
 import { useNavigate } from 'react-router';
 
 export const UserContext = React.createContext();
@@ -27,6 +27,14 @@ export function UserStorage({ children }) {
     const json = await response.json();
     setData(json);
     setLogin(true);
+  }
+
+  async function getCoffeeAll() {
+    const { url, options } = COFFEE_GET_ALL();
+    const response = await fetch(url, options);
+    const json = await response.json();
+    setData(json);
+    setLogin(false);
   }
 
   async function userLogin(email, password) {
