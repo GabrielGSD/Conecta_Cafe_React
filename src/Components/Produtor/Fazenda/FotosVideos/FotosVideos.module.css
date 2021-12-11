@@ -67,8 +67,12 @@
     margin-top: 7%;
     left: 65%;
     border-radius: 0.5rem;
-    border-color: #FBFBFB;
+    border-color: transparent;
     background-color: #FBFBFB;
+}
+
+.btn > svg {
+    height: 20px;
 }
 
 .text {
