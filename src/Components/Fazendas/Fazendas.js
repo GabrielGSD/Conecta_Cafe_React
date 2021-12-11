@@ -10,6 +10,7 @@ import { observer } from 'mobx-react-lite';
 
 var filtro_especial = []
 var filtro_processo = []
+var filtro_tipo = []
 
 function Fazendas() {
   const navigate = useNavigate();
@@ -18,13 +19,16 @@ function Fazendas() {
   const [fazendasFilter, setFazendasFilter] = useState(null);
 
 
-  // const [torra, setTorra] = useState("");
   const [especial, setEspecial] = useState("");
-  // const torras = ['Clara', 'Média', 'Escura'];
   const [processo, setProcesso] = useState("");
+  const [tipo, setTipo] = useState("");
+  const [tipo6e7, setTipo6e7] = useState("");
+  const [tipos6e7, setTipos6e7] = useState(['']);
   const processos = ['Tudo', 'Terreiro', 'Estufa', 'Terreiro suspenso', 'Secagem automática'];
   const especiais = ['Tudo', 'Comum', 'Especial'];
+  const tipos = ['Tudo', 'Arábica - Tipo 6', 'Robusta (Conilon) - Tipo 7'];
   const photo = { src: imgFazenda, title: "Teste" }
+  const [filtro_visivel, setFiltroVisivel] = useState(false)
 
   useEffect(() => {
     async function fetchGrower() {
@@ -79,7 +83,7 @@ function Fazendas() {
 
       if (processo === "" || processo === "Tudo") {
         filtro_processo = []
-        console.log("Tudo")
+        // console.log("Tudo")
         json.data.forEach((i) => {
           if (i !== undefined) {
             filtro_processo.push(i.farmId)
@@ -88,7 +92,7 @@ function Fazendas() {
       }
 
       if (processo === 'Terreiro') {
-        console.log("Terreiro")
+        // console.log("Terreiro")
         filtro_processo = []
         json.data.forEach((i) => {
           if (i !== undefined) {
@@ -98,9 +102,9 @@ function Fazendas() {
           }
         })
       }
-      
+
       if (processo === 'Terreiro suspenso') {
-        console.log("Terreiro suspenso")
+        // console.log("Terreiro suspenso")
         filtro_processo = []
         json.data.forEach((i) => {
           if (i !== undefined) {
@@ -112,7 +116,7 @@ function Fazendas() {
       }
 
       if (processo === 'Estufa') {
-        console.log("Estufa")
+        // console.log("Estufa")
         filtro_processo = []
         json.data.forEach((i) => {
           if (i !== undefined) {
@@ -124,7 +128,7 @@ function Fazendas() {
       }
 
       if (processo === 'Secagem automática') {
-        console.log("Secagem automática")
+        // console.log("Secagem automática")
         filtro_processo = []
         json.data.forEach((i) => {
           if (i !== undefined) {
@@ -135,16 +139,58 @@ function Fazendas() {
         })
       }
 
-      console.log(filtro_processo)
-      // console.log(filtro_especial.includes(filtro_processo))
-      
+      if (tipo === "" || tipo === "Tudo") {
+        filtro_tipo = []
+        setFiltroVisivel(false)
+        json.data.forEach((i) => {
+          if (i !== undefined) {
+
+            filtro_tipo.push(i.farmId)
+          }
+        })
+      }
+
+      if (tipo === "Arábica - Tipo 6") {
+        console.log("Arábica - Tipo 6")
+        filtro_tipo = []
+        setFiltroVisivel(true)
+        json.data.forEach((i) => {
+          if (i !== undefined) {
+            if (i.variety === "Arábica ") {
+              setTipos6e7(["Mundo Novo", "Bourbon", "Laurina", "Catuaí", "Acaiá", "Topázio", "Icatu", "Caturra"])
+              console.log(i.species === tipo6e7 && tipo6e7 !== "")
+              if (i.species === tipo6e7 && tipo6e7 !== ""){
+                filtro_tipo.push(i.farmId)
+              }
+            }
+          }
+        })
+      }
+
+      if (tipo === "Robusta (Conilon) - Tipo 7") {
+        console.log("Robusta (Conilon) - Tipo 7")
+        filtro_tipo = []
+        setFiltroVisivel(true)
+        json.data.forEach((i) => {
+          if (i !== undefined) {
+            if (i.variety === "Robusta (Conilon)") {
+              setTipos6e7(['Conilon'])
+              filtro_tipo.push(i.farmId)
+            }
+          }
+        })
+      }
+
+      console.log(filtro_tipo)
 
       if (fazendas !== null) {
-        setFazendasFilter(fazendas.filter(item => (filtro_especial.includes(item.id) === true) && filtro_processo.includes(item.id) === true))
+        setFazendasFilter(fazendas.filter(item => (filtro_especial.includes(item.id) === true) && 
+        filtro_processo.includes(item.id) === true && 
+        filtro_tipo.includes(item.id) === true))
       }
     }
     fetchCoffee();
-  }, [especial, processo]);
+  }, [especial, processo, tipo, tipo6e7]);
 
 
   const Card = observer(props => {
@@ -172,6 +218,16 @@ function Fazendas() {
           <div className="navBarCont">
             <Select type={especial} setType={setEspecial} options={especiais} def="Tipo" />
             <Select type={processo} setType={setProcesso} options={processos} def="Processamento" />
+            <Select type={tipo} setType={setTipo} options={tipos} def="Tipo Bebida" />
+            {
+              filtro_visivel ?
+                <>
+                  <Select type={tipo6e7} setType={setTipo6e7} options={tipos6e7} def="Espécie" />
+                </>
+                :
+                <></>
+            }
+
           </div>
           <div className="container-scroll list-grid">
             {fazendasFilter &&
