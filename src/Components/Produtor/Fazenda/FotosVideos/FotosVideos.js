@@ -93,7 +93,7 @@ const FotosVideos = observer(({ id, midia, midias, dataFarm }) => {
                                 </div>
                             </Col>
                             <Col xs={8}>
-                                <div className="container-scroll list-grid" style={{ margin: ' 15px auto' }}>
+                                <div className="container-scroll list-grid" style={{ margin: ' 15px auto', maxHeight: '500px' }}>
                                     {
                                         midias.map((item => (
                                             <div className={styles.card} key={item}>
