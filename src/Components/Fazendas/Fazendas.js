@@ -8,20 +8,21 @@ import { ReactComponent as ArrowIcon } from '../../Assets/Arrow.svg'
 import { useNavigate } from 'react-router';
 import { observer } from 'mobx-react-lite';
 
-var cafes_filtro = []
+var filtro_especial = []
+var filtro_processo = []
+
 function Fazendas() {
   const navigate = useNavigate();
 
   const [fazendas, setFazendas] = useState(null);
   const [fazendasFilter, setFazendasFilter] = useState(null);
-  const [cafes, setCafes] = useState(null);
 
 
-  const [torra, setTorra] = useState("");
+  // const [torra, setTorra] = useState("");
   const [especial, setEspecial] = useState("");
-  const torras = ['Clara', 'Média', 'Escura'];
+  // const torras = ['Clara', 'Média', 'Escura'];
   const [processo, setProcesso] = useState("");
-  const processos = ['Terreiro', 'Estufa', 'Terreiro suspenso', 'Secagem automática'];
+  const processos = ['Tudo', 'Terreiro', 'Estufa', 'Terreiro suspenso', 'Secagem automática'];
   const especiais = ['Tudo', 'Comum', 'Especial'];
   const photo = { src: imgFazenda, title: "Teste" }
 
@@ -41,50 +42,109 @@ function Fazendas() {
       const { url, options } = COFFEE_GET_ALL();
       const response = await fetch(url, options);
       const json = await response.json();
-      // setCafes(json.data.coffee)
 
       if (especial === "" || especial === "Tudo") {
-        cafes_filtro = []
-        console.log("Tudo")
+        filtro_especial = []
+        // console.log("Tudo")
         json.data.forEach((i) => {
           if (i !== undefined) {
-            cafes_filtro.push(i.farmId)
+            filtro_especial.push(i.farmId)
           }
         })
       }
 
       if (especial === 'Especial') {
-        console.log("Especial")
-        cafes_filtro = []
+        // console.log("Especial")
+        filtro_especial = []
         json.data.forEach((i) => {
           if (i !== undefined) {
             if (i.special !== null) {
-              cafes_filtro.push(i.farmId)
+              filtro_especial.push(i.farmId)
             }
           }
         })
       }
 
       if (especial === 'Comum') {
-        console.log("Comum")
-        cafes_filtro = []
+        // console.log("Comum")
+        filtro_especial = []
         json.data.forEach((i) => {
           if (i !== undefined) {
             if (i.special === null) {
-              cafes_filtro.push(i.farmId)
-              // cafes_filtro = [...new Set(cafes_filtro)]
+              filtro_especial.push(i.farmId)
             }
           }
         })
       }
-      // console.log(cafes_filtro)
+
+      if (processo === "" || processo === "Tudo") {
+        filtro_processo = []
+        console.log("Tudo")
+        json.data.forEach((i) => {
+          if (i !== undefined) {
+            filtro_processo.push(i.farmId)
+          }
+        })
+      }
+
+      if (processo === 'Terreiro') {
+        console.log("Terreiro")
+        filtro_processo = []
+        json.data.forEach((i) => {
+          if (i !== undefined) {
+            if (i.process === "Terreiro") {
+              filtro_processo.push(i.farmId)
+            }
+          }
+        })
+      }
+      
+      if (processo === 'Terreiro suspenso') {
+        console.log("Terreiro suspenso")
+        filtro_processo = []
+        json.data.forEach((i) => {
+          if (i !== undefined) {
+            if (i.process === "Terreiro suspenso") {
+              filtro_processo.push(i.farmId)
+            }
+          }
+        })
+      }
+
+      if (processo === 'Estufa') {
+        console.log("Estufa")
+        filtro_processo = []
+        json.data.forEach((i) => {
+          if (i !== undefined) {
+            if (i.process === "Estufa") {
+              filtro_processo.push(i.farmId)
+            }
+          }
+        })
+      }
+
+      if (processo === 'Secagem automática') {
+        console.log("Secagem automática")
+        filtro_processo = []
+        json.data.forEach((i) => {
+          if (i !== undefined) {
+            if (i.process === "Secagem automática") {
+              filtro_processo.push(i.farmId)
+            }
+          }
+        })
+      }
+
+      console.log(filtro_processo)
+      // console.log(filtro_especial.includes(filtro_processo))
+      
+
       if (fazendas !== null) {
-        setFazendasFilter(fazendas.filter(item => cafes_filtro.includes(item.id) === true))
+        setFazendasFilter(fazendas.filter(item => (filtro_especial.includes(item.id) === true) && filtro_processo.includes(item.id) === true))
       }
     }
-
     fetchCoffee();
-  }, [especial]);
+  }, [especial, processo]);
 
 
   const Card = observer(props => {
@@ -111,9 +171,7 @@ function Fazendas() {
           </div>
           <div className="navBarCont">
             <Select type={especial} setType={setEspecial} options={especiais} def="Tipo" />
-            <Select type={torra} setType={setTorra} options={torras} def="Torra" />
             <Select type={processo} setType={setProcesso} options={processos} def="Processamento" />
-            {/* <input type="range" class="form-range"  max='5000' value={altitude} onChange={altitude => setAltitude(altitude)}/> */}
           </div>
           <div className="container-scroll list-grid">
             {fazendasFilter &&
