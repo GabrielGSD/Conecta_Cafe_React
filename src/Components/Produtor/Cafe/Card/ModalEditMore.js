@@ -13,12 +13,13 @@ const ModalEditMore = observer(props => {
     const { onlyView, cafe } = props
 
     const [variedade, setVariedade] = React.useState("");
+    const [processo, setProcesso] = React.useState("");
     const variedades = ['Arábica ', 'Robusta (Conilon)'];
+    const processos = ['Terreiro', 'Estufa', 'Terreiro suspenso', 'Secagem automática'];
     const [especie, setEspecie] = React.useState("");
     const arrRobusta = ["Conilon"];
     const arrArabica = ["Mundo Novo", "Bourbon", "Laurina", "Catuaí", "Acaiá", "Topázio", "Icatu", "Caturra"];
     const altitude = useForm("number");
-    const processo = useForm();
     const safra = useForm("number");
     const valor = useForm("number");
     const [especial, setEspecial] = React.useState(false);
@@ -56,7 +57,7 @@ const ModalEditMore = observer(props => {
                 variety: variedade,
                 species: especie,
                 altitude: parseInt(altitude.value),
-                process: processo.value,
+                process: processo,
                 harvest: parseInt(safra.value),
                 harvestValue: parseInt(valor.value),
             };
@@ -82,9 +83,9 @@ const ModalEditMore = observer(props => {
 
     function clearInputs() {
         setVariedade("")
+        setProcesso("")
         setEspecie("")
         altitude.setValue()
-        processo.setValue("")
         safra.setValue("")
         valor.setValue("")
         setEspecial(false)
@@ -98,9 +99,9 @@ const ModalEditMore = observer(props => {
 
     function fillInputs() {
         setVariedade(cafe.variety)
+        setProcesso(cafe.process)
         setEspecie(cafe.species)
         altitude.setValue(cafe.altitude)
-        processo.setValue(cafe.process)
         safra.setValue(cafe.harvest)
         valor.setValue(cafe.harvestValue)
         setEspecial(false)
@@ -132,7 +133,7 @@ const ModalEditMore = observer(props => {
                 </Modal.Header>
                 <Modal.Body>
                     {!especial ?
-                        <CafeCont onlyView={onlyView} variedade={variedade} setVariedade={setVariedade} variedades={variedades} especie={especie} setEspecie={setEspecie} arrRobusta={arrRobusta} arrArabica={arrArabica} altitude={altitude} processo={processo} safra={safra} valor={valor} setEspecial={setEspecial} />
+                        <CafeCont onlyView={onlyView} variedade={variedade} setVariedade={setVariedade} variedades={variedades} setProcesso={setProcesso} processos={processos} especie={especie} setEspecie={setEspecie} arrRobusta={arrRobusta} arrArabica={arrArabica} altitude={altitude} processo={processo} safra={safra} valor={valor} setEspecial={setEspecial} />
                         :
                         <Especial onlyView={onlyView} aroma={aroma} sabor={sabor} finalizacao={finalizacao} acidez={acidez} corpo={corpo} docura={docura} />
                     }

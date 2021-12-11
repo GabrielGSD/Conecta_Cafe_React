@@ -4,7 +4,7 @@ import { Col, Container, Row, Form } from 'react-bootstrap';
 import {Input} from '../../../Form/Input/Input';
 import { SelectCafe } from '../../../Select/Select';
 
-function CafeCont({onlyView, variedade, setVariedade, variedades, especie, setEspecie, arrRobusta, arrArabica, altitude, processo, safra, valor, setEspecial}) {
+function CafeCont({onlyView, variedade, setVariedade, variedades, setProcesso, processos, especie, setEspecie, arrRobusta, arrArabica, altitude, processo, safra, valor, setEspecial}) {
   return (
     <Container className={styles.cafe}>
       <Row>
@@ -24,7 +24,9 @@ function CafeCont({onlyView, variedade, setVariedade, variedades, especie, setEs
           <Input onlyView={onlyView} label="Altitude" type="number" name="altitude" placeholder="Altitude em metros" show={false} {...altitude} />
         </Col>
         <Col>
-          <Input onlyView={onlyView} label="Processo" type="text" name="processo" placeholder="Processo de secagem" show={false} {...processo} />
+          <SelectCafe onlyView={onlyView} type={processo} setType={setProcesso} options={processos} def="Processo" label="Processo" name="processo" />
+
+          {/* <Input onlyView={onlyView} label="Processo" type="text" name="processo" placeholder="Processo de secagem" show={false} {...processo} /> */}
         </Col>
       </Row>
     
