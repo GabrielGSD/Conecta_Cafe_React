@@ -22,7 +22,8 @@ function PagFazenda() {
       const json = await response.json();
       setFazenda(json.data)
       setCoffeeSel(json.data.coffee)
-      // console.log(json.data)
+      setPhotoSel(json.data.medias[0])
+      console.log(json.data)
     }
     fetchFarm();
   }, []);
@@ -33,10 +34,10 @@ function PagFazenda() {
     'https://verticemt.com.br/wp-content/uploads/2020/09/lake-constance-sheep-pasture-sheep-blue-158179.jpeg"',
   ];
   let photoIndex = 0;
-  const [photoSel, setPhotoSel] = React.useState(fotos[0]);
+  const [photoSel, setPhotoSel] = React.useState();
 
-  const handleNext = () => { (photoIndex < fotos.length - 1) && photoIndex++; setPhotoSel(fotos[photoIndex]); };
-  const handleBack = () => { (photoIndex > 0) && photoIndex--; setPhotoSel(fotos[photoIndex]) };
+  const handleNext = () => { (photoIndex < fazenda.medias.length - 1) && photoIndex++; setPhotoSel(fazenda.medias[photoIndex]); };
+  const handleBack = () => { (photoIndex > 0) && photoIndex--; setPhotoSel(fazenda.medias[photoIndex]) };
 
   let cafeIndex = 0;
   const [coffeeSel, setCoffeeSel] = React.useState(null);

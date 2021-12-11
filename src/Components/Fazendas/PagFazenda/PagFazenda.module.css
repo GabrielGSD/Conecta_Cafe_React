@@ -171,6 +171,7 @@
 .localSection {
   min-height: 50vh;
   background: #F2F2F2;
+  align-items: center;
 }
 
 .localBg {
