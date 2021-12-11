@@ -10,12 +10,13 @@ import Especial from './Especial/Especial';
 function Cafe() {
 
   const [variedade, setVariedade] = React.useState("");
+  const [processo, setProcesso] = React.useState("");
   const variedades = ['Arábica ', 'Robusta (Conilon)'];
+  const processos = ['Terreiro', 'Estufa', 'Terreiro suspenso', 'Secagem automática'];
   const [especie, setEspecie] = React.useState("");
   const arrRobusta = ["Conilon"];
   const arrArabica = ["Mundo Novo", "Bourbon", "Laurina", "Catuaí", "Acaiá", "Topázio", "Icatu", "Caturra"];
   const altitude = useForm("number");
-  const processo = useForm();
   const safra = useForm("number");
   const valor = useForm("number");
   const [especial, setEspecial] = React.useState(false);
@@ -51,7 +52,7 @@ function Cafe() {
       variety: variedade,
       species: especie,
       altitude: parseInt(altitude.value),
-      process: processo.value,
+      process: processo,
       harvest: parseInt(safra.value),
       harvestValue: parseInt(valor.value),
     };
@@ -74,9 +75,9 @@ function Cafe() {
 
   function clearInputs() {
     setVariedade("")
+    setProcesso("")
     setEspecie("")
     altitude.setValue()
-    processo.setValue("")
     safra.setValue("")
     valor.setValue("")
     setEspecial(false)
@@ -101,7 +102,7 @@ function Cafe() {
               </div>
               <div className="container-scroll list-grid" style={{ margin: ' 0px auto' }}>
                 {data.data.coffee.map((cafes) => (
-                  <Card fazenda={data.data} id={cafes.id} especie={cafes} variedade={cafes.variety} key={cafes.id} {...cafes} />
+                  <Card fazenda={data.data} id={cafes.id} especie={cafes} variedade={cafes.variety} processo={processo} key={cafes.id} {...cafes} />
                 ))}
               </div>
 
@@ -111,7 +112,7 @@ function Cafe() {
                 </Modal.Header>
                 <Modal.Body>
                   {!especial ?
-                    <CafeCont variedade={variedade} setVariedade={setVariedade} variedades={variedades} especie={especie} setEspecie={setEspecie} arrRobusta={arrRobusta} arrArabica={arrArabica} altitude={altitude} processo={processo} safra={safra} valor={valor} setEspecial={setEspecial} />
+                    <CafeCont variedade={variedade} setVariedade={setVariedade} variedades={variedades} setProcesso={setProcesso} processos={processos} especie={especie} setEspecie={setEspecie} arrRobusta={arrRobusta} arrArabica={arrArabica} altitude={altitude} processo={processo} safra={safra} valor={valor} setEspecial={setEspecial} />
                     :
                     <Especial aroma={aroma} sabor={sabor} finalizacao={finalizacao} acidez={acidez} corpo={corpo} docura={docura} />
                   }
