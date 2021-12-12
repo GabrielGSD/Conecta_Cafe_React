@@ -14,7 +14,7 @@
   top: 0;
   left: 0;
   border-radius: 1rem;
-  filter: brightness(0.5) blur(.7px);
+  filter: brightness(0.9) blur(.7px);
 }
 
 .card .info {
