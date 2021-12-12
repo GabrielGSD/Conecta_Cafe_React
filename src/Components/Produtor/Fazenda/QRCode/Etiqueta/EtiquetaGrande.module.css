@@ -115,3 +115,23 @@
     margin-right: auto;
     margin-top: 50px;
 }
+
+.normalcoffee {
+    position: relative;
+    margin-top: 50px;
+}
+
+.logocomum {
+    width: 10%;
+    margin-top: 2%;
+    margin-left: 25%;
+}
+
+.qrcodecomum { 
+    margin-top: 5%;
+    margin-left: 00%;
+}
+
+.logocomum > *{
+    fill: rgba(255, 255, 255, 0)
+}
