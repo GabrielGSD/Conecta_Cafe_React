@@ -134,7 +134,15 @@ function Fazendas() {
     return (
       <>
         <div className={styles.card} key={props.fazenda}>
-          <img src={photo.src} alt={photo.title} />
+          {props.fazenda.medias.length !== 0 ?
+            <>
+              {console.log(props.fazenda.medias)}
+              <img src={props.fazenda.medias[0]} alt={photo.title} />
+            </>
+            :
+            <>
+            </>
+          }
           <div className={styles.info}>
             <h1 className={styles.nome}>{props.fazenda.farm_name}</h1>
             {props.fazenda.address && <h2 className={styles.regiao}>{props.fazenda.address.city} - {props.fazenda.address.uf}</h2>}
@@ -166,7 +174,7 @@ function Fazendas() {
             }
 
           </div>
-          <div className="container-scroll list-grid">
+          <div className="container-scroll list-grid" style={{width:'80%'}}>
             {fazendasFilter &&
               <>
                 {fazendasFilter.map((fazenda) => (
