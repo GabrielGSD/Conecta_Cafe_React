@@ -45,7 +45,7 @@ function Fazenda() {
   const { farmCreate, farmEdit } = React.useContext(UserContext);
 
   useEffect(() => {
-    if (midia.value !== "" && data !== null ) {
+    if (midia.value !== "" && data !== null) {
       urls_midia = data.data.farm[0].medias
       urls_midia.push(midia.value)
       data.data.farm[0].medias = urls_midia
@@ -148,7 +148,17 @@ function Fazenda() {
         </div>
         <div className="navBarCont">
           <ButtonNavFazenda onClick={() => { setSel("sobre") }}>Sobre</ButtonNavFazenda>
-          <ButtonNavFazenda onClick={() => { setSel("midia") }}>Fotos/Vídeos</ButtonNavFazenda>
+          {
+            data !== null ?
+              data.data.farm[0] !== undefined ?
+                <ButtonNavFazenda onClick={() => { setSel("midia") }}>Fotos/Vídeos</ButtonNavFazenda>
+                :
+                <>
+                </>
+              :
+              <>
+              </>
+          }
           <ButtonNavFazenda onClick={() => { setSel("local") }}>Localização</ButtonNavFazenda>
           <ButtonNavFazenda onClick={() => { setSel("contato") }}>Contato</ButtonNavFazenda>
           <ButtonNavFazenda onClick={() => { setSel("qrcode") }}>QRCode</ButtonNavFazenda>

@@ -67,16 +67,16 @@
 
 .logo {
     width: 10%;
-    margin-top: -35%;
+    margin-top: -170px;
     margin-left: 85%;
 }
 
 .logo > *{
-    fill: rgba(255, 255, 255, 0)
+    fill: rgb(0, 0, 0)
 }
 
 .qrcode { 
-    margin-top: -16%;
+    margin-top: -80px;
     margin-left: 85%;
 }
 
@@ -133,5 +133,5 @@
 }
 
 .logocomum > *{
-    fill: rgba(255, 255, 255, 0)
+    fill: rgb(0, 0, 0)
 }

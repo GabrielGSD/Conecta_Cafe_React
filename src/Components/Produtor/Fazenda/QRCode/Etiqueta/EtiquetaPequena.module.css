@@ -4,7 +4,7 @@
     width: 120px;
     height: 250px;
     border-radius: 0.8rem;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(0, 0, 0);
     margin-left: auto;
     margin-right: auto;
 }
@@ -17,7 +17,7 @@
 }
 
 .logo * {
-    fill: rgba(255, 255, 255, 0)
+    fill: rgb(0, 0, 0)
 }
 
 .qr {

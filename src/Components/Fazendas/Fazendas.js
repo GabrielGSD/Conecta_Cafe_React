@@ -174,7 +174,7 @@ function Fazendas() {
             }
 
           </div>
-          <div className="container-scroll list-grid" style={{width:'80%'}}>
+          <div className="container-scroll list-grid">
             {fazendasFilter &&
               <>
                 {fazendasFilter.map((fazenda) => (
