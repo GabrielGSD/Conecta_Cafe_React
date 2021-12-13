@@ -18,8 +18,33 @@ const EtiquetaPersonalizada = observer(props => {
 
     const handleClose = () => { setShow(false) }
 
+    var caminho = 'logo' + cafe.id
+    var caminho1 = 'logocomum' + cafe.id
+    var caminho2 = 'logopequena' + cafe.id
+
+    console.log(document.getElementById(caminho))
+    console.log(document.getElementById(caminho1))
+
     const handleColor = props => {
         setColor(props.target.value)
+        
+        // var l2 = document.getElementById(caminho2)
+        // for (let index = 0; index < l2.childNodes.length; index++) {
+        //     l2.childNodes[index].style.fill = color
+        // }
+
+        if (cafe.special !== null) {
+            var l = document.getElementById(caminho)
+            for (let index = 0; index < l.childNodes.length; index++) {
+                l.childNodes[index].style.fill = color
+            }
+        }
+        else {
+            var l1 = document.getElementById(caminho1)
+            for (let index = 0; index < l1.childNodes.length; index++) {
+                l1.childNodes[index].style.fill = color
+            }
+        }
     }
 
     const handleBackgroundColor = props => {
@@ -59,7 +84,7 @@ const EtiquetaPersonalizada = observer(props => {
                                 </div>
                             </Col>
                             <Col xs={1}>
-                                <EtiquetaPequena endpoint={endpoint ? endpoint : "Em andamento"} color={color} backgroundColor={backgroundColor} />
+                                <EtiquetaPequena endpoint={endpoint ? endpoint : "Em andamento"} color={color} backgroundColor={backgroundColor} cafe={cafe} />
                             </Col>
                             <Col xs={1}>
                             </Col>

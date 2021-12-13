@@ -191,7 +191,7 @@ class ComponentToPrint extends React.Component {
                                         </th>
                                     </tr>
                                 </table>
-                                <Logo className={styles.logo} stroke={color}>
+                                <Logo id={`logo${cafe.id}`} className={styles.logo} stroke={color}>
                                 </Logo>
                                 <div className={styles.qrcode}>
                                     <RequestQrCode endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
@@ -279,7 +279,7 @@ class ComponentToPrint extends React.Component {
                                 <table className={styles.table2} style={{ borderColor: color }}>
                                     <tr>
                                         <th className={styles.larguraMaior}>
-                                            <Logo className={styles.logocomum} stroke={color} style={{ width: '80%' }} />
+                                            <Logo id={`logocomum${cafe.id}`} className={styles.logocomum} stroke={color} style={{ width: '80%' }} />
                                         </th>
                                         <th className={styles.larguraMaior}>
                                             <div className={styles.qrcodecomum}>

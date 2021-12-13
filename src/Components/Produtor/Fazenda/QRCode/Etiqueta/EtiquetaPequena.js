@@ -12,13 +12,14 @@ class ComponentToPrintHere extends React.Component {
         var endpoint = this.props.endpoint ? this.props.endpoint : "Insira o endpoint aqui"
         var color = this.props.color ? this.props.color : '#0000ff';
         var backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : '#ffffff';
+        var cafe = this.props.cafe
 
         return (
             <>
                 <div className={styles.body} style={{ color: backgroundColor, backgroundColor: color }}>
                     {/* <Logo className={styles.logo} styles={{ fill: `${color} !important` }} /> */}
                     <div>
-                        <Logo className={styles.logo} style={{ fill: backgroundColor }} stroke={backgroundColor} />
+                        <Logo id={`logo${cafe.id}`} className={styles.logo} style={{ fill: backgroundColor }} stroke={backgroundColor} />
                         {/* <Logo className={styles.logo} stroke={backgroundColor} fill={`>*{color: ${backgroundColor}`}> </Logo> */}
                     </div>
 
@@ -36,7 +37,7 @@ class ComponentToPrintHere extends React.Component {
 }
 
 const EtiquetaPequena = props => {
-    const { endpoint, color, backgroundColor } = props
+    const { endpoint, color, backgroundColor, cafe } = props
     const componentRefP = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRefP.current,
@@ -44,7 +45,7 @@ const EtiquetaPequena = props => {
 
     return (
         <div>
-            <ComponentToPrintHere ref={componentRefP} endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
+            <ComponentToPrintHere ref={componentRefP} endpoint={endpoint} color={color} backgroundColor={backgroundColor} cafe={cafe}/>
             <ButtonSalvar style={{ backgroundColor: '#828D9F', margin: '100px 10px' }} onClick={handlePrint} >
                 Download
             </ButtonSalvar>
