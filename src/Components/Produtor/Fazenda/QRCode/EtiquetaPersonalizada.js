@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import EtiquetaGrande from './Etiqueta/EtiquetaGrande';
 import { Button, Form } from 'react-bootstrap';
 import { observer } from "mobx-react"
@@ -6,14 +6,26 @@ import { Modal, Col, Row } from 'react-bootstrap';
 import { ButtonAcc } from '../../../Button/Button';
 import styles from './EtiquetaPersonalizada.module.css';
 import EtiquetaPequena from './Etiqueta/EtiquetaPequena';
+import { FARM_GET } from '../../../../Api/api';
 
 const EtiquetaPersonalizada = observer(props => {
-    const { endpoint, cafe, fazenda } = props
-    // console.log(fazenda)
+    const { endpoint, cafe } = props
+    const [fazenda, setFazenda] = useState(null)
+
+    useEffect(() => {
+        async function fetchFarm() {
+          const { url, options } = FARM_GET(cafe.farmId);
+          const response = await fetch(url, options);
+          const json = await response.json();
+          setFazenda(json.data)
+          console.log(json.data)
+        }
+        fetchFarm();
+      }, [])
 
     const [color, setColor] = useState('#000000')
     const [backgroundColor, setBackgroundColor] = useState('#ffffff')
-    const [show, setShow] = React.useState(false);
+    const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
 
     const handleClose = () => { setShow(false) }
@@ -22,16 +34,13 @@ const EtiquetaPersonalizada = observer(props => {
     var caminho1 = 'logocomum' + cafe.id
     var caminho2 = 'logopequena' + cafe.id
 
-    console.log(document.getElementById(caminho))
-    console.log(document.getElementById(caminho1))
-
     const handleColor = props => {
         setColor(props.target.value)
         
-        // var l2 = document.getElementById(caminho2)
-        // for (let index = 0; index < l2.childNodes.length; index++) {
-        //     l2.childNodes[index].style.fill = color
-        // }
+        var l2 = document.getElementById(caminho2)
+        for (let index = 0; index < l2.childNodes.length; index++) {
+            l2.childNodes[index].style.fill = color
+        }
 
         if (cafe.special !== null) {
             var l = document.getElementById(caminho)
@@ -90,7 +99,7 @@ const EtiquetaPersonalizada = observer(props => {
                             </Col>
                             <Col xs={5}>
                                 <div>
-                                    <EtiquetaGrande cafe={cafe} endpoint={endpoint ? endpoint : "Em andamento"} color={color} backgroundColor={backgroundColor} />
+                                    <EtiquetaGrande cafe={cafe} endpoint={endpoint ? endpoint : "Em andamento"} color={color} backgroundColor={backgroundColor} fazenda={fazenda}/>
                                 </div>
                             </Col>
                         </Row>

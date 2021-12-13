@@ -16,19 +16,17 @@ class ComponentToPrintHere extends React.Component {
 
         return (
             <>
-                <div className={styles.body} style={{ color: backgroundColor, backgroundColor: color }}>
-                    {/* <Logo className={styles.logo} styles={{ fill: `${color} !important` }} /> */}
+                <div className={styles.body} style={{ color: color, backgroundColor: backgroundColor, borderColor: color}}>
                     <div>
-                        <Logo id={`logo${cafe.id}`} className={styles.logo} style={{ fill: backgroundColor }} stroke={backgroundColor} />
-                        {/* <Logo className={styles.logo} stroke={backgroundColor} fill={`>*{color: ${backgroundColor}`}> </Logo> */}
+                        <Logo id={`logopequena${cafe.id}`} className={styles.logo} style={{ fill: color }} stroke={color} />
                     </div>
 
                     <div className={styles.qr}>
-                        <RequestQrCode endpoint={endpoint} color={backgroundColor} backgroundColor={color} />
+                        <RequestQrCode endpoint={endpoint} color={color} backgroundColor={backgroundColor} />
                     </div>
 
                     <div>
-                        <h2 className={styles.text} style={{ color: backgroundColor }}>Escaneie e saiba mais</h2>
+                        <h2 className={styles.text} style={{ color: color }}>Escaneie e saiba mais</h2>
                     </div>
                 </div>
             </>

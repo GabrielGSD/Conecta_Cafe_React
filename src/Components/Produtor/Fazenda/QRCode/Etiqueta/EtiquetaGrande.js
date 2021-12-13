@@ -14,6 +14,7 @@ class ComponentToPrint extends React.Component {
         var color = this.props.color ? this.props.color : '#0000ff';
         var backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : '#ffffff';
         var cafe = this.props.cafe ? this.props.cafe : {};
+        var fazenda = this.props.fazenda ? this.props.fazenda : {};
 
         return (
             <>
@@ -40,7 +41,7 @@ class ComponentToPrint extends React.Component {
                                             <div className={styles.produtor} style={{ color: color, backgroundColor: backgroundColor }}>
                                                 Produtor:
                                                 <br />
-                                                Gabriel de Souza Daniel
+                                                {fazenda.coffeeGrower.name}
                                             </div>
                                         </th>
                                     </tr>
@@ -219,9 +220,11 @@ class ComponentToPrint extends React.Component {
                                         </th>
                                         <th >
                                             <div className={styles.produtor} style={{ color: color, backgroundColor: backgroundColor }}>
-                                                Produtor:
-                                                <br />
-                                                Gabriel de Souza Daniel
+                                                <div style={{ color: color, backgroundColor: backgroundColor }}>
+                                                    Produtor:
+                                                    <br />
+                                                    {fazenda.coffeeGrower.name}
+                                                </div>
                                             </div>
                                         </th>
                                     </tr>
@@ -299,7 +302,7 @@ class ComponentToPrint extends React.Component {
 }
 
 const EtiquetaGrande = props => {
-    const { endpoint, color, backgroundColor, cafe } = props
+    const { endpoint, color, backgroundColor, cafe, fazenda } = props
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -307,7 +310,7 @@ const EtiquetaGrande = props => {
 
     return (
         <div>
-            <ComponentToPrint ref={componentRef} endpoint={endpoint} color={color} backgroundColor={backgroundColor} cafe={cafe} />
+            <ComponentToPrint ref={componentRef} endpoint={endpoint} color={color} backgroundColor={backgroundColor} cafe={cafe} fazenda={fazenda} />
             <ButtonSalvar style={{ backgroundColor: '#828D9F', margin: '50px 200px' }} onClick={handlePrint} >
                 Download
             </ButtonSalvar>

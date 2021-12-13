@@ -72,7 +72,7 @@
 }
 
 .logo > *{
-    fill: rgba(255, 255, 255, 0)
+    fill: rgb(0, 0, 0)
 }
 
 .qrcode { 
@@ -133,5 +133,5 @@
 }
 
 .logocomum > *{
-    fill: rgba(255, 255, 255, 0)
+    fill: rgb(0, 0, 0)
 }
