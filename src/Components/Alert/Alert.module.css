@@ -1,0 +1,29 @@
+.alert {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  max-width: 35vw;
+  border-radius: .5rem;
+  padding: 20px;
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.alert > p {
+  margin: 0;
+  margin-left: 10px;
+}
+
+.alertSuccess {
+  color: #fff;
+  background-color: #4CAF50;
+  border-color: #32a337;
+}
+
+.alertError {
+  color: #fff;
+  background-color: #FF5252;
+  border-color: #FF5252;
+}

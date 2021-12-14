@@ -9,8 +9,14 @@ import Contato from './Contato/Contato';
 import Localizacao from './Localizacao/Localizacao';
 import FotosVideos from './FotosVideos/FotosVideos';
 import QRCode from './QRCode/QRCode';
+import Popup from '../../Alert/Alert';
 
 function Fazenda() {
+
+  const [isOpen, setIsOpen] = useState(true);
+  const [msgAlert, setMsgAlert] = useState('Fazenda salva com sucesso!');
+  const [type, setType] = useState('success');
+
 
   const id = useForm();
   const nome = useForm();
@@ -91,9 +97,23 @@ function Fazenda() {
 
     if (data.data.farm.length > 0) {
       farmEdit(data.data.farm[0].id, body);
+      setMsgAlert('Fazenda salva com sucesso!')
+      setType('success')
+      setIsOpen(false)
+
+      setTimeout(function(){
+        setIsOpen(true)
+      },5000)
     }
     else {
       farmCreate(body);
+      setMsgAlert('Fazenda salva com sucesso!')
+      setType('success')
+      setIsOpen(false)
+
+      setTimeout(function(){
+        setIsOpen(true)
+      },5000)
     }
   }
 
@@ -172,6 +192,11 @@ function Fazenda() {
 
 
         <ButtonSalvar onClick={handleSubmit} >Salvar</ButtonSalvar>
+        
+        {!isOpen && <Popup
+          type={type}
+          msg={msgAlert}
+        />}
       </div>
     </div>
   )
