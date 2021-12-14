@@ -1,0 +1,33 @@
+.coffeeBG {
+  background-image: url("../../Assets/graosCafe.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 90%;
+  margin: 0 auto;
+  height: calc(100vh - 64px);
+  display: grid;
+  grid-template-columns: 1fr 35vw;
+  align-content: center;
+  grid-column-gap: 8vw;
+}
+
+.infoBanner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-weight: 900;
+  font-size: 3.1rem;
+  color: #fff;
+  max-width: 560px;
+}
+
+.desc {
+  font-weight: 300;
+  font-size: 1rem;
+  color: #fff;
+  max-width: 560px;
+}
