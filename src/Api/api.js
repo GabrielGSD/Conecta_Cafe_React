@@ -1,4 +1,4 @@
-export const API_URL = 'http://localhost:3333';
+export const API_URL = 'https://d0b9-189-126-233-210.ngrok.io';
 
 // Funcao Login
 export function USER_LOGIN(body) {

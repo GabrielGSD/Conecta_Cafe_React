@@ -80,6 +80,7 @@ export function UserStorage({ children }) {
       const response = await fetch(url, options);
       const { data } = await response.json();
       if (!response.ok) throw new Error('Erro ao salvar fazenda');
+      else setError(null);
     } catch (err) {
       setError(err.message);
       setLogin(false);
@@ -104,18 +105,19 @@ export function UserStorage({ children }) {
   }
 
   async function coffeeCreate(id, body) {
-    try {
-      setError(null);
-      setLoading(true);
-      const {url, options} = COFFEE_CREATE(id, body);
-      const response = await fetch(url, options);
-      if (!response.ok) throw new Error('Erro ao salvar café');
-    } catch (err) {
-      setError(err.message);
-      setLogin(false);
-    } finally {
-      setLoading(false);
+    setError(null);
+    setLoading(true);
+    const {url, options} = COFFEE_CREATE(id, body);
+    const response = await fetch(url, options);
+    console.log(response)
+    if (!response.ok || response.status === 400) {
+      setError('VAI TOMAR NO CU');
+      console.log(error)
     }
+    else {
+      setError(false);
+    }
+    setLoading(false);
   }
 
   async function coffeeEdit(id, body) {
