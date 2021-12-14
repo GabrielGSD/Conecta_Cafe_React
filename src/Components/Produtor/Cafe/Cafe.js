@@ -6,8 +6,13 @@ import Card from './Card/Card';
 import useForm from '../../../Hooks/useForm';
 import CafeCont from './CafeCont/CafeCont';
 import Especial from './Especial/Especial';
+import Popup from '../../Alert/Alert';
 
 function Cafe() {
+
+  const [isOpen, setIsOpen] = React.useState(true);
+  const [msgAlert, setMsgAlert] = React.useState('Fazenda salva com sucesso!');
+  const [type, setType] = React.useState('success');
 
   const [variedade, setVariedade] = React.useState("");
   const [processo, setProcesso] = React.useState("");
@@ -29,7 +34,7 @@ function Cafe() {
   const corpo = useForm();
   const docura = useForm();
 
-  const { data, coffeeCreate, getFarm } = React.useContext(UserContext);
+  const { data, coffeeCreate, getFarm, error } = React.useContext(UserContext);
   const [show, setShow] = React.useState(false);
   const [reload, setReload] = React.useState(0);
 
@@ -67,10 +72,18 @@ function Cafe() {
       }
     }
     coffeeCreate(data.data.id, body);
-    console.log(reload)
     setReload(reload+1)
-    console.log(reload)
     handleClose()
+    getFarm(data.data.id)
+    
+    setMsgAlert("Café adicionado com sucesso")
+    setType('success')
+    
+    setIsOpen(false)
+
+    setTimeout(function(){
+      setIsOpen(true)
+    },5000)
   }
 
   function clearInputs() {
@@ -142,6 +155,10 @@ function Cafe() {
           <>
           </>
       }
+      {!isOpen && <Popup
+          type={type}
+          msg={msgAlert}
+        />}
     </>
   )
 }
