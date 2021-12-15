@@ -7,7 +7,7 @@
   margin: 0 auto;
   height: calc(100vh - 64px);
   display: grid;
-  grid-template-columns: 1fr 35vw;
+  grid-template-columns: 1fr;
   align-content: center;
   grid-column-gap: 8vw;
 }
