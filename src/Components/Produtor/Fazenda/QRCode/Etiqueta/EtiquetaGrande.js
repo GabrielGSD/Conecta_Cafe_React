@@ -32,14 +32,12 @@ class ComponentToPrint extends React.Component {
                                     <tr>
                                         <th className={styles.larguraMaior}>
                                             <div className={styles.regionCoffee} style={{ color: color, backgroundColor: backgroundColor }}>
-                                                {localStorage.getItem('farm_name')}
-                                                <br />
-                                                {localStorage.getItem('farm_city')} - {localStorage.getItem('farm_uf')}
+                                                {fazenda.farm_name}
                                             </div>
                                         </th>
                                         <th >
                                             <div className={styles.produtor} style={{ color: color, backgroundColor: backgroundColor }}>
-                                                Produtor:
+                                                Produtor: 
                                                 <br />
                                                 {fazenda.coffeeGrower.name}
                                             </div>
@@ -213,9 +211,7 @@ class ComponentToPrint extends React.Component {
                                     <tr>
                                         <th className={styles.larguraMaior}>
                                             <div className={styles.regionCoffee} style={{ color: color, backgroundColor: backgroundColor }}>
-                                                {localStorage.getItem('farm_name')}
-                                                <br />
-                                                {localStorage.getItem('farm_city')} - {localStorage.getItem('farm_uf')}
+                                                {fazenda.farm_name}
                                             </div>
                                         </th>
                                         <th >
