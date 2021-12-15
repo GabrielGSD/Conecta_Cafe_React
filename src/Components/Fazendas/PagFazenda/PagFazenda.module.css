@@ -264,6 +264,7 @@
   .contactGroup {
     height: 110px;
     margin-top: 10px;
+    font-size: .9rem;
   }
   .contactGroup > * {
     display: flex;

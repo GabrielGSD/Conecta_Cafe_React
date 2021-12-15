@@ -27,8 +27,9 @@ const Modalremove = observer(props => {
     const handleDelete = () => {
         coffeeDelete(cafe.id)
         setShow(false)
+        console.log(reload)
         setReload(reload + 1)
-        
+        console.log(reload)
     }
 
 

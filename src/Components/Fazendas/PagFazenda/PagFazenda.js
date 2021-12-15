@@ -21,28 +21,29 @@ function PagFazenda() {
       const response = await fetch(url, options);
       const json = await response.json();
       setFazenda(json.data)
-      setCoffeeSel(json.data.coffee)
+      setCoffee(json.data.coffee)
+      setCoffeeSel(json.data.coffee[0])
       setPhotoSel(json.data.medias[0])
-      console.log(json.data)
+      console.log(coffeeSel)
     }
     fetchFarm();
   }, []);
 
   const [fazenda, setFazenda] = React.useState(null);
-  const fotos = [
-    'http://s2.glbimg.com/P6Nn4AXYPq-K1Xek4cCKyONYYyA=/e.glbimg.com/og/ed/f/original/2014/01/15/cafe.jpg',
-    'https://verticemt.com.br/wp-content/uploads/2020/09/lake-constance-sheep-pasture-sheep-blue-158179.jpeg"',
-  ];
   let photoIndex = 0;
   const [photoSel, setPhotoSel] = React.useState();
 
-  const handleNext = () => { (photoIndex < fazenda.medias.length - 1) && photoIndex++; setPhotoSel(fazenda.medias[photoIndex]); };
+  const handleNext = () => { (photoIndex < fazenda.medias.length - 1 && fazenda.medias.length > 0) && photoIndex++; setPhotoSel(fazenda.medias[photoIndex]); };
   const handleBack = () => { (photoIndex > 0) && photoIndex--; setPhotoSel(fazenda.medias[photoIndex]) };
 
   let cafeIndex = 0;
+  const [coffee, setCoffee] = React.useState(null);
   const [coffeeSel, setCoffeeSel] = React.useState(null);
-  const handlCoffeeeBack = () => { (cafeIndex < fazenda.coffee.length - 1) && cafeIndex++; setCoffeeSel(fazenda.coffee[cafeIndex]); console.log(cafeIndex) };
-  const handleCoffeeNext = () => { (cafeIndex > 0) && cafeIndex--; setCoffeeSel(fazenda.coffee[cafeIndex]); console.log(cafeIndex) };
+  const handlCoffeeeBack = () => { (cafeIndex <= coffee.length - 1) && cafeIndex++; setCoffeeSel(coffee[cafeIndex]); console.log(cafeIndex)};
+  const handleCoffeeNext = () => { (cafeIndex > 0) && cafeIndex--; setCoffeeSel(coffee[cafeIndex]); console.log(cafeIndex) };
+
+  // const handleNextCoffee = () => { (cafeIndex < coffeeSel.length - 1) && photoIndex++; setPhotoSel(fazenda.coffee[cafeIndex])};
+  // const handleBackCoffee = () => { (cafeIndex > 0) && photoIndex--; setPhotoSel(fazenda.coffee[cafeIndex]) };
 
   function getId() {
     var url = window.location.href;
@@ -101,10 +102,10 @@ function PagFazenda() {
 
               <Col sm={8} className={styles.carouselCafe}>
 
-                <a className={styles.btnCarouselCafe} style={{ left: 'calc(3.5vw + 10px)' }} onClick={handlCoffeeeBack}>
+                <a className={styles.btnCarouselCafe} style={{ left: 'calc(3.5vw + 10px)' }} onClick={handleCoffeeNext}>
                   <ArrowIcon />
                 </a>
-                <a className={styles.btnCarouselCafe} style={{ right: 'calc(3.5vw + 10px)' }} onClick={handleCoffeeNext}>
+                <a className={styles.btnCarouselCafe} style={{ right: 'calc(3.5vw + 10px)' }} onClick={handlCoffeeeBack}>
                   <ArrowIcon style={{ transform: 'rotate(-90deg)' }} />
                 </a>
 
@@ -112,58 +113,58 @@ function PagFazenda() {
                   <div style={{ minWidth: '80%' }}>
                     <Row className={styles.dadoCafe}>
                       <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Espécie:</b></p></Col>
-                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].species}</p></Col>
+                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{coffeeSel.species}</p></Col>
                     </Row>
 
                     <Row className={styles.dadoCafe}>
                       <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Variedade:</b></p></Col>
-                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].variety}</p></Col>
+                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{coffeeSel.variety}</p></Col>
                     </Row>
 
                     <Row className={styles.dadoCafe}>
                       <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Altitude:</b></p></Col>
-                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].altitude}</p></Col>
+                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{coffeeSel.altitude}</p></Col>
                     </Row>
 
                     <Row className={styles.dadoCafe}>
                       <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Processo:</b></p></Col>
-                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].process}</p></Col>
+                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{coffeeSel.process}</p></Col>
                     </Row>
 
                     <Row className={styles.dadoCafe}>
                       <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Safra:</b></p></Col>
-                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].harvest}</p></Col>
+                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{coffeeSel.harvest}</p></Col>
                     </Row>
 
                     <Row className={styles.dadoCafe}>
                       <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Valor da safra:</b></p></Col>
-                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].harvestValue}</p></Col>
+                      <Col sm={9} xs={7}><p className={styles.infosCafe}>{coffeeSel.harvestValue}</p></Col>
                     </Row>
 
                     {coffeeSel.special && <>
                       <Row className={styles.dadoCafe}>
                         <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Acidez:</b></p></Col>
-                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].special.acidity}</p></Col>
+                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{coffeeSel.special.acidity}</p></Col>
                       </Row>
 
                       <Row className={styles.dadoCafe}>
                         <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Aroma:</b></p></Col>
-                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].special.aroma}</p></Col>
+                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{coffeeSel.special.aroma}</p></Col>
                       </Row>
 
                       <Row className={styles.dadoCafe}>
                         <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Corpo:</b></p></Col>
-                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].special.body}</p></Col>
+                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{coffeeSel.special.body}</p></Col>
                       </Row>
 
                       <Row className={styles.dadoCafe}>
                         <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Finalização:</b></p></Col>
-                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].special.completion}</p></Col>
+                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{coffeeSel.special.completion}</p></Col>
                       </Row>
 
                       <Row className={styles.dadoCafe}>
                         <Col sm={3} xs={5}><p className={styles.infosCafe}><b>Sabor:</b></p></Col>
-                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{fazenda.coffee[cafeIndex].special.flavor}</p></Col>
+                        <Col sm={9} xs={7}><p className={styles.infosCafe}>{coffeeSel.special.flavor}</p></Col>
                       </Row>
                     </>}
                   </div>

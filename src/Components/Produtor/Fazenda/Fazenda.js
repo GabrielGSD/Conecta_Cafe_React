@@ -168,17 +168,7 @@ function Fazenda() {
         </div>
         <div className="navBarCont">
           <ButtonNavFazenda onClick={() => { setSel("sobre") }}>Sobre</ButtonNavFazenda>
-          {
-            data !== null ?
-              data.data.farm[0] !== undefined ?
-                <ButtonNavFazenda onClick={() => { setSel("midia") }}>Fotos/Vídeos</ButtonNavFazenda>
-                :
-                <>
-                </>
-              :
-              <>
-              </>
-          }
+          <ButtonNavFazenda onClick={() => { setSel("midia") }}>Fotos</ButtonNavFazenda>
           <ButtonNavFazenda onClick={() => { setSel("local") }}>Localização</ButtonNavFazenda>
           <ButtonNavFazenda onClick={() => { setSel("contato") }}>Contato</ButtonNavFazenda>
           <ButtonNavFazenda onClick={() => { setSel("qrcode") }}>QRCode</ButtonNavFazenda>
